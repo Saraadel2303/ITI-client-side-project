@@ -1,0 +1,66 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "username": "Mahmoud",
+      "email": "mahmoud.turky@example.com",
+      "password": "m1234",
+      "type": "employee",
+      "salary": 4500
+    },
+    {
+      "id": 2,
+      "username": "Sarah",
+      "email": "sarah@example.com",
+      "password": "Sarah1234",
+      "type": "employee",
+      "salary": 5200
+    },
+    {
+      "id": 3,
+      "username": "Basell",
+      "email": "basel@example.com",
+      "password": "basel1234",
+      "type": "employee",
+      "salary": 4800
+    },
+    {
+      "id": 4,
+      "username": "Basma",
+      "email": "basma@example.com",
+      "password": "basma123",
+      "type": "employee",
+      "salary": 5000
+    }
+  ],
+  "managers": [
+    {
+      "id": 1,
+      "username": "Admin",
+      "email": "admin@example.com",
+      "password": "admin1234",
+        "type": "manager",
+        "salary": 8000
+    }
+  ],
+  "hr": [
+    {
+      "id": 1,
+      "username": "HR_Manager",
+      "email": "hr@example.com",
+        "password": "hr1234",
+        "type": "hr",
+        "salary": 7000
+    }
+  ],
+  "security": [
+    {
+      "id": 1,
+      "username": "Security_1",
+      "email": "gsecurity@example.com",
+        "password": "sec1234",
+        "type": "security",
+        "salary": 4000
+    }
+  ]
+}
