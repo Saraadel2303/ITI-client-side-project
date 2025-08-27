@@ -2,15 +2,9 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
-signUpButton.addEventListener('click', () => {
-	container.classList.add("right-panel-active");
-});
 
-signInButton.addEventListener('click', () => {
-	container.classList.remove("right-panel-active");
-});
 
-// ...existing code...
+
 
 async function getUserByEmailAndPassword(email, password) {
   const response = await fetch('data.json');
@@ -33,7 +27,6 @@ document.getElementById("signInForm").addEventListener("submit", async function 
   let password = document.getElementById("signinPassword").value.trim();
   let valid = true;
 
-  // Email check
   if (!validateEmail(email)) {
     showError("signinEmail", "signinEmailError", "Email must end with @example.com");
     valid = false;
@@ -41,7 +34,6 @@ document.getElementById("signInForm").addEventListener("submit", async function 
     showError("signinEmail", "signinEmailError", "");
   }
 
-  // Password check
   if (!validatePassword(password)) {
     showError("signinPassword", "signinPasswordError", "Password must be at least 5 characters");
     valid = false;
