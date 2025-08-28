@@ -61,7 +61,6 @@ document.getElementById("signInForm").addEventListener("submit", async function 
 
 
 
-// ================== FORM VALIDATION ================== //
 function validateEmail(email) {
   return email.toLowerCase().endsWith("@example.com");
 }
@@ -83,36 +82,8 @@ function showError(inputId, errorId, message) {
   }
 }
 
-// Sign Up validation
-document.getElementById("signUpForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  let email = document.getElementById("signupEmail").value.trim();
-  let password = document.getElementById("signupPassword").value.trim();
-  let valid = true;
 
-  // Email check
-  if (!validateEmail(email)) {
-    showError("signupEmail", "signupEmailError", "Email must end with @example.com");
-    valid = false;
-  } else {
-    showError("signupEmail", "signupEmailError", "");
-  }
 
-  // Password check
-  if (!validatePassword(password)) {
-    showError("signupPassword", "signupPasswordError", "Password must be at least 5 characters");
-    valid = false;
-  } else {
-    showError("signupPassword", "signupPasswordError", "");
-  }
-
-  if (valid) {
-    alert("✅ Sign Up Successful!");
-    // this.submit(); // remove comment if you want to actually submit form
-  }
-});
-
-// ================== SIGN IN VALIDATION & REDIRECT ================== //
 async function getUserByEmailAndPassword(email, password) {
   const response = await fetch('data.json');
   const data = await response.json();
