@@ -25,6 +25,7 @@ if (role !== "manger") {
   team_tasks.style.display = "";
   team_attendance.style.display = "";
   approval.style.display = "";
+
 }
 
 if (role !== "hr") {
