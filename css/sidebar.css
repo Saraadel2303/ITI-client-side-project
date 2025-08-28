@@ -1,0 +1,45 @@
+.side-title {
+  /* color: #534feb; */
+  font-family: system-ui;
+}
+
+.active {
+  background-color: #534feb !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #534feb !important;
+  color: #fff !important;
+  padding: 8px;
+  padding-inline: 12px;
+  border: 1px solid #534feb !important;
+  border-radius: 7px !important;
+}
+
+.accordion-button {
+  padding: 8px;
+  padding-inline: 17px;
+}
+
+.accordion-button:not(.collapsed)::after {
+  filter: brightness(0) invert(1);
+}
+
+.accordion-item,
+.accordion-button,
+.accordion-collapse {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 5px;
+}
+
+.accordion-button::after {
+  background-size: 0.75rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.accordion {
+    margin: 0px;
+    padding: 0px;
+}
