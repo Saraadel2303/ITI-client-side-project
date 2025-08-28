@@ -1,24 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // ================== SIGN IN VALIDATION & REDIRECT ================== //
   async function getUserByUsernameAndPassword(username, password) {
     try {
-      const response = await fetch("data/data1.json"); 
+      const response = await fetch("data/data1.json");
       const data = await response.json();
 
       const user = data.employees.find(
-        u =>
+        (u) =>
           u.username.toLowerCase() === username.toLowerCase() &&
           u.password === password
       );
 
-      if (user) {
-        return user.role.toLowerCase(); 
-      }
-
-      return null;
+      return user || null; // رجّع الـ user كله مش بس role
     } catch (error) {
-      console.error("❌ Error loading data.json:", error);
+      console.error("❌ Error loading data1.json:", error);
       return null;
     }
   }
@@ -57,22 +52,28 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (valid) {
-        const userType = await getUserByUsernameAndPassword(username, password);
-        if (userType === "employee") {
-          window.location.href = "pages/employees.html";
-        } else if (userType === "manager") {
-          window.location.href = "pages/managers.html";
-        } else if (userType === "hr") {
-          window.location.href = "pages/hr.html";
-        } else if (userType === "security") {
-          window.location.href = "pages/security.html";
+        const user = await getUserByUsernameAndPassword(username, password);
+
+        if (user) {
+      // localStorage
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+          //redirect based on role
+          if (user.role.toLowerCase() === "employee") {
+            window.location.href = "pages/employees.html";
+          } else if (user.role.toLowerCase() === "manager") {
+            window.location.href = "pages/managers.html";
+          } else if (user.role.toLowerCase() === "hr") {
+            window.location.href = "pages/hr.html";
+          } else if (user.role.toLowerCase() === "security") {
+            window.location.href = "pages/security.html";
+          }
         } else {
           showError(
             "signinUsername",
             "signinUsernameError",
             "❌ Username or password is incorrect!"
           );
-          showError("signinPassword", "signinPasswordError", "");
         }
       }
     });
