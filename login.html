@@ -1,0 +1,44 @@
+
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="css/login.css">
+	<script src="js/login.js" defer ></script>
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+      
+      <div class="container" id="container">
+			<div class="form-container sign-in-container">
+    			<form id="signInForm" action="#">
+        			<h1>Sign in</h1>
+        			<input type="text" id="signinUsername" name="signinEmail" placeholder="Enter Username" />
+        			<small id="signinUsernameError" class="error"></small>
+        			<input type="password" id="signinPassword" name="signinPassword" placeholder="Enter Password" />
+        			<small id="signinPasswordError" class="error"></small>
+        			<button class="pointer">Sign In</button>
+    			</form>
+			</div>
+
+	      <div class="overlay-container">
+		      <div class="overlay">
+			      <div class="overlay-panel overlay-left">
+				      <h1>Welcome Back!</h1>
+				      <p>To keep connected with us please login with your personal info</p>
+				      <button class="ghost pointer" id="signIn">Sign In</button>
+			      </div>
+			      <div class="overlay-panel overlay-right">
+				      <h1>Welcome</h1>
+				      <p>Enter your account and start journey with us</p>
+			      </div>
+		      </div>
+	      </div>
+    </div>
+
+	<script src="js/login.js" async ></script>
+
+  </body>
+</html>
+
+
