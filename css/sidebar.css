@@ -1,10 +1,31 @@
+#sidebar {
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+
+@media (min-width: 992px) {
+  #sidebar {
+    width: 15rem;
+    height: 100vh;
+  }
+}
+
+
 .side-title {
-  /* color: #534feb; */
-  font-family: system-ui;
+  font-family: Preahvihear;
 }
 
 .active {
   background-color: #534feb !important;
+}
+
+.main-btn {
+  background-color: #534feb;
+}
+
+.main-btn:hover{
+  background-color: #625de6;
 }
 
 .accordion-button:not(.collapsed) {
@@ -40,6 +61,6 @@
 }
 
 .accordion {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
