@@ -1,16 +1,19 @@
+
 #sidebar {
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
+    width: 13rem;
+    height: 100vh;
+    padding: 0px;
+    margin: 0px ;
 }
 
 @media (min-width: 992px) {
   #sidebar {
-    width: 15rem;
+    width: 13rem;
     height: 100vh;
+    padding: 0px;
+    margin: 0px ;
   }
 }
-
 
 .side-title {
   font-family: Preahvihear;
@@ -24,7 +27,7 @@
   background-color: #534feb;
 }
 
-.main-btn:hover{
+.main-btn:hover {
   background-color: #625de6;
 }
 
