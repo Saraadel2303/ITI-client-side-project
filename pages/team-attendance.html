@@ -18,6 +18,34 @@
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      /* Heatmap styles */
+      .heatmap-table td {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .present {
+        background-color: #4caf50; /* Green */
+      }
+      .absent {
+        background-color: #f44336; /* Red */
+      }
+      .late {
+        background-color: #ffc107; /* Yellow */
+      }
+      .leave {
+        background-color: #2196f3; /* Blue */
+      }
+      .legend span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        border-radius: 3px;
+      }
+    </style>
   </head>
   <body>
     <!-- Sidebar -->
@@ -46,14 +74,53 @@
         <h2>
           <i class="fas fa-chart-line me-2 text-primary"></i>Attendance Heatmap
         </h2>
-        <div class="heatmap mb-4">
-          <div class="low"></div>
-          <div class="medium"></div>
-          <div class="high"></div>
-          <div class="low"></div>
-          <div class="medium"></div>
-          <div class="low"></div>
-          <div class="high"></div>
+        <div class="table-responsive">
+          <table class="table table-bordered heatmap-table text-center">
+            <thead class="table-light">
+              <tr>
+                <th>Employee</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ahmed Mansour</td>
+                <td class="present"></td>
+                <td class="present"></td>
+                <td class="absent"></td>
+                <td class="present"></td>
+                <td class="present"></td>
+              </tr>
+              <tr>
+                <td>Laila Hatem</td>
+                <td class="present"></td>
+                <td class="present"></td>
+                <td class="present"></td>
+                <td class="late"></td>
+                <td class="absent"></td>
+              </tr>
+              <tr>
+                <td>Karim Adel</td>
+                <td class="present"></td>
+                <td class="absent"></td>
+                <td class="present"></td>
+                <td class="leave"></td>
+                <td class="present"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend mt-3">
+          <span class="present"></span> Present
+          <span class="absent ms-3"></span> Absent
+          <span class="late ms-3"></span> Late
+          <span class="leave ms-3"></span> Leave
         </div>
       </section>
 
@@ -85,7 +152,7 @@
               <td>✔️</td>
               <td>✔️</td>
               <td>✔️</td>
-              <td>✔️</td>
+              <td>⏰</td>
               <td>❌</td>
             </tr>
             <tr>
@@ -93,7 +160,7 @@
               <td>✔️</td>
               <td>❌</td>
               <td>✔️</td>
-              <td>✔️</td>
+              <td>🌴</td>
               <td>✔️</td>
             </tr>
           </tbody>
@@ -132,13 +199,23 @@
           datasets: [
             {
               label: "Days Present",
-              data: [4, 4, 4], // عدد الايام حاضر
+              data: [4, 4, 4],
               backgroundColor: "rgba(54, 162, 235, 0.7)",
             },
             {
               label: "Days Absent",
-              data: [1, 1, 1], // عدد الايام غايب
+              data: [1, 1, 1],
               backgroundColor: "rgba(255, 99, 132, 0.7)",
+            },
+            {
+              label: "Late",
+              data: [0, 1, 0],
+              backgroundColor: "rgba(255, 206, 86, 0.7)",
+            },
+            {
+              label: "Leave",
+              data: [0, 0, 1],
+              backgroundColor: "rgba(75, 192, 192, 0.7)",
             },
           ],
         },
@@ -157,14 +234,16 @@
       new Chart(ctxPie, {
         type: "pie",
         data: {
-          labels: ["Present", "Absent"],
+          labels: ["Present", "Absent", "Late", "Leave"],
           datasets: [
             {
               label: "Overall Attendance",
-              data: [12, 3], // إجمالي حضور + غياب
+              data: [12, 3, 1, 1],
               backgroundColor: [
                 "rgba(75, 192, 192, 0.7)",
                 "rgba(255, 99, 132, 0.7)",
+                "rgba(255, 206, 86, 0.7)",
+                "rgba(54, 162, 235, 0.7)",
               ],
             },
           ],
