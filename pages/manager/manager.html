@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Managers Dashboard</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2eK7pB6kM235/b+O4rGjQ+6D2A+o2u6J5r22zG5E5v5v5v5Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../css/manger/manager.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"
+              ><i class="fas fa-clipboard-list me-2"></i>Approvals</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              ><i class="fas fa-users-viewfinder me-2"></i>Team Attendance</a
+            >
+          </li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <h1>Welcome, Basil!</h1>
+
+        <section id="approvals-queue" class="card-container">
+          <h2><i class="fas fa-check-circle me-2"></i>Approvals Queue</h2>
+          <p>This section will display all pending requests for your team.</p>
+        </section>
+
+        <section id="attendance-dashboard" class="card-container">
+          <h2>
+            <i class="fas fa-chart-line me-2"></i>Team Attendance Dashboard
+          </h2>
+          <p>
+            This section will show the attendance heatmap and detailed table.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
