@@ -3,54 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Managers Dashboard</title>
+    <title>Manager Dashboard</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <!-- FontAwesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2eK7pB6kM235/b+O4rGjQ+6D2A+o2u6J5r22zG5E5v5v5v5Q=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../../css/manger/manager.css" />
+    <style>
+      /* 🎨 Theme Colors */
+      :root {
+        --primary: #ff4b2b;
+        --secondary: #ff416c;
+        --bg-light: #f6f5f7;
+        --text-dark: #333;
+        --text-light: #777;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        background-color: var(--bg-light);
+        margin: 0;
+        display: flex;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 250px;
+        background: linear-gradient(
+          to bottom,
+          var(--primary),
+          var(--secondary)
+        );
+        min-height: 100vh;
+        padding: 20px;
+        color: #fff;
+      }
+      .sidebar h4 {
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+      .sidebar .nav-link {
+        color: #fff;
+        margin: 8px 0;
+        transition: all 0.2s ease-in-out;
+      }
+      .sidebar .nav-link:hover,
+      .sidebar .nav-link.active {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding-left: 12px;
+      }
+
+      /* Main content */
+      .main-content {
+        flex: 1;
+        padding: 30px;
+      }
+      .main-content h1 {
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+      }
+
+      /* Cards */
+      .card-container {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 25px;
+      }
+      .card-container h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: var(--text-dark);
+      }
+      .card-container p {
+        color: var(--text-light);
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <div class="dashboard-container">
-      <aside class="sidebar">
-        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#"
-              ><i class="fas fa-clipboard-list me-2"></i>Approvals</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              ><i class="fas fa-users-viewfinder me-2"></i>Team Attendance</a
-            >
-          </li>
-        </ul>
-      </aside>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#approvals-queue"
+            ><i class="fas fa-clipboard-list me-2"></i>Approvals</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#attendance-dashboard"
+            ><i class="fas fa-users-viewfinder me-2"></i>Team Attendance</a
+          >
+        </li>
+      </ul>
+    </aside>
 
-      <main class="main-content">
-        <h1>Welcome, Basil!</h1>
+    <!-- Main -->
+    <main class="main-content">
+      <h1>Welcome, Basil! 👋</h1>
 
-        <section id="approvals-queue" class="card-container">
-          <h2><i class="fas fa-check-circle me-2"></i>Approvals Queue</h2>
-          <p>This section will display all pending requests for your team.</p>
-        </section>
+      <!-- Approvals Queue -->
+      <section id="approvals-queue" class="card-container">
+        <h2>
+          <i class="fas fa-check-circle me-2 text-success"></i>Approvals Queue
+        </h2>
+        <p>This section will display all pending requests for your team.</p>
+      </section>
 
-        <section id="attendance-dashboard" class="card-container">
-          <h2>
-            <i class="fas fa-chart-line me-2"></i>Team Attendance Dashboard
-          </h2>
-          <p>
-            This section will show the attendance heatmap and detailed table.
-          </p>
-        </section>
-      </main>
-    </div>
+      <!-- Attendance -->
+      <section id="attendance-dashboard" class="card-container">
+        <h2>
+          <i class="fas fa-chart-line me-2 text-primary"></i>Team Attendance
+          Dashboard
+        </h2>
+        <p>This section will show the attendance heatmap and detailed table.</p>
+      </section>
+    </main>
 
+    <!-- Bootstrap JS -->
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
