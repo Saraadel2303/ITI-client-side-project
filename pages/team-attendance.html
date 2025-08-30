@@ -13,7 +13,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       crossorigin="anonymous"
     />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/managers.css" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <!-- Sidebar -->
@@ -26,7 +30,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="team-attendance.html">
+          <a class="nav-link active" href="team-attendance.html">
             <i class="fas fa-users-viewfinder me-2"></i>Team Attendance
           </a>
         </li>
@@ -95,9 +99,80 @@
           </tbody>
         </table>
       </section>
+
+      <!-- Charts Section -->
+      <section class="card-container">
+        <h2>
+          <i class="fas fa-chart-bar me-2 text-warning"></i>Attendance Insights
+        </h2>
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="attendanceBarChart"></canvas>
+          </div>
+          <div class="col-md-6">
+            <canvas id="attendancePieChart"></canvas>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Bootstrap JS -->
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Charts Script -->
+    <script>
+      // Bar Chart (Attendance per Employee)
+      const ctxBar = document
+        .getElementById("attendanceBarChart")
+        .getContext("2d");
+      new Chart(ctxBar, {
+        type: "bar",
+        data: {
+          labels: ["Ahmed Mansour", "Laila Hatem", "Karim Adel"],
+          datasets: [
+            {
+              label: "Days Present",
+              data: [4, 4, 4], // عدد الايام حاضر
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+            },
+            {
+              label: "Days Absent",
+              data: [1, 1, 1], // عدد الايام غايب
+              backgroundColor: "rgba(255, 99, 132, 0.7)",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "top" },
+          },
+        },
+      });
+
+      // Pie Chart (Overall Attendance)
+      const ctxPie = document
+        .getElementById("attendancePieChart")
+        .getContext("2d");
+      new Chart(ctxPie, {
+        type: "pie",
+        data: {
+          labels: ["Present", "Absent"],
+          datasets: [
+            {
+              label: "Overall Attendance",
+              data: [12, 3], // إجمالي حضور + غياب
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.7)",
+                "rgba(255, 99, 132, 0.7)",
+              ],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+        },
+      });
+    </script>
   </body>
 </html>
