@@ -77,7 +77,7 @@
         },
         {
             "id": 6,
-            "name": "Mona Tarek",
+            "name": "basel",
             "department": "Executive Office",
             "role": "Manager",
             "monthlySalary": 16000,
@@ -87,8 +87,8 @@
                 "theme": "light",
                 "dateFormat": "MM-YYYY-DD"
             },
-            "username": "mona6",
-            "password": "Pass@1006"
+            "username": "basel",
+            "password": "basel2002"
         },
         {
             "id": 7,
@@ -1926,131 +1926,275 @@
     "tasks": [
         {
             "id": 1,
-            "employeeId": 1,
             "title": "Task for Ahmed Mansour",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                1
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 2,
-            "employeeId": 2,
             "title": "Task for Laila Hatem",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                2
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 3,
-            "employeeId": 3,
             "title": "Task for Karim Adel",
             "description": "Complete assigned work package",
+            "priority": "High",
+            "deadline": "2025-08-20",
+            "assignees": [
+                1
+            ],
             "status": "In Progress",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 4,
-            "employeeId": 4,
             "title": "Task for Sara Mahmoud",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                4
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 5,
-            "employeeId": 5,
             "title": "Task for Youssef Ibrahim",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Low",
+            "deadline": "2025-08-20",
+            "assignees": [
+                1
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 6,
-            "employeeId": 6,
             "title": "Task for Mona Tarek",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                6
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 7,
-            "employeeId": 7,
             "title": "Task for Hossam Saeed",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                7
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 8,
-            "employeeId": 8,
             "title": "Task for Fatma Ali",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                8
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 9,
-            "employeeId": 9,
             "title": "Task for Ramy Hassan",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                9
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 10,
-            "employeeId": 10,
             "title": "Task for Nada Samy",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                10
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 11,
-            "employeeId": 11,
             "title": "Task for Ayman Anwar",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                11
+            ],
             "status": "In Progress",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 12,
-            "employeeId": 12,
             "title": "Task for Marwa Abdallah",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                12
+            ],
             "status": "In Progress",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 13,
-            "employeeId": 13,
             "title": "Task for Sami Gaber",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                13
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 14,
-            "employeeId": 14,
             "title": "Task for Hala Sherif",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                14
+            ],
             "status": "In Progress",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 15,
-            "employeeId": 15,
             "title": "Task for Shady Nabil",
             "description": "Complete assigned work package",
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                15
+            ],
             "status": "Completed",
-            "dueDate": "2025-08-20"
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         },
         {
             "id": 16,
-            "employeeId": 16,
             "title": "Task for Doaa Mostafa",
             "description": "Complete assigned work package",
-            "status": "Pending",
-            "dueDate": "2025-08-20"
+            "priority": "Medium",
+            "deadline": "2025-08-20",
+            "assignees": [
+                16
+            ],
+            "status": "To Do",
+            "attachments": [],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
         }
     ],
     "requests": [
@@ -2139,7 +2283,7 @@
             "employeeId": 11,
             "type": "Leave",
             "date": "2025-08-10",
-            "status": "Pending",
+            "status": "To Do",
             "notes": "Auto-generated request"
         },
         {
@@ -2179,7 +2323,23 @@
             "employeeId": 16,
             "type": "Leave",
             "date": "2025-08-10",
-            "status": "Pending",
+            "status": "To Do",
+            "notes": "Auto-generated request"
+        },
+        {
+            "id": 17,
+            "employeeId": 1,
+            "type": "WFH",
+            "date": "2025-08-10",
+            "status": "Rejected",
+            "notes": "Auto-generated request"
+        },
+        {
+            "id": 18,
+            "employeeId": 1,
+            "type": "Overtime",
+            "date": "2025-08-10",
+            "status": "Approved",
             "notes": "Auto-generated request"
         }
     ],

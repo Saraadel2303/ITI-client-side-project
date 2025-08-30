@@ -6,6 +6,7 @@
     <title>Security</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- font awesome cdn -->
     <link
       rel="stylesheet"
@@ -18,7 +19,169 @@
     <link rel="stylesheet" href="../css/security.css" />
   </head>
   <body>
-    security page
+    <div class="container-fluid p-0 d-flex h-100">
+        <!-- sidebar -->
+        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 offcanvas-md offcanvas-start ">
+            <a href="#" class="navbar-brand">
+                <span class="align-self-center text-sm-center text-md-center text-lg-start">
+                    <img class="mb- text-sm-center" style="width: 4rem; height: 4rem" src="/imgs/logo.png" alt="" srcset="" />
+                    <span class="fs-5 mb-4 side-title mt-3 d-md-inline">HR System</span>
+                </span>
+            </a>
+            <hr />
+            <ul class="mynav nav nav-pills flex-column mb-auto">
+                <li class="nav-item mb-1">
+                    <a href="#" data-route="Attendance Board">
+                        <i class="fa-solid fa-house"></i>
+                        Attendance Board
+                    </a>
+            </ul>
+            <hr />
+            <div class="d-flex logout">
+                <a href="../login.html" class="btn btn-outline-light w-100">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    logout
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-light flex-fill">
+            <div class="navsmall p-2 d-md-none d-flex text-white">
+                <a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+            </div>
+
+            <!-- End sidebar -->
+
+            <!-- content -->
+
+                <!-- Nav -->
+            <nav class="navbar d-flex justify-content-between align-items-center">
+                <span class="welcome-text">👋 Welcome, <b>Maria Smith</b></span>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-4 me-2"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-high me-2"></i>Light Mode</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars me-2"></i>Dark Mode</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container my-4">
+                <!-- Stats Cards -->
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <h6>Total Employees</h6>
+                        <p>25</p>
+                    </div>
+                    <div class="stat-card">
+                        <h6>Present</h6>
+                        <p style="color:#0f8a46">20</p>
+                    </div>
+                    <div class="stat-card">
+                        <h6>Late</h6>
+                        <p style="color:#b25a00">3</p>
+                    </div>
+                    <div class="stat-card">
+                        <h6>Absent</h6>
+                        <p style="color:#c12a2a">1</p>
+                    </div>
+                    <div class="stat-card">
+                        <h6>Leave</h6>
+                        <p style="color:#5a32c2">1</p>
+                    </div>
+                    <div class="stat-card">
+                        <h6>WFH</h6>
+                        <p style="color:#2563eb">2</p>
+                    </div>
+                </div>
+
+                <!-- Attendance Header -->
+                <div class="attendance-header">
+                    <h5 class="text-primary"><i class="bi bi-clock-history me-2"></i>Attendance Board</h5>
+                    <div class="search-group"> <input type="text" placeholder="Search employees Name or ID..."
+                            class="form-control form-control-sm">
+                        <!-- <button class="btn btn-outline-primary btn-sm"><i class="bi bi-funnel"></i></button> -->
+                        <!-- Toggles (filters) -->
+                        <div class="dropdown"> <button class="btn btn-outline-success btn-sm dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown"> Status </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-success" href="#">Present</a></li>
+                                <li><a class="dropdown-item text-warning" href="#">Late</a></li>
+                                <li><a class="dropdown-item text-danger" href="#">Absent</a></li>
+                                <li><a class="dropdown-item text-primary" href="#">Leave</a></li>
+                                <li><a class="dropdown-item text-info" href="#">WFH</a></li>
+                            </ul>
+                        </div> <button class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+
+                <!-- Attendance Table -->
+                <div class="card border-0 mt-2">
+                    <div class="card-body p-0">
+                        <table class="table mb-0 text-center">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Date</th>
+                                    <th>Employee Name</th>
+                                    <th>Employee ID</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>2025-08-27</td>
+                                    <td>Maria Smith</td>
+                                    <td>1</td>
+                                    <td><input type="time" value="08:55" class="form-control form-control-sm"></td>
+                                    <td><input type="time" value="17:02" class="form-control form-control-sm"></td>
+                                    <td><span class="status status-present">Present</span></td>
+                                    <td class="action-cell"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions">
+                    <div class="dropdown">
+                        <button class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+                            Bulk Actions
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item bulk-action" data-action="checkin" href="#">Set Check-in</a>
+                            </li>
+                            <li><a class="dropdown-item bulk-action" data-action="checkout" href="#">Set Check-out</a>
+                            </li>
+                            <li><a class="dropdown-item bulk-action" data-action="leave" href="#">Mark Leave</a></li>
+                            <li><a class="dropdown-item bulk-action" data-action="wfh" href="#">Mark WFH</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-success btn-sm">Apply</button>
+                </div>
+            </div>
+            <!--End content  -->
+        </div>
+    </div>
+
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/security.js"></script>
   </body>
 </html>
