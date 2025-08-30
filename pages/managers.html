@@ -15,7 +15,6 @@
       referrerpolicy="no-referrer"
     />
     <style>
-      /* 🎨 Theme Colors */
       :root {
         --primary: #ff4b2b;
         --secondary: #ff416c;
@@ -85,7 +84,28 @@
       }
       .card-container p {
         color: var(--text-light);
-        margin: 0;
+        margin: 0 0 15px;
+      }
+
+      /* Fake heatmap */
+      .heatmap {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+      .heatmap div {
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+      }
+      .low {
+        background: #d4edda;
+      }
+      .medium {
+        background: #ffc107;
+      }
+      .high {
+        background: #f8d7da;
       }
     </style>
   </head>
@@ -116,16 +136,127 @@
         <h2>
           <i class="fas fa-check-circle me-2 text-success"></i>Approvals Queue
         </h2>
-        <p>This section will display all pending requests for your team.</p>
+        <p>Here are your team’s pending requests:</p>
+
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Employee</th>
+              <th>Type</th>
+              <th>Date</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ahmed Mansour</td>
+              <td>Late</td>
+              <td>2025-08-28</td>
+              <td>Traffic Jam</td>
+              <td><span class="badge bg-warning">Pending</span></td>
+              <td>
+                <button class="btn btn-success btn-sm">
+                  <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm">
+                  <i class="fas fa-times"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Laila Hatem</td>
+              <td>Overtime</td>
+              <td>2025-08-29</td>
+              <td>Project Deadline</td>
+              <td><span class="badge bg-warning">Pending</span></td>
+              <td>
+                <button class="btn btn-success btn-sm">
+                  <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm">
+                  <i class="fas fa-times"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Karim Adel</td>
+              <td>Absence</td>
+              <td>2025-08-27</td>
+              <td>Sick Leave</td>
+              <td><span class="badge bg-warning">Pending</span></td>
+              <td>
+                <button class="btn btn-success btn-sm">
+                  <i class="fas fa-check"></i>
+                </button>
+                <button class="btn btn-danger btn-sm">
+                  <i class="fas fa-times"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
-      <!-- Attendance -->
+      <!-- Attendance Dashboard -->
       <section id="attendance-dashboard" class="card-container">
         <h2>
           <i class="fas fa-chart-line me-2 text-primary"></i>Team Attendance
           Dashboard
         </h2>
-        <p>This section will show the attendance heatmap and detailed table.</p>
+        <p>Attendance overview for this week:</p>
+
+        <!-- Fake Heatmap -->
+        <div class="heatmap mb-4">
+          <div class="low"></div>
+          <div class="medium"></div>
+          <div class="high"></div>
+          <div class="low"></div>
+          <div class="medium"></div>
+          <div class="low"></div>
+          <div class="high"></div>
+        </div>
+
+        <!-- Attendance Table -->
+        <table class="table table-bordered text-center">
+          <thead class="table-light">
+            <tr>
+              <th>Employee</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ahmed Mansour</td>
+              <td>✔️</td>
+              <td>✔️</td>
+              <td>❌</td>
+              <td>✔️</td>
+              <td>✔️</td>
+            </tr>
+            <tr>
+              <td>Laila Hatem</td>
+              <td>✔️</td>
+              <td>✔️</td>
+              <td>✔️</td>
+              <td>✔️</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Karim Adel</td>
+              <td>✔️</td>
+              <td>❌</td>
+              <td>✔️</td>
+              <td>✔️</td>
+              <td>✔️</td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
 
