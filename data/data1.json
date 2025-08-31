@@ -2203,7 +2203,7 @@
             "employeeId": 1,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-10 09:00:00 AM",
+                "requestedDate": "2025-07-10",
                 "minutesExpectedLate": 20,
                 "reason": "Traffic congestion"
             },
@@ -2217,8 +2217,8 @@
             "employeeId": 1,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-11 09:00:00 AM",
-                "weekIndex": 33,
+                "requestedDate": "2025-08-11",
+                "weekIndex": 35,
                 "reason": "Internet repair appointment"
             },
             "status": "Approved",
@@ -2231,7 +2231,7 @@
             "employeeId": 1,
             "type": "Overtime",
             "payload": {
-                "requestedDate": "2025-08-12 06:00:00 PM",
+                "requestedDate": "2025-08-12",
                 "overtimeHours": 3,
                 "reason": "Client demo preparation"
             },
@@ -2245,7 +2245,7 @@
             "employeeId": 2,
             "type": "Absence",
             "payload": {
-                "requestedDate": "2025-08-13 00:00:00 AM",
+                "requestedDate": "2025-08-13",
                 "reason": "Family emergency"
             },
             "status": "Pending",
@@ -2259,7 +2259,7 @@
             "type": "DeadlineExtension",
             "payload": {
                 "taskId": 1,
-                "requestedDate": "2025-08-14 00:00:00 AM",
+                "requestedDate": "2025-08-14",
                 "reason": "Need more testing time"
             },
             "status": "Rejected",
@@ -2272,7 +2272,7 @@
             "employeeId": 4,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-15 09:30:00 AM",
+                "requestedDate": "2025-08-15",
                 "minutesExpectedLate": 15,
                 "reason": "School drop-off"
             },
@@ -2286,7 +2286,7 @@
             "employeeId": 5,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-16 09:00:00 AM",
+                "requestedDate": "2025-08-16",
                 "weekIndex": 34,
                 "reason": "Personal errands"
             },
@@ -2300,7 +2300,7 @@
             "employeeId": 6,
             "type": "Overtime",
             "payload": {
-                "requestedDate": "2025-08-17 05:30:00 PM",
+                "requestedDate": "2025-08-17",
                 "overtimeHours": 2,
                 "reason": "Monthly reporting"
             },
@@ -2312,9 +2312,9 @@
         {
             "id": 9,
             "employeeId": 7,
-            "type": "Absence",
+            "type": "leave",
             "payload": {
-                "requestedDate": "2025-08-18 00:00:00 AM",
+                "requestedDate": "2025-08-18",
                 "reason": "Sick leave"
             },
             "status": "Approved",
@@ -2328,7 +2328,7 @@
             "type": "DeadlineExtension",
             "payload": {
                 "taskId": 2,
-                "requestedDate": "2025-08-19 00:00:00 AM",
+                "requestedDate": "2025-08-19",
                 "reason": "Waiting for dependency team"
             },
             "status": "Pending",
@@ -2341,7 +2341,7 @@
             "employeeId": 9,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-20 09:45:00 AM",
+                "requestedDate": "2025-08-20",
                 "minutesExpectedLate": 10,
                 "reason": "Car breakdown"
             },
@@ -2355,7 +2355,7 @@
             "employeeId": 10,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-21 09:00:00 AM",
+                "requestedDate": "2025-08-21",
                 "weekIndex": 34,
                 "reason": "Parent-teacher meeting"
             },
@@ -2369,7 +2369,7 @@
             "employeeId": 11,
             "type": "Overtime",
             "payload": {
-                "requestedDate": "2025-08-22 07:00:00 PM",
+                "requestedDate": "2025-08-22",
                 "overtimeHours": 5,
                 "reason": "System upgrade"
             },
@@ -2383,7 +2383,7 @@
             "employeeId": 12,
             "type": "Absence",
             "payload": {
-                "requestedDate": "2025-08-23 00:00:00 AM",
+                "requestedDate": "2025-08-23",
                 "reason": "Family travel"
             },
             "status": "Rejected",
@@ -2397,7 +2397,7 @@
             "type": "DeadlineExtension",
             "payload": {
                 "taskId": 3,
-                "requestedDate": "2025-08-24 00:00:00 AM",
+                "requestedDate": "2025-08-24",
                 "reason": "Need additional QA cycle"
             },
             "status": "Approved",
@@ -2410,7 +2410,7 @@
             "employeeId": 14,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-25 09:20:00 AM",
+                "requestedDate": "2025-08-25",
                 "minutesExpectedLate": 25,
                 "reason": "Public transport delay"
             },

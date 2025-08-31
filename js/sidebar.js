@@ -35,3 +35,5 @@ if (role !== "hr") {
   settings.style.display = "";
   reports.style.display = "";
 }
+
+console.log(location.pathname.split("/")[2])
