@@ -1,9 +1,12 @@
+@import url("theme.css");
+
 body {
   /* background: #f8f9fa; */
 }
 
 .kanban-column {
-  background: #fff;
+  background-color: var(--color-kanban-list-bg);
+
   border-radius: 16px;
   padding: 16px;
   margin: 10px 0;
@@ -23,6 +26,8 @@ body {
 }
 
 .task-list {
+  /* background-color: var(--color-sidebar-bg); */
+  color: var(--color-text) !important;
   flex: 1;
   padding: 6px;
   border-radius: 10px;
@@ -30,13 +35,17 @@ body {
 }
 
 .task-card {
-  background-color: #f8f9fa;
+  background-color: var(--color-card-bg);
+  color: var(--color-text) !important;
   border-radius: 12px;
   margin-bottom: 15px;
   border: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   cursor: grab;
   transition: transform 0.15s ease;
+}
+.card-body > p{
+  color: var(--color-text) !important;
 }
 
 .task-card:hover {
@@ -118,37 +127,3 @@ body {
 }
 
 /* sidebar end */
-
-/* Navbar */
-.navbar {
-  background: #fff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-  padding: 13px 24px;
-  /* 0.8rem 1.5rem */
-}
-
-.navbar .welcome-text {
-  font-weight: 600;
-  font-size: 16px;
-  color: #2563eb;
-}
-
-.navbar i {
-  color: #2563eb;
-}
-
-.navbar .dropdown-menu {
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: "Poppins", "Segoe UI", sans-serif;
-  font-size: 15px;
-  /* 0.95rem */
-}
-
-.navbar .dropdown-item:hover {
-  background: #eff6ff;
-  color: #2563eb;
-}
-
-
