@@ -2201,146 +2201,223 @@
         {
             "id": 1,
             "employeeId": 1,
-            "type": "Permission",
-            "date": "2025-08-10",
+            "type": "Late",
+            "payload": {
+                "requestedDate": "2025-08-10 09:00:00 AM",
+                "minutesExpectedLate": 20,
+                "reason": "Traffic congestion"
+            },
             "status": "Pending",
-            "notes": "Auto-generated request"
+            "managerComment": "Awaiting confirmation",
+            "createdAt": "2025-08-01 08:00:00 AM",
+            "decidedAt": null
         },
         {
             "id": 2,
-            "employeeId": 2,
-            "type": "Leave",
-            "date": "2025-08-10",
-            "status": "Pending",
-            "notes": "Auto-generated request"
+            "employeeId": 1,
+            "type": "WFH",
+            "payload": {
+                "requestedDate": "2025-08-11 09:00:00 AM",
+                "weekIndex": 33,
+                "reason": "Internet repair appointment"
+            },
+            "status": "Approved",
+            "managerComment": "Approved for one day",
+            "createdAt": "2025-08-01 09:15:00 AM",
+            "decidedAt": "2025-08-02 10:00:00 AM"
         },
         {
             "id": 3,
-            "employeeId": 3,
-            "type": "Permission",
-            "date": "2025-08-10",
+            "employeeId": 1,
+            "type": "Overtime",
+            "payload": {
+                "requestedDate": "2025-08-12 06:00:00 PM",
+                "overtimeHours": 3,
+                "reason": "Client demo preparation"
+            },
             "status": "Approved",
-            "notes": "Auto-generated request"
+            "managerComment": "Critical milestone",
+            "createdAt": "2025-08-01 11:00:00 AM",
+            "decidedAt": "2025-08-02 02:00:00 PM"
         },
         {
             "id": 4,
-            "employeeId": 4,
-            "type": "Remote Work",
-            "date": "2025-08-10",
+            "employeeId": 2,
+            "type": "Absence",
+            "payload": {
+                "requestedDate": "2025-08-13 00:00:00 AM",
+                "reason": "Family emergency"
+            },
             "status": "Pending",
-            "notes": "Auto-generated request"
+            "managerComment": "Pending HR review",
+            "createdAt": "2025-08-02 08:30:00 AM",
+            "decidedAt": null
         },
         {
             "id": 5,
-            "employeeId": 5,
-            "type": "Remote Work",
-            "date": "2025-08-10",
-            "status": "Pending",
-            "notes": "Auto-generated request"
+            "employeeId": 1,
+            "type": "DeadlineExtension",
+            "payload": {
+                "taskId": 1,
+                "requestedDate": "2025-08-14 00:00:00 AM",
+                "reason": "Need more testing time"
+            },
+            "status": "Rejected",
+            "managerComment": "Deadline fixed by client",
+            "createdAt": "2025-08-02 09:45:00 AM",
+            "decidedAt": "2025-08-03 11:30:00 AM"
         },
         {
             "id": 6,
-            "employeeId": 6,
-            "type": "Remote Work",
-            "date": "2025-08-10",
-            "status": "Rejected",
-            "notes": "Auto-generated request"
+            "employeeId": 4,
+            "type": "Late",
+            "payload": {
+                "requestedDate": "2025-08-15 09:30:00 AM",
+                "minutesExpectedLate": 15,
+                "reason": "School drop-off"
+            },
+            "status": "Approved",
+            "managerComment": "Allowed for today only",
+            "createdAt": "2025-08-02 10:10:00 AM",
+            "decidedAt": "2025-08-02 11:00:00 AM"
         },
         {
             "id": 7,
-            "employeeId": 7,
-            "type": "Permission",
-            "date": "2025-08-10",
+            "employeeId": 5,
+            "type": "WFH",
+            "payload": {
+                "requestedDate": "2025-08-16 09:00:00 AM",
+                "weekIndex": 34,
+                "reason": "Personal errands"
+            },
             "status": "Rejected",
-            "notes": "Auto-generated request"
+            "managerComment": "Team required onsite",
+            "createdAt": "2025-08-02 01:00:00 PM",
+            "decidedAt": "2025-08-02 02:30:00 PM"
         },
         {
             "id": 8,
-            "employeeId": 8,
-            "type": "Permission",
-            "date": "2025-08-10",
-            "status": "Pending",
-            "notes": "Auto-generated request"
+            "employeeId": 6,
+            "type": "Overtime",
+            "payload": {
+                "requestedDate": "2025-08-17 05:30:00 PM",
+                "overtimeHours": 2,
+                "reason": "Monthly reporting"
+            },
+            "status": "Approved",
+            "managerComment": "Approved for reporting",
+            "createdAt": "2025-08-02 03:15:00 PM",
+            "decidedAt": "2025-08-02 04:00:00 PM"
         },
         {
             "id": 9,
-            "employeeId": 9,
-            "type": "Leave",
-            "date": "2025-08-10",
+            "employeeId": 7,
+            "type": "Absence",
+            "payload": {
+                "requestedDate": "2025-08-18 00:00:00 AM",
+                "reason": "Sick leave"
+            },
             "status": "Approved",
-            "notes": "Auto-generated request"
+            "managerComment": "Sick leave accepted",
+            "createdAt": "2025-08-03 09:00:00 AM",
+            "decidedAt": "2025-08-03 10:00:00 AM"
         },
         {
             "id": 10,
-            "employeeId": 10,
-            "type": "Leave",
-            "date": "2025-08-10",
-            "status": "Approved",
-            "notes": "Auto-generated request"
+            "employeeId": 8,
+            "type": "DeadlineExtension",
+            "payload": {
+                "taskId": 2,
+                "requestedDate": "2025-08-19 00:00:00 AM",
+                "reason": "Waiting for dependency team"
+            },
+            "status": "Pending",
+            "managerComment": "Review dependency schedule",
+            "createdAt": "2025-08-03 09:30:00 AM",
+            "decidedAt": null
         },
         {
             "id": 11,
-            "employeeId": 11,
-            "type": "Leave",
-            "date": "2025-08-10",
-            "status": "To Do",
-            "notes": "Auto-generated request"
+            "employeeId": 9,
+            "type": "Late",
+            "payload": {
+                "requestedDate": "2025-08-20 09:45:00 AM",
+                "minutesExpectedLate": 10,
+                "reason": "Car breakdown"
+            },
+            "status": "Rejected",
+            "managerComment": "Pattern of lateness noted",
+            "createdAt": "2025-08-03 10:15:00 AM",
+            "decidedAt": "2025-08-03 11:00:00 AM"
         },
         {
             "id": 12,
-            "employeeId": 12,
-            "type": "Remote Work",
-            "date": "2025-08-10",
-            "status": "Rejected",
-            "notes": "Auto-generated request"
+            "employeeId": 10,
+            "type": "WFH",
+            "payload": {
+                "requestedDate": "2025-08-21 09:00:00 AM",
+                "weekIndex": 34,
+                "reason": "Parent-teacher meeting"
+            },
+            "status": "Pending",
+            "managerComment": "Check coverage plan",
+            "createdAt": "2025-08-03 01:20:00 PM",
+            "decidedAt": null
         },
         {
             "id": 13,
-            "employeeId": 13,
-            "type": "Remote Work",
-            "date": "2025-08-10",
+            "employeeId": 11,
+            "type": "Overtime",
+            "payload": {
+                "requestedDate": "2025-08-22 07:00:00 PM",
+                "overtimeHours": 5,
+                "reason": "System upgrade"
+            },
             "status": "Approved",
-            "notes": "Auto-generated request"
+            "managerComment": "Approved due to critical upgrade",
+            "createdAt": "2025-08-03 02:00:00 PM",
+            "decidedAt": "2025-08-03 03:00:00 PM"
         },
         {
             "id": 14,
-            "employeeId": 14,
-            "type": "Permission",
-            "date": "2025-08-10",
+            "employeeId": 12,
+            "type": "Absence",
+            "payload": {
+                "requestedDate": "2025-08-23 00:00:00 AM",
+                "reason": "Family travel"
+            },
             "status": "Rejected",
-            "notes": "Auto-generated request"
+            "managerComment": "Vacation not aligned with schedule",
+            "createdAt": "2025-08-03 04:00:00 PM",
+            "decidedAt": "2025-08-03 05:00:00 PM"
         },
         {
             "id": 15,
-            "employeeId": 15,
-            "type": "Leave",
-            "date": "2025-08-10",
-            "status": "Rejected",
-            "notes": "Auto-generated request"
+            "employeeId": 13,
+            "type": "DeadlineExtension",
+            "payload": {
+                "taskId": 3,
+                "requestedDate": "2025-08-24 00:00:00 AM",
+                "reason": "Need additional QA cycle"
+            },
+            "status": "Approved",
+            "managerComment": "Extension granted",
+            "createdAt": "2025-08-03 06:00:00 PM",
+            "decidedAt": "2025-08-03 07:00:00 PM"
         },
         {
             "id": 16,
-            "employeeId": 16,
-            "type": "Leave",
-            "date": "2025-08-10",
-            "status": "To Do",
-            "notes": "Auto-generated request"
-        },
-        {
-            "id": 17,
-            "employeeId": 1,
-            "type": "WFH",
-            "date": "2025-08-10",
-            "status": "Rejected",
-            "notes": "Auto-generated request"
-        },
-        {
-            "id": 18,
-            "employeeId": 1,
-            "type": "Overtime",
-            "date": "2025-08-10",
-            "status": "Approved",
-            "notes": "Auto-generated request"
+            "employeeId": 14,
+            "type": "Late",
+            "payload": {
+                "requestedDate": "2025-08-25 09:20:00 AM",
+                "minutesExpectedLate": 25,
+                "reason": "Public transport delay"
+            },
+            "status": "Pending",
+            "managerComment": "Pending decision",
+            "createdAt": "2025-08-03 08:00:00 PM",
+            "decidedAt": null
         }
     ],
     "payrolls": [
