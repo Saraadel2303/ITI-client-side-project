@@ -12,6 +12,7 @@
     />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/managers.css" />
+
     <title>Team Tasks</title>
 </head>
 <body>
@@ -43,21 +44,27 @@
 
     <!-- Top Widgets -->
     <div class="row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card-box bg-white">
           <h6>Assigned Tasks</h6>
           <h3 class="text-primary">12</h3>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card-box bg-white">
           <h6>Extensions Pending</h6>
           <h3 class="text-warning">3</h3>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card-box bg-white">
           <h6>Overdue Tasks</h6>
+          <h3 class="text-danger">5</h3>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card-box bg-white">
+          <h6>Completed Tasks</h6>
           <h3 class="text-danger">5</h3>
         </div>
       </div>
@@ -76,28 +83,15 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Prepare Report</td>
-            <td>Maria Smith</td>
-            <td>2025-09-05</td>
-            <td><span class="badge bg-success">In Progress</span></td>
-            <td><button class="btn btn-sm btn-primary">Reassign</button></td>
-          </tr>
-          <tr>
-            <td>System Update</td>
-            <td>Ahmed Ali</td>
-            <td>2025-09-01</td>
-            <td><span class="badge bg-warning text-dark">Extension Req.</span></td>
-            <td><button class="btn btn-sm btn-success">Approve</button></td>
-          </tr>
-          <tr>
-            <td>Client Meeting</td>
-            <td>John Doe</td>
-            <td>2025-08-27</td>
-            <td><span class="badge bg-danger">Overdue</span></td>
-            <td><button class="btn btn-sm btn-secondary">Follow Up</button></td>
-          </tr>
+         <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="mt-2">Loading tasks...</div>
+                        </td>
+                    </tr>
         </tbody>
       </table>
     </div>
@@ -108,5 +102,7 @@
     </div>
   </div>
 
+    <script type="module" src="../js/modules/team-Task.js"></script>
+    
 </body>
 </html>
