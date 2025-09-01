@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/imgs/logo.png">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/employee.css">
+
+    <title>Request center</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-3 p-0 col-2">
+                <div id="sidebar" class="position-fixed flex-column flex-shrink-1 p-3 bg-light">
+                    <a href="#"
+                        class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                        <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
+                                class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png"
+                                alt="" srcset="">
+                            <span class="fs-2 mb-4  side-title d-none d-md-inline">HR</span>
+                        </span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-auto gap-3">
+                        <li id="attendance">
+                            <a href="#" class="nav-link link-dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi me-2" width="16" height="16"
+                                    fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                                    <path
+                                        d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                                    <path
+                                        d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                                </svg>
+                                Attendance board
+                            </a>
+                        </li>
+                        <li id="my_attendance" class="text-center">
+                            <a href="#" class="nav-link link-dark text-sm-center text-lg-start">
+                                <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
+                                <span class="d-none d-lg-inline">My Attendance</span>
+                            </a>
+                        </li>
+                        <li id="req" class="text-center">
+                            <a href="request_center.html" class="nav-link active text-sm-center text-lg-start ">
+                                <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
+                                <span class="d-none  d-lg-inline">Request center</span>
+                            </a>
+                        </li>
+                        <li id="my_tasks" class="text-center">
+                            <a href="my_tasks.html" class="nav-link link-dark text-sm-center text-lg-start">
+                                <span class="bi me-2"><i class="fa-solid fa-thumbtack"></i></span>
+                                <span class="d-none d-lg-inline fs-6 fs-md-6 fs-lg-4">My Tasks</span>
+                            </a>
+                        </li>
+                        <li id="team_tasks" class="text-center">
+                            <a href="#" class="nav-link link-dark">
+                                <span class="bi me-2"><i class="fa-solid fa-list-check"></i></span>
+                                Team Tasks
+                            </a>
+                        </li>
+                        <li id="team_attendance">
+                            <a href="#" class="nav-link link-dark">
+                                <span class="bi me-2"><i class="fa-solid fa-people-group"></i></span>
+                                Team Attendance
+                            </a>
+                        </li>
+                        <li id="approval">
+                            <a href="#" class="nav-link link-dark">
+                                <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
+                                Approval queue
+                            </a>
+                        </li>
+                        <li id="settings">
+                            <a href="#" class="nav-link link-dark">
+                                <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
+                                Settings
+                            </a>
+                        </li>
+                        <li id="reports">
+                            <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <div class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed bg-light" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
+                                            <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
+                                            Reports
+                                        </button>
+                                    </div>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse bg-light"
+                                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                                                <li class=""><a href="#"
+                                                        class="nav-link link-dark rounded text-decoration-none">
+                                                        <span class="bi  me-2"><i
+                                                                class="fa-regular fa-eye"></i></span>Overview</a>
+                                                </li>
+                                                <li class="mt-1">
+                                                    <a href="#" class="nav-link link-dark rounded text-decoration-none">
+                                                        <span class="bi me-2"><i
+                                                                class="fa-regular fa-file-lines"></i></span>Updates</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 mt-5 col-10 p-4 p-lg-0">
+                <div class="container mb-3">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm quota-card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Late</h6>
+                                        <div class="progress mt-2" style="height: 6px;">
+                                            <div class="progress-bar" id="late-progress-bar"></div>
+                                        </div>
+                                        <small class="text-muted">Limit: 2 / Month</small>
+                                    </div>
+                                    <span class="badge rounded-pill" id="lateBadge"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm quota-card">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">WFH</h6>
+                                        <div class="progress mt-2" style="height: 6px;">
+                                            <div class="progress-bar bg-warning"  id="wfh-progress-bar"></div>
+                                        </div>
+                                        <small class="text-muted">Limit: 2 / Week</small>
+                                    </div>
+                                    <span class="badge bg-warning text-light rounded-pill" id="wfhBadge"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container py-3">
+                    
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="history-tab" data-bs-toggle="tab"
+                                data-bs-target="#history" type="button" role="tab" aria-controls="history"
+                                aria-selected="false">
+                                <i class="fa-regular fa-file-lines"></i> Your Requests history
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#send"
+                                type="button" role="tab" aria-controls="send" aria-selected="true">
+                                <i class="fa-solid fa-share-from-square"></i> Send Your Request
+                            </button>
+                        </li>
+
+                    </ul>
+
+                    <div class="tab-content mx-0" id="myTabContent">
+                        <div class="tab-pane fade show active" id="history" role="tabpanel"
+                            aria-labelledby="history-tab">
+                            <div class="my-1  pb-1 border-0">
+                                <table id="requestsTable"
+                                    class="table table-borderless no-wrap text-center  table-hover align-middle"
+                                    style="width:100%">
+                                    <thead class="">
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">Type</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">Created At</th>
+                                            <th class="text-center">Decided At</th>
+                                            <th class="text-center">Manger Comment</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="send" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="mb-2">
+                                <form class="" id="requestForm" name="request_form">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="type">Type</label>
+                                        <select class="form-select" id="type" name="type">
+                                            <option selected value="wfh">WFH</option>
+                                            <option value="leave">Leave</option>
+                                            <option value="late">Late</option>
+                                            <option value="DeadlineExtension">Deadline Extension</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="reason" class="fw-medium form-label">Reason</label>
+                                        <textarea class="form-control" name="reason"
+                                            placeholder="Leave your reason here" id="notes"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date" class="fw-medium form-label">Requested Date</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                            <input type="date" class="form-control" id="requestedDate" name="requestedDate">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 type-field" data-type="late">
+                                        <label for="minutes" class="fw-medium form-label">Minutes Expected Late</label>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="range" id="minutes" name="minutes" min="0" max="120" step="5"
+                                                value="60" class="form-range"
+                                                oninput="document.getElementById('minutesValue').innerText = this.value">
+                                            <span id="minutesValue">60</span> min
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3 type-field" data-type="overtime">
+                                        <div class="mb-3">
+                                            <label for="overtimeHours" class="fw-medium form-label">Overtime
+                                                Hours</label>
+                                            <input type="number" id="overtimeHours" name="overtimeHours"
+                                                class="form-control" min="1" max="12" step="1" value="1">
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3  type-field" data-type="DeadlineExtension">
+                                        <label for="taskId" class="fw-medium form-label">Select Task</label>
+                                        <select id="taskId" name="taskId" class="form-select text-muted"
+                                            aria-placeholder="Choose a Task">
+                                            <option class="text-muted" value="" selected disabled hidden>please select a
+                                                task</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn main-btn text-light ">Send</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/fontawesome/js/all.min.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script type="module" src="/js/request_center.js"></script>
+
+</body>
+
+</html>
