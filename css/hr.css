@@ -1,0 +1,289 @@
+@import url("./theme.css");
+
+/* ==========================
+   Global + Base Styles
+========================== */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* يمنع أي scroll عام */
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Scrollbar (Content Only) */
+.content::-webkit-scrollbar {
+  width: 10px;
+}
+.content::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+.content::-webkit-scrollbar-thumb {
+  background-color: var(--color-sidebar-active);
+  border-radius: 6px;
+  border: 2px solid var(--color-bg);
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-sidebar-hover);
+}
+
+/* ==========================
+   Layout: Sidebar + Content
+========================== */
+.container-fluid.p-0.d-flex.h-100 {
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+#bdSidebar {
+  height: 100%;
+  min-width: 250px;
+  max-width: 260px;
+  background-color: var(--color-sidebar-bg) !important;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-border);
+}
+
+.bg-light.flex-fill {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  padding: 1rem;
+  transition: background-color 0.3s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* ==========================
+   Sidebar Navigation
+========================== */
+.mynav li a {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--color-sidebar-link);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.mynav li a:hover {
+  background: var(--color-sidebar-hover);
+  color: #fff;
+}
+.mynav li a.active {
+  background-color: var(--color-sidebar-active);
+  color: #fff;
+}
+
+.logout a {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.logout a:hover {
+  background-color: var(--btn-bg-hover);
+}
+
+.navsmall {
+  background-color: var(--navsmall-bg);
+  color: var(--navsmall-text);
+  padding: 10px 15px;
+}
+.navsmall a {
+  font-size: 1.2rem;
+  color: var(--navsmall-text);
+  text-decoration: none;
+}
+
+/* ==========================
+   Cards + Tables
+========================== */
+.card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.card h5,
+.card p {
+  color: var(--color-text);
+}
+
+.table {
+  border-color: var(--color-border);
+}
+.table-header tr th,
+.table thead th {
+  background-color: var(--color-table-header-bg) !important;
+  color: var(--color-table-header-text) !important;
+}
+.table-primary {
+  background-color: var(--color-table-header-bg);
+  color: var(--color-table-header-text);
+}
+
+/* ==========================
+   Dashboard Overview
+========================== */
+.overview {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.overview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.overview h3 {
+  font-weight: bold;
+  color: var(--color-sidebar-link);
+}
+.overview p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* ==========================
+   Home Charts
+========================== */
+.home-charts .card {
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.home-charts h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+.home-charts canvas {
+  width: 100% !important;
+  max-height: 220px;
+}
+body.dark-mode .home-charts h5 {
+  color: #e5e7eb;
+}
+
+/* ==========================
+   Reports / Statistics
+========================== */
+.attendance-bar {
+  margin-bottom: 10px;
+}
+.attendance-label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-muted);
+}
+.attendance-percentage {
+  font-weight: 600;
+  color: var(--color-sidebar-active);
+}
+.progress-bar {
+  background-color: var(--color-sidebar-active);
+  transition: width 0.6s ease;
+}
+
+/* ==========================
+   Ideal Employee
+========================== */
+#employee {
+  padding: 1rem;
+}
+.ideal-emp {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.ideal-emp h3,
+.ideal-emp h4,
+.ideal-emp p {
+  font-weight: 600;
+  color: var(--color-sidebar-link);
+}
+.alert {
+  background-color: var(--color-sidebar-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* ==========================
+   Forms + Buttons
+========================== */
+form label {
+  font-weight: 500;
+  margin-top: 6px;
+  color: var(--color-text);
+}
+.search {
+  max-width: 300px;
+  margin-bottom: 15px;
+}
+.form-control {
+  border: 1px solid var(--color-text);
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
+}
+.form-control::placeholder {
+  color: var(--color-muted);
+}
+
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+.btn-outline-dark {
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+.btn-outline-dark:hover {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-color: var(--btn-bg);
+}
+
+.save-btn,
+.export,
+#toggleThemeBtn {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: 500;
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  transition: background-color 0.3s;
+}
+.save-btn:hover,
+.export:hover,
+#toggleThemeBtn:hover {
+  background-color: var(--btn-bg-hover);
+}
