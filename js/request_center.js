@@ -36,8 +36,8 @@ $(document).ready(async function () {
     lengthChange: false,
     pageLength: 10,
     responsive: true,
-    // scrollX: true,
-    autoWidth: false,
+    scrollX: false,
+    autoWidth: true,
   });
 
   let lastId = 0;

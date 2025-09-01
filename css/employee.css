@@ -3,7 +3,7 @@
   color: #d39c1d;
   border: 1px solid #d39c1d;
   border-radius: 1.5rem;
-  padding-inline: 1rem;
+  padding-inline: 0.5rem;
   padding-block: 0.2rem;
 }
 
@@ -12,7 +12,7 @@
   color: #069855;
   border: 1px solid #069855;
   border-radius: 1.5rem;
-  padding-inline: 1rem;
+  padding-inline: 0.5rem;
   padding-block: 0.2rem;
 }
 
@@ -21,12 +21,16 @@
   color: red;
   border: 1px solid red;
   border-radius: 1.5rem;
-  padding-inline: 1rem;
+  padding-inline: 0.5rem;
   padding-block: 0.2rem;
 }
 
 /* Search input */
+.dataTables_wrapper {
+  color: var(--color-text);
+}
 .dataTables_wrapper .dataTables_filter input {
+  color: #069855;
   border: 2px solid #534feb;
   border-radius: 8px;
   padding: 6px 12px;
@@ -65,30 +69,28 @@
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-  background-color: #534feb !important;
+  background-color: var(--btn-bg) !important;
   color: #fff !important;
 }
 
 .table {
+  background-color: var(--color-bg);
   border-radius: 0.7rem;
   overflow: hidden;
-  border: 2px solid #efeffe;
+  border: 2px solid var(--color-border);
 }
 
 .table tbody tr {
   padding-bottom: 20px !important;
 }
 
-:root {
-  --theme-color: #534feb;
-}
-
 .dataTables_wrapper .dataTables_paginate .paginate_button {
+  background-color: var(--btn-bg);
   border: none !important;
   background: transparent !important;
   font-size: 1.2rem;
   margin: 6px;
-  color: var(--theme-color) !important;
+  color: var(--btn-bg) !important;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -101,7 +103,8 @@
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
   color: #fff !important;
-  background: var(--theme-color) !important;
+  background: var(--btn-bg) !important;
+  background-color: var(--btn-bg);
   border-radius: 8px;
   padding: 4px 12px;
 }
@@ -140,7 +143,7 @@ h4 {
 }
 
 .nav-tabs .nav-link.active {
-  background: #534feb;
+  background: var(--color-sidebar-active);
   color: #fff !important;
   box-shadow: 0 6px 15px rgba(83, 79, 235, 0.3);
   transform: scale(1.05); /* make active one pop */
@@ -152,13 +155,19 @@ h4 {
   padding-top: 55px;
   padding-bottom: 10px;
   border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: var(--color-card-bg);
+  box-shadow: 0 4px 15px rgba(109, 109, 109, 0.1);
 }
 
 .quota-card {
+  background-color: var(--color-card-bg);
+  color: var(--color-text);
   border-radius: 15px;
   transition: transform 0.2s ease;
+}
+
+small {
+  color: var(--color-muted);
 }
 
 .quota-card:hover {
@@ -168,4 +177,49 @@ h4 {
 .badge {
   font-size: 0.9rem;
   padding: 0.6em 1em;
+}
+
+#requestsTable th,
+#requestsTable td {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  white-space: normal;
+}
+
+@media (max-width: 570px) {
+  #requestsTable th,
+  #requestsTable td {
+    padding: 0.1rem 0.1rem !important;
+    font-size: 0.6rem !important;
+  }
+}
+
+form > div > label,span {
+  color: var(--color-text);
+}
+
+form > div .form-control,
+.form-select {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.form-control:focus,
+.form-select:focus{
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+   box-shadow: none;   
+}
+
+.input-group-text {
+  color: var(--color-text) !important;
+  background-color: var(--color-bg) !important;
+  border: 1px solid var(--color-border);
+}
+
+button[type="submit"] {
+  background-color: var(--btn-bg); /* dark background */
+  color: var(--color-text);           /* light text */
 }

@@ -1,0 +1,43 @@
+/* 🌞 Light Theme */
+:root {
+  --font-main: "Roboto", sans-serif;
+
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-text: #212529;
+  --color-muted: #6c757d;
+  --color-sidebar-bg: #f8f9fb;
+  --color-sidebar-link: #000;
+  --color-sidebar-active: #534fea;
+  --color-sidebar-hover: #6b65ff;
+  --color-card-bg: #ffffff;
+  --color-table-header-bg: #534fea;
+  --color-table-header-text: #ffffff;
+  --color-border: #eaedf0;
+  --color-kanban-list-bg: #ffffff;
+
+  /* Buttons */
+  --btn-bg: #534fea;
+  --btn-bg-hover: #433bd1;
+  --btn-text: #ffffff;
+}
+
+/* 🌚 Dark Theme */
+body.dark-theme {
+  --color-bg: #1e1e2e;
+  --color-text: #e0e0e0;
+  --color-muted: #a1a1b5;
+  --color-sidebar-bg: #2a2a3b;
+  --color-sidebar-link: #e0e0e0;
+  --color-sidebar-active: #7c6cff;
+  --color-sidebar-hover: #aca0f9c4;
+  --color-card-bg: #2e2e44;
+  --color-table-header-bg: #3a3a5a;
+  --color-kanban-list-bg: #3a3a5a;
+  --color-table-header-text: #ffffff;
+  --color-border: #2e2e44;
+
+  --btn-bg: #7c6cff;
+  --btn-bg-hover: #9b8cff;
+  --btn-text: #ffffff;
+}
