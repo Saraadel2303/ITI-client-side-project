@@ -20,45 +20,41 @@
   </head>
   <body>
     <div class="container-fluid p-0 d-flex h-100">
-        <!-- sidebar -->
-        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 offcanvas-md offcanvas-start ">
-            <a href="#" class="navbar-brand">
-                <span class="align-self-center text-sm-center text-md-center text-lg-start">
-                    <img class="mb- text-sm-center" style="width: 4rem; height: 4rem" src="/imgs/logo.png" alt="" srcset="" />
-                    <span class="fs-5 mb-4 side-title mt-3 d-md-inline">HR System</span>
-                </span>
+        <!-- Sidebar -->
+        <div id="bdSidebar" class="offcanvas-md offcanvas-start d-flex flex-column flex-shrink-0 p-3 bg-light">
+            <a href="#" class="navbar-brand d-flex align-items-center mb-3">
+                <img src="/imgs/logo.png" style="width: 3rem; height: 3rem" class="me-2" alt="Logo">
+                <span class="fs-5 side-title d-none d-md-inline">HR System</span>
             </a>
             <hr />
             <ul class="mynav nav nav-pills flex-column mb-auto">
-                <li class="nav-item mb-1">
-                    <a href="#" data-route="Attendance Board">
-                        <i class="fa-solid fa-house"></i>
+                <li class="nav-item mb-1 active">
+                    <a href="#" class="nav-link" data-route="Attendance Board">
+                        <i class="fa-solid fa-house me-2"></i>
                         Attendance Board
                     </a>
+                </li>
             </ul>
-            <hr />
-            <div class="d-flex logout">
-                <a href="../login.html" class="btn btn-outline-light w-100">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    logout
+            <div class="mt-auto logout">
+                <a href="../login.html" class="btn w-100">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i>
+                    Logout
                 </a>
             </div>
         </div>
 
+        <!-- Content -->
         <div class="bg-light flex-fill">
-            <div class="navsmall p-2 d-md-none d-flex text-white">
+            <!-- Navbar for mobile -->
+            <div class="navsmall p-2 d-md-none d-flex bg-primary text-white">
                 <a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
-                    <i class="fa-solid fa-bars"></i>
+                    <i class="fa-solid fa-bars fs-4"></i>
                 </a>
+                <span class="ms-2">Menu</span>
             </div>
 
-            <!-- End sidebar -->
-
-            <!-- content -->
-
-                <!-- Nav -->
-            <nav class="navbar d-flex justify-content-between align-items-center">
-                <span class="welcome-text">👋 Welcome, <b>Maria Smith</b></span>
+            <nav class="navbar d-flex justify-content-between align-items-center border-bottom px-3">
+                <span class="welcome-text">👋 Welcome, <b id="username">Maria Smith</b></span>
                 <div class="dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
                         data-bs-toggle="dropdown">
@@ -79,105 +75,112 @@
 
             <div class="container my-4">
                 <!-- Stats Cards -->
-                <div class="stats-cards">
-                    <div class="stat-card">
-                        <h6>Total Employees</h6>
-                        <p>25</p>
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Total Employees</h6>
+                            <p>0</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h6>Present</h6>
-                        <p style="color:#0f8a46">20</p>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Present</h6>
+                            <p style="color:#0f8a46">0</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h6>Late</h6>
-                        <p style="color:#b25a00">3</p>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Late</h6>
+                            <p style="color:#b25a00">0</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h6>Absent</h6>
-                        <p style="color:#c12a2a">1</p>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Absent</h6>
+                            <p style="color:#c12a2a">0</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h6>Leave</h6>
-                        <p style="color:#5a32c2">1</p>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Leave</h6>
+                            <p style="color:#5a32c2">0</p>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <h6>WFH</h6>
-                        <p style="color:#2563eb">2</p>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>WFH</h6>
+                            <p style="color:#2563eb">0</p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Attendance Header -->
-                <div class="attendance-header">
-                    <h5 class="text-primary"><i class="bi bi-clock-history me-2"></i>Attendance Board</h5>
-                    <div class="search-group"> <input type="text" placeholder="Search employees Name or ID..."
+                <div class="attendance-header row g-2 align-items-center">
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-primary mb-0"><i class="bi bi-clock-history me-2"></i>Attendance Board</h5>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex gap-2 justify-content-md-end search-group">
+                        <input type="text" placeholder="Search employees Name or ID..."
                             class="form-control form-control-sm">
-                        <!-- <button class="btn btn-outline-primary btn-sm"><i class="bi bi-funnel"></i></button> -->
-                        <!-- Toggles (filters) -->
-                        <div class="dropdown"> <button class="btn btn-outline-success btn-sm dropdown-toggle"
-                                type="button" data-bs-toggle="dropdown"> Status </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">Status</button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-success" href="#">Present</a></li>
-                                <li><a class="dropdown-item text-warning" href="#">Late</a></li>
-                                <li><a class="dropdown-item text-danger" href="#">Absent</a></li>
-                                <li><a class="dropdown-item text-primary" href="#">Leave</a></li>
-                                <li><a class="dropdown-item text-info" href="#">WFH</a></li>
+                                <li><a class="dropdown-item" href="#">Present</a></li>
+                                <li><a class="dropdown-item" href="#">Late</a></li>
+                                <li><a class="dropdown-item" href="#">Absent</a></li>
+                                <li><a class="dropdown-item" href="#">Leave</a></li>
+                                <li><a class="dropdown-item" href="#">WFH</a></li>
                             </ul>
-                        </div> <button class="btn btn-primary btn-sm"><i class="bi bi-search"></i></button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Attendance Table -->
                 <div class="card border-0 mt-2">
-                    <div class="card-body p-0">
+                    <div class="card-body p-0 table-responsive">
                         <table class="table mb-0 text-center">
                             <thead>
                                 <tr>
-                                    <th><input type="checkbox"></th>
+                                    <th><input type="checkbox" id="selectAll"></th>
                                     <th>Date</th>
                                     <th>Employee Name</th>
                                     <th>Employee ID</th>
                                     <th>Check-in</th>
                                     <th>Check-out</th>
                                     <th>Status</th>
-                                    <th>Notes</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>2025-08-27</td>
-                                    <td>Maria Smith</td>
-                                    <td>1</td>
-                                    <td><input type="time" value="08:55" class="form-control form-control-sm"></td>
-                                    <td><input type="time" value="17:02" class="form-control form-control-sm"></td>
-                                    <td><span class="status status-present">Present</span></td>
-                                    <td class="action-cell"></td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
 
-
                 <!-- Bulk Actions -->
-                <div class="bulk-actions">
-                    <div class="dropdown">
-                        <button class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown">
-                            Bulk Actions
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item bulk-action" data-action="checkin" href="#">Set Check-in</a>
-                            </li>
-                            <li><a class="dropdown-item bulk-action" data-action="checkout" href="#">Set Check-out</a>
-                            </li>
-                            <li><a class="dropdown-item bulk-action" data-action="leave" href="#">Mark Leave</a></li>
-                            <li><a class="dropdown-item bulk-action" data-action="wfh" href="#">Mark WFH</a></li>
-                        </ul>
+                <div class="bulk-actions row g-2 mt-3">
+                    <div class="col-12 col-md-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown">Bulk
+                                Actions</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="checkin">Set Check-in</a>
+                                </li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="checkout">Set
+                                        Check-out</a></li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="leave">Mark Leave</a>
+                                </li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="wfh">Mark WFH</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <button class="btn btn-success btn-sm">Apply</button>
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-success btn-sm" id="applyBulk">Apply</button>
+                    </div>
                 </div>
+
+                <button class="btn btn-success mt-2" id="saveBtn">Save Changes</button>
             </div>
-            <!--End content  -->
         </div>
     </div>
 

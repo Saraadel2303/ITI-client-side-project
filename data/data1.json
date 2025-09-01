@@ -2272,7 +2272,7 @@
             "employeeId": 4,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-15 09:30:00 AM",
+                "requestedDate": "2025-08-31",
                 "minutesExpectedLate": 15,
                 "reason": "School drop-off"
             },
@@ -2286,7 +2286,7 @@
             "employeeId": 5,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-16 09:00:00 AM",
+                "requestedDate": "2025-08-31",
                 "weekIndex": 34,
                 "reason": "Personal errands"
             },
@@ -2312,9 +2312,9 @@
         {
             "id": 9,
             "employeeId": 7,
-            "type": "Absence",
+            "type": "leave",
             "payload": {
-                "requestedDate": "2025-08-18 00:00:00 AM",
+                "requestedDate": "2025-9-4",
                 "reason": "Sick leave"
             },
             "status": "Approved",
@@ -2341,7 +2341,7 @@
             "employeeId": 9,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-20 09:45:00 AM",
+                "requestedDate": "2025-9-4",
                 "minutesExpectedLate": 10,
                 "reason": "Car breakdown"
             },
@@ -2355,7 +2355,7 @@
             "employeeId": 10,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-21 09:00:00 AM",
+                "requestedDate": "2025-08-31",
                 "weekIndex": 34,
                 "reason": "Parent-teacher meeting"
             },
@@ -2381,9 +2381,9 @@
         {
             "id": 14,
             "employeeId": 12,
-            "type": "Absence",
+            "type": "leave",
             "payload": {
-                "requestedDate": "2025-08-23 00:00:00 AM",
+                "requestedDate": "2025-31-8",
                 "reason": "Family travel"
             },
             "status": "Rejected",
@@ -2410,7 +2410,7 @@
             "employeeId": 14,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-25 09:20:00 AM",
+                "requestedDate": "2025-08-31",
                 "minutesExpectedLate": 25,
                 "reason": "Public transport delay"
             },

@@ -6,10 +6,21 @@ body {
 
 /* sidebar start */
 #bdSidebar {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #f8f9fb !important;
   padding: 15px;
 }
+
+/* #bdSidebar .active{
+  background-color: #534fea;
+}
+
+#bdSidebar .active:hover{
+  background-color: #6b65ff;
+} */
+
 
 .mynav li a {
   display: block;
@@ -26,7 +37,7 @@ body {
   color: #fff;
 }
 
-.mynav li a.active {
+.mynav li a .active {
   background-color: #2563eb;
   color: #fff;
 }
@@ -46,13 +57,18 @@ body {
 }
 
 .logout a {
-  background-color: #2563eb;
+  background-color: #534fea;
+  color: #222;
   border-radius: 8px;
   padding: 10px 15px;
   text-decoration: none;
   color: white;
   font-weight: 500;
   transition: 0.3s;
+}
+
+.logout a:hover{
+  background: #2563eb;
 }
 
 .navsmall {
@@ -199,33 +215,33 @@ body {
 
 /* Status Pills */
 .status {
-  padding: 6px 13px;
-  border-radius: 999px;
+  padding: 4px 8px;
+  border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
 }
 
 .status-present {
-  background: #e6f8ec;
-  color: #0f8a46;
+  color: #e6f8ec;
+  background-color: #0f8a46;
 }
 
 .status-late {
-  background: #fff3e6;
-  color: #b25a00;
+  color: #fff3e6;
+  background-color: #b25a00;
 }
 
 .status-absent {
-  background: #ffecec;
-  color: #c12a2a;
+  color: #ffecec;
+  background-color: #d53131;
 }
 
 .status-leave {
-  background: #ede7fe;
-  color: #5a32c2;
+  color: #ede7fe;
+  background-color: #5a32c2;
 }
 
 .status-wfh {
-  background: #f3f3f3;
-  color: #444;
+  color: #f3f3f3;
+  background: #444;
 }
