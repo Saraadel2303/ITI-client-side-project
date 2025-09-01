@@ -2272,7 +2272,11 @@
             "employeeId": 4,
             "type": "Late",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-08-31",
+=======
                 "requestedDate": "2025-08-15",
+>>>>>>> main
                 "minutesExpectedLate": 15,
                 "reason": "School drop-off"
             },
@@ -2286,7 +2290,11 @@
             "employeeId": 5,
             "type": "WFH",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-08-31",
+=======
                 "requestedDate": "2025-08-16",
+>>>>>>> main
                 "weekIndex": 34,
                 "reason": "Personal errands"
             },
@@ -2314,7 +2322,11 @@
             "employeeId": 7,
             "type": "leave",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-9-4",
+=======
                 "requestedDate": "2025-08-18",
+>>>>>>> main
                 "reason": "Sick leave"
             },
             "status": "Approved",
@@ -2341,7 +2353,11 @@
             "employeeId": 9,
             "type": "Late",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-9-4",
+=======
                 "requestedDate": "2025-08-20",
+>>>>>>> main
                 "minutesExpectedLate": 10,
                 "reason": "Car breakdown"
             },
@@ -2355,7 +2371,11 @@
             "employeeId": 10,
             "type": "WFH",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-08-31",
+=======
                 "requestedDate": "2025-08-21",
+>>>>>>> main
                 "weekIndex": 34,
                 "reason": "Parent-teacher meeting"
             },
@@ -2381,9 +2401,13 @@
         {
             "id": 14,
             "employeeId": 12,
-            "type": "Absence",
+            "type": "leave",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-31-8",
+=======
                 "requestedDate": "2025-08-23",
+>>>>>>> main
                 "reason": "Family travel"
             },
             "status": "Rejected",
@@ -2410,7 +2434,11 @@
             "employeeId": 14,
             "type": "Late",
             "payload": {
+<<<<<<< HEAD
+                "requestedDate": "2025-08-31",
+=======
                 "requestedDate": "2025-08-25",
+>>>>>>> main
                 "minutesExpectedLate": 25,
                 "reason": "Public transport delay"
             },
