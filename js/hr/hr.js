@@ -43,7 +43,7 @@ links.forEach((link) => {
 // #########################################
 // start home content
 // #########################################
-
+// logout button
 const logedusername = document.getElementById("logedusername");
 const user = JSON.parse(localStorage.getItem("loggedInUser"));
 logedusername.textContent = ` ${user.name} `;
@@ -53,15 +53,6 @@ document.querySelector(".logout").addEventListener("click", () => {
 
   window.location.replace("login.html");
 });
-
-window.onload = () => {
-  if (!localStorage.getItem("loggedInUser")) {
-    history.pushState(null, "", window.location.href);
-    window.onpopstate = () => {
-      history.go(1);
-    };
-  }
-};
 
 // start over view
 async function fillHRDashboard() {
