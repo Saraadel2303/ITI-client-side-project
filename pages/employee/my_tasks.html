@@ -236,7 +236,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content shadow-lg rounded-3">
                         <!-- Header -->
-                        <div class="modal-header bg-primary text-white">
+                        <div class="modal-header text-white">
                             <h5 class="modal-title">
                                 <i class="bi bi-list-task me-2"></i> Task Details
                             </h5>
@@ -249,37 +249,35 @@
                                 <!-- Task Info -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Task ID</p>
-                                        <h6 id="taskId" class="fw-bold"></h6>
+                                         <span id="taskStatus" class="badge bg-primary px-3 py-2"></span>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Priority</p>
-                                        <span id="taskPriority" class="badge bg-warning text-dark px-3 py-2"></span>
+                                        <span id="taskPriority" class="badge px-3 py-2"></span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <p class="mb-1 text-muted">Title</p>
-                                        <h5 id="taskTitle" class="fw-semibold text-dark"></h5>
+                                        <p class="mb-1">Title</p>
+                                        <h5 id="taskTitle" class="fw-semibold"></h5>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Deadline</p>
+                                        <p class="mb-1 ">Deadline</p>
                                         <h6 id="taskDeadline"></h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Created At</p>
+                                        <p class="mb-1 ">Created At</p>
                                         <h6 id="taskCreated"></h6>
                                     </div>
                                 </div>
 
                                 <div class="row mb-4">
                                     <div class="col-md-12">
-                                        <p class="mb-1 text-muted">Description</p>
-                                        <div class="p-3 border rounded bg-light">
+                                        <p class="mb-1 ">Description</p>
+                                        <div id="dec" class="p-3 border rounded bg-light">
                                             <p id="taskDesc" class="mb-0"></p>
                                         </div>
                                     </div>

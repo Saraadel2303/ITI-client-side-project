@@ -238,6 +238,20 @@ $(async function () {
       $("#taskPriority").removeClass("bg-waning");
       $("#taskPriority").addClass("bg-info");
     }
+    $("#taskStatus").text(task.status);
+    // if (task.status == "To DO") {
+    //   $("#taskStatus").removeClass("bg-warning");
+    //   $("#taskStatus").removeClass("bg-info");
+    //   $("#taskStatus").addClass("bg-primary");
+    // } else if (task.status == "In progress") {
+    //   $("#taskStatus").removeClass("bg-danger");
+    //   $("#taskStatus").removeClass("bg-info");
+    //   $("#taskStatus").addClass("bg-warning-subtle");
+    // } else if (task.status == "Completed") {
+    //   $("#taskStatus").removeClass("bg-danger");
+    //   $("#taskStatus").removeClass("bg-warning");
+    //   $("#taskStatus").addClass("bg-success");
+    // }
     $("#taskDeadline").text(task.deadline);
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");
