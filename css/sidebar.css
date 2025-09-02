@@ -6,10 +6,14 @@ body {
 }
 
 .sidebar {
+  position: sticky;
+  top: 0;
   min-width: 220px;
   max-width: 220px;
   height: 100vh;
 }
+
+
 
 @media (max-width: 991.98px) {
   .sidebar {
@@ -84,8 +88,8 @@ a.active {
 }
 
 .accordion-button:not(.collapsed) {
-  background-color: #534feb !important;
-  color: #fff !important;
+  background-color: var(--color-sidebar-active) !important;
+  color: var(--color-text) !important;
   padding: 8px;
   padding-inline: 12px;
   border: 1px solid #534feb !important;
@@ -137,7 +141,6 @@ a.active {
   box-shadow: 0 1px 2px var(--color-border);
   padding: 13px 24px;
   width: 100%;
-  margin: 0;
 }
 
 .navbar .welcome-text {
@@ -185,17 +188,6 @@ a.active {
   color: var(--color-text) !important;
 }
 
-#flush-headingOne .accordion-header{
+#flush-headingOne .accordion-header {
   color: var(--color-text) !important;
-}
-
-.accordion-button {
-  background-color: #f8f9fa; /* light gray */
-  color: #333;
-}
-
-/* When open (active) */
-.accordion-button:not(.collapsed) {
-  background-color: var(--color-sidebar-active) !important; /* your active color */
-  color: var(--color-text) !important; /* make text white */
 }
