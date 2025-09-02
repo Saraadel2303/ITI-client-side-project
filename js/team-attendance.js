@@ -26,7 +26,7 @@ data.employees.forEach((emp) => {
   if (!employees[emp.id]) {
     employees[emp.id] = {
       name: emp.name,
-      attendance: { Mon: "✔️", Tue: "✔️", Wed: "✔️", Thu: "✔️", Fri: "✔️" },
+      attendance: { Mon: "🟩", Tue: "🟩", Wed: "🟩", Thu: "🟩", Fri: "🟩" },
       stats: { present: 0, absent: 0, late: 0, leave: 0 },
     };
   }
@@ -42,9 +42,9 @@ latestLogs.forEach((log) => {
 
   if (log.newStatus === "Approved") {
     if (log.type === "Late") {
-      emp.attendance[day] = "⏰";
+      emp.attendance[day] = "🟨";
     } else if (log.type === "Leave" || log.type === "Absence") {
-      emp.attendance[day] = "🌴";
+      emp.attendance[day] = "🟦";
     }
   } else if (log.newStatus === "Rejected") {
     emp.attendance[day] = "❌";
@@ -55,16 +55,16 @@ latestLogs.forEach((log) => {
 Object.values(employees).forEach((emp) => {
   Object.values(emp.attendance).forEach((status) => {
     switch (status) {
-      case "✔️":
+      case "🟩":
         emp.stats.present++;
         break;
       case "❌":
         emp.stats.absent++;
         break;
-      case "⏰":
+      case "🟨":
         emp.stats.late++;
         break;
-      case "🌴":
+      case "🟦":
         emp.stats.leave++;
         break;
     }
@@ -81,10 +81,10 @@ Object.values(employees).forEach((emp) => {
     <td>${emp.name}</td>
     ${Object.values(emp.attendance)
       .map((s) => {
-        if (s === "✔️") return `<td class="present"></td>`;
+        if (s === "🟩") return `<td class="present"></td>`;
         if (s === "❌") return `<td class="absent"></td>`;
-        if (s === "⏰") return `<td class="late"></td>`;
-        if (s === "🌴") return `<td class="leave"></td>`;
+        if (s === "🟨") return `<td class="late"></td>`;
+        if (s === "🟦") return `<td class="leave"></td>`;
         return `<td></td>`;
       })
       .join("")}
