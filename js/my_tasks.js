@@ -27,12 +27,15 @@ $(async function () {
     tasks.filter((el) => el.status == "Completed"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-      let card = `<div class="card task-card">
+      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(item)}'>
                     <div class="card-body" id="${item.id}">
-                        <span class="badge bg-success badge-custom badge-completed ms-1">Completed ✅</span>
                         <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                        <span class="badge bg-success badge-custom badge-completed ms-1">Completed ✅</span>
+
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+
                     </div>
                 </div>`;
       $("#done").append(card);
@@ -43,14 +46,39 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card">
+      let card = `<div class="card task-card" id="task-${item.id}">
                     <div class="card-body" id="${item.id}">
-                        <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                          <div class="d-flex justify-content-between">
+                             <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                          </div>
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+
                     </div>
                 </div>`;
+
+      let daysLeft = daysUntil(item.deadline);
+
+      if (daysLeft === 0) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-warning text-center fw-bold m-3 mb-1 p-1" role="alert">⚠️ Due Today!</div>'
+        );
+      } else if (daysLeft === 1) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-info text-center fw-bold p-1 m-3 mb-1" role="alert">⏳ Due Tomorrow</div>'
+        );
+      } else if (daysLeft === 2) {
+        $(`#task-${item.id}`).prepend(
+          `<div class="alert alert-secondary text-center fw-bold p-1 m-3 mb-1" role="alert">📅 Due in ${daysLeft} days</div>`
+        );
+      }
       $("#in_progress").append(card);
+      if (isOverdue(item.deadline)) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-danger text-center fw-bold p-2 m-3 mb-1" role="alert">🚨 Overdue Task!</div>'
+        );
+      }
     }
   );
   $.each(
@@ -58,19 +86,60 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card">
+      let card = `<div class="card task-card" id="task-${item.id}">
                     <div class="card-body" id="${item.id}">
-                        <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                          <div class="d-flex justify-content-between">
+                            <span class="badge bg-info badge-custom">${item.priority}</span>
+                          </div>
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+
                     </div>
                 </div>`;
       $("#to_do").append(card);
+      let daysLeft = daysUntil(item.deadline);
+      console.log(daysLeft);
+
+      if (daysLeft === 0) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-warning text-center fw-bold m-3 mb-1 p-1" role="alert">⚠️ Due Today!</div>'
+        );
+      } else if (daysLeft === 1) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-info text-center fw-bold p-1 m-3 mb-1" role="alert">⏳ Due Tomorrow</div>'
+        );
+      } else if (daysLeft === 2) {
+        $(`#task-${item.id}`).prepend(
+          `<div class="alert alert-secondary text-center fw-bold p-1 m-3 mb-1" role="alert">📅 Due in ${daysLeft} days</div>`
+        );
+      }
+      if (isOverdue(item.deadline)) {
+        $(`#task-${item.id}`).prepend(
+          '<div class="alert alert-danger text-center fw-bold m-3 mb-1 p-2" role="alert">🚨 Overdue Task!</div>'
+        );
+      }
     }
   );
 
   updateCounts();
-  
+  function isOverdue(deadline) {
+    const today = new Date();
+    const dueDate = new Date(deadline);
+    today.setHours(0, 0, 0, 0);
+    dueDate.setHours(0, 0, 0, 0);
+
+    return today > dueDate;
+  }
+  function daysUntil(deadline) {
+    const today = new Date();
+    const due = new Date(deadline);
+    today.setHours(0, 0, 0, 0);
+    due.setHours(0, 0, 0, 0);
+
+    const diffTime = due.getTime() - today.getTime();
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
   function updateStatus(id, status) {
     tasks.find((el) => (el.id = id)).status = status;
   }
@@ -131,4 +200,49 @@ $(async function () {
     .disableSelection();
 
   updateCounts();
+
+  $(document).on("click", ".open-task", function () {
+    let task = $(this).data("task");
+
+    // Fill task details
+    $("#taskId").text(task.id);
+    $("#taskTitle").text(task.title);
+    $("#taskPriority").text(task.priority);
+    $("#taskDeadline").text(task.deadline);
+    $("#taskCreated").text(task.createdAt);
+    $("#taskDesc").text(task.description || "No description");
+
+    // Clear previous comments
+    let commentsList = $("#commentsList");
+    commentsList.empty();
+
+    // Append comments dynamically
+    if (task.comments && task.comments.length > 0) {
+      task.comments.forEach((c) => {
+        let commentHTML = `
+        <div class="d-flex mb-3">
+          <div class="flex-shrink-0">
+            <i class="bi bi-person-circle fs-3 text-secondary"></i>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <div class="bg-light p-3 rounded shadow-sm">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-1 fw-semibold">${c.by}</h6>
+                <small class="text-muted">${c.at}</small>
+              </div>
+              <p class="mb-0">${c.text}</p>
+            </div>
+          </div>
+        </div>
+      `;
+        commentsList.append(commentHTML);
+      });
+    } else {
+      commentsList.append(`<p class="text-muted">No comments yet.</p>`);
+    }
+
+    // Show modal
+    let modal = new bootstrap.Modal(document.getElementById("taskModal"));
+    modal.show();
+  });
 });

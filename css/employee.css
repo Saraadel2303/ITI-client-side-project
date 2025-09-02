@@ -30,8 +30,7 @@
   color: var(--color-text);
 }
 .dataTables_wrapper .dataTables_filter input {
-  color: #069855;
-  border: 2px solid #534feb;
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   padding: 6px 12px;
   margin-left: 0.5rem;
@@ -41,8 +40,8 @@
 }
 
 .dataTables_wrapper .dataTables_filter input:focus {
-  border-color: #2c2bb7;
-  box-shadow: 0 0 5px rgba(83, 79, 235, 0.4);
+  border-color: var(--color-border);
+  box-shadow: 0 0 5px rgba(223, 222, 243, 0.4);
 }
 
 /* "Show entries" dropdown */
@@ -97,7 +96,7 @@
 
 /* Hover effect */
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  color: #2c2bb7 !important;
+  color:  var(--btn-bg) !important;
   transform: scale(1.2);
 }
 
@@ -194,7 +193,8 @@ small {
   }
 }
 
-form > div > label,span {
+form > div > label,
+span {
   color: var(--color-text);
 }
 
@@ -206,11 +206,11 @@ form > div .form-control,
 }
 
 .form-control:focus,
-.form-select:focus{
+.form-select:focus {
   color: var(--color-text);
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
-   box-shadow: none;   
+  box-shadow: none;
 }
 
 .input-group-text {
@@ -220,6 +220,18 @@ form > div .form-control,
 }
 
 button[type="submit"] {
-  background-color: var(--btn-bg); /* dark background */
-  color: var(--color-text);           /* light text */
+  background-color: var(--btn-bg);
+  color: var(--color-text);
+}
+
+#tasksTable th,
+#tasksTable td {
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  white-space: normal;
+}
+
+.active>.page-link, .page-link.active {
+    background-color: var(--btn-bg);
+    border-color: var(--btn-bg);
 }
