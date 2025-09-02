@@ -1,13 +1,14 @@
 :root {
   --primary: #0d6efd; /* الأزرق الأساسي */
-  --bg-light: #f6f5f7;
-  --text-dark: #333;
-  --text-light: #777;
+  --bg-light: var(--color-bg);
+  --text-dark: var(--color-text);
+  --text-light: var(--color-muted);
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
-  background-color: var(--bg-light);
+  font-family: var(--font-main, "Montserrat", sans-serif);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   margin: 0;
   display: flex;
 }
@@ -15,21 +16,21 @@ body {
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background: #ffffff; /* أبيض */
+  background: var(--color-sidebar-bg);
   min-height: 100vh;
   padding: 20px;
-  color: var(--primary); /* أزرق */
-  border-right: 1px solid #e0e0e0; /* خط فاصل */
+  color: var(--color-sidebar-link);
+  border-right: 1px solid var(--color-border);
 }
 
 .sidebar h4 {
   font-weight: bold;
   margin-bottom: 30px;
-  color: var(--primary); /* أزرق */
+  color: var(--color-sidebar-active);
 }
 
 .sidebar .nav-link {
-  color: var(--primary); /* أزرق */
+  color: var(--color-sidebar-link);
   margin: 8px 0;
   transition: all 0.2s ease-in-out;
   display: flex;
@@ -44,15 +45,15 @@ body {
 /* Hover + Active */
 .sidebar .nav-link:hover,
 .sidebar .nav-link.active {
-  background: var(--primary); /* أزرق */
-  color: #fff;               /* أبيض */
+  background:#0d6efd;
+  color: white;
   border-radius: 8px;
   padding-left: 12px;
 }
 
 .sidebar .nav-link:hover i,
 .sidebar .nav-link.active i {
-  color: #fff; /* أيقونة أبيض */
+  color: #fff;
 }
 
 /* Main content */
@@ -64,11 +65,11 @@ body {
 .main-content h1 {
   font-weight: 700;
   margin-bottom: 20px;
-  color: var(--text-dark);
+  color: var(--color-text);
 }
 
 .card-container {
-  background: #fff;
+  background: var(--color-card-bg);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -78,7 +79,7 @@ body {
 .card-container h2 {
   font-size: 20px;
   margin-bottom: 15px;
-  color: var(--text-dark);
+  color: var(--color-text);
 }
 
 .card-box {
@@ -86,10 +87,12 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
   padding: 20px;
+  background: var(--color-card-bg);
 }
 
 .task-table {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: var(--color-card-bg);
 }
