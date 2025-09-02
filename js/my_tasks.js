@@ -27,14 +27,20 @@ $(async function () {
     tasks.filter((el) => el.status == "Completed"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(item)}'>
+      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+        item
+      )}'>
                     <div class="card-body" id="${item.id}">
-                        <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                        <span class="badge ${badgeClass} badge-custom">${
+        item.priority
+      }</span>
                         <span class="badge bg-success badge-custom badge-completed ms-1">Completed ✅</span>
 
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
-                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${
+                          item.deadline
+                        }</small>
 
                     </div>
                 </div>`;
@@ -46,14 +52,20 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card" id="task-${item.id}">
+      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+        item
+      )}'>
                     <div class="card-body" id="${item.id}">
                           <div class="d-flex justify-content-between">
-                             <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                             <span class="badge ${badgeClass} badge-custom">${
+        item.priority
+      }</span>
                           </div>
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
-                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${
+                          item.deadline
+                        }</small>
 
                     </div>
                 </div>`;
@@ -86,14 +98,20 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card" id="task-${item.id}">
+      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+        item
+      )}'>
                     <div class="card-body" id="${item.id}">
                           <div class="d-flex justify-content-between">
-                            <span class="badge bg-info badge-custom">${item.priority}</span>
+                            <span class="badge bg-info badge-custom">${
+                              item.priority
+                            }</span>
                           </div>
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
-                        <small class="badge bg-secondary rounded-pil badge-custom">${item.deadline}</small>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${
+                          item.deadline
+                        }</small>
 
                     </div>
                 </div>`;
@@ -204,10 +222,22 @@ $(async function () {
   $(document).on("click", ".open-task", function () {
     let task = $(this).data("task");
 
-    // Fill task details
     $("#taskId").text(task.id);
     $("#taskTitle").text(task.title);
     $("#taskPriority").text(task.priority);
+    if (task.priority == "High") {
+      $("#taskPriority").removeClass("bg-warning");
+      $("#taskPriority").removeClass("bg-info");
+      $("#taskPriority").addClass("bg-danger");
+    } else if (task.priority == "Low") {
+      $("#taskPriority").removeClass("bg-danger");
+      $("#taskPriority").removeClass("bg-info");
+      $("#taskPriority").addClass("bg-warning");
+    } else if (task.priority == "Medium") {
+      $("#taskPriority").removeClass("bg-danger");
+      $("#taskPriority").removeClass("bg-waning");
+      $("#taskPriority").addClass("bg-info");
+    }
     $("#taskDeadline").text(task.deadline);
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");
