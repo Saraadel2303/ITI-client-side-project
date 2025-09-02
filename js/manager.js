@@ -195,28 +195,3 @@ document.addEventListener("click", (e) => {
 // 🟣 عند تشغيل الصفحة
 // ==========================
 document.addEventListener("DOMContentLoaded", loadRequests);
-
-const toggleBtn = document.getElementById("themeToggle");
-const themeIcon = document.getElementById("themeIcon");
-const body = document.body;
-
-// Check localStorage (لو عايز تخلي التغيير يفضل بعد ريفريش الصفحة)
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-theme");
-  themeIcon.classList.remove("fa-moon");
-  themeIcon.classList.add("fa-sun");
-}
-
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("dark-theme");
-
-  if (body.classList.contains("dark-theme")) {
-    themeIcon.classList.remove("fa-moon");
-    themeIcon.classList.add("fa-sun");
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeIcon.classList.remove("fa-sun");
-    themeIcon.classList.add("fa-moon");
-    localStorage.setItem("theme", "light");
-  }
-});
