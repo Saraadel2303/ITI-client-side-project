@@ -1,3 +1,4 @@
+import Request from "./modules/request.js";
 import Task from "./modules/task.js";
 
 function updateCounts() {
@@ -158,8 +159,10 @@ $(async function () {
     const diffTime = due.getTime() - today.getTime();
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
-  function updateStatus(id, status) {
-    tasks.find((el) => (el.id = id)).status = status;
+  function updateStatus(tid, status) {
+    let task = tasks.find((el) => (el.id = id));
+    task.status = status;
+    Task.updateTask(tid, task, id);
   }
 
   $(".task-list")
@@ -174,10 +177,10 @@ $(async function () {
       helper: "clone",
       appendTo: "body",
       start: function (e, ui) {
-        ui.helper.css("cursor", "pointer"); 
+        ui.helper.css("cursor", "pointer");
         ui.placeholder.height(ui.item.outerHeight());
       },
-      stop: function(e, ui){
+      stop: function (e, ui) {
         ui.item.css("cursor", "pointer");
       },
       over: function () {
@@ -306,9 +309,7 @@ $(async function () {
       `);
       });
     } else {
-      $("#attachmentsList").append(
-        `<li class="muted">No attachments</li>`
-      );
+      $("#attachmentsList").append(`<li class="muted">No attachments</li>`);
     }
     // Clear previous comments
     let commentsList = $("#commentsList");
@@ -351,16 +352,26 @@ $(async function () {
     $("#completionDateModal").modal("show");
   });
 
-  $("#saveCompletionDate").on("click", function () {
+  $("#saveCompletionDate").on("click", async function () {
     let date = $("#deadlineDate").val();
 
     if (!date) {
       toastr.error("Choose a valid date");
       return;
     }
+
+    await Request.saveEmployeeRequest(
+      id,
+      "DeadlineExtension",
+      {
+        requestedDate: $("#deadlineDate").val(),
+        reason: "urgent",
+        taskId: $("#taskId").val(),
+      },
+      "Pending"
+    );
     toastr.success("Request sent successfully");
 
     $("#completionDateModal").modal("hide");
   });
 });
-
