@@ -64,34 +64,44 @@ function renderAllTables(data) {
 }
 
 // يرسم أعمدة الطلب حسب نوعه
+
 function renderRequestRow(r) {
   switch (r.type) {
     case "Late":
       return `
-        <td>${r.date}</td>
-        <td>${r.scheduledIn}</td>
-        <td>${r.actualIn}</td>
-        <td>${r.reason}</td>
+        <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.minutesExpectedLate || "-"}</td>
+        <td>${r.payload.reason || "-"}</td>
       `;
+
     case "Absence":
+    case "leave": // عشان مرات مكتوبة Absence ومرات leave
       return `
-        <td>${r.dates}</td>
-        <td>${r.absenceType}</td>
-        <td>${r.reason}</td>
+        <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.reason || "-"}</td>
       `;
+
     case "Overtime":
       return `
-        <td>${r.date}</td>
-        <td>${r.hours}</td>
-        <td>${r.reason}</td>
+        <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.overtimeHours || "-"}</td>
+        <td>${r.payload.reason || "-"}</td>
       `;
-    case "Extension":
+
+    case "DeadlineExtension":
       return `
-        <td>${r.taskName}</td>
-        <td>${r.originalDeadline}</td>
-        <td>${r.requestedExtension}</td>
-        <td>${r.reason}</td>
+        <td>${r.payload.taskId || "-"}</td>
+        <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.reason || "-"}</td>
       `;
+
+    case "WFH":
+      return `
+        <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.weekIndex || "-"}</td>
+        <td>${r.payload.reason || "-"}</td>
+      `;
+
     default:
       return "<td colspan='4'>غير معروف</td>";
   }
