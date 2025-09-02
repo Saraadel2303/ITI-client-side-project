@@ -3,22 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/imgs/logo.png">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <link rel="stylesheet" href="/css/my_tasks.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
+
+
+
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/employee.css">
+    <link rel="stylesheet" href="/css/my_tasks.css">
+
+    <title>Tasks List</title>
+    <style>
+    </style>
 </head>
 
 <body>
-
     <div class="d-flex">
         <!-- Sidebar -->
         <div id="sidebar" class="sidebar d-none d-lg-block bg-white  p-3">
@@ -55,7 +72,6 @@
                         <span class="d-none  d-lg-inline">Request center</span>
                     </a>
                 </li>
-
                 <li id="team_tasks" class="text-center">
                     <a href="#" class="nav-link link-dark">
                         <span class="bi me-2"><i class="fa-solid fa-list-check"></i></span>
@@ -84,8 +100,8 @@
                     <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
                         <div class="accordion-item">
                             <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
                                     <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
                                     Tasks
@@ -97,11 +113,12 @@
                                     <ul class="btn-toggle-nav pb-1 small list-unstyled">
                                         <li class=""><a href="tasks_list.html"
                                                 class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i
-                                                        class="fa-regular fa-eye"></i></span>Tasks Table</a>
+                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
+                                                Table</a>
                                         </li>
                                         <li class="mt-1">
-                                            <a href="my_tasks.html" class="nav-link link-dark rounded text-decoration-none">
+                                            <a href="my_tasks.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
                                                 <span class="bi me-2"><i
                                                         class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
                                         </li>
@@ -148,95 +165,28 @@
 
             <!-- Main content -->
             <main class="p-4">
-                <div class="row g-3  mt-5">
-                    <!-- To Do -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-primary">
-                                <span>To Do</span>
-                                <span class="badge bg-primary rounded-pill count">2</span>
-                            </div>
-                            <div class="task-list" id="to_do">
-                                <div class="card task-card">
-                                    <div class="card-body">
-                                        <span class="badge bg-danger badge-custom">High</span>
-                                        <h6 class="mt-2">UI/UX Design</h6>
-                                        <p class="text-muted small mb-2">Redesign dashboard screens.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-5-2025</small>
+                <table id="tasksTable" class="table table-borderless text-center  table-hover align-middle"
+                    style="width:100%">
+                    <thead class="">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Priority</th>
+                            <th class="text-center">status</th>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- In progress -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header  text-warning">
-                                <span class="align-self-center">In Progress</span>
-                                <span class="badge bg-warning rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="in_progress">
-                                <div class="card task-card">
-                                    <div class="card-body ">
-                                        <div class="d-flex justify-content-between">
-                                            <span class="badge bg-info badge-custom">Medium</span>
-                                        </div>
-                                        <h6 class="mt-2">Healthcare App Flow</h6>
-                                        <p class="text-muted small mb-2">Workflow review completed.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-11-2025</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Done -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-success">
-                                <span>Done</span>
-                                <span class="badge bg-success rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="done">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blocked -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-danger">
-                                <span>Blocked</span>
-                                <span class="badge bg-danger rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="blocked">
-                                <div class="card task-card">
-                                    <div class="card-body">
-                                        <span class="badge bg-warning badge-custom">Low</span>
-                                        <h6 class="mt-2">Blog Copywriting</h6>
-                                        <p class="text-muted small mb-2">Write SEO friendly article.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-5-2025</small>
-                                        <div class="avatars d-flex mt-2">
-                                            <img src="https://i.pravatar.cc/40?img=1" />
-                                            <img src="https://i.pravatar.cc/40?img=2" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            <th class="text-center">Deadline</th>
+                            <th class="text-center">action</th>
+                        </tr>
+                    </thead>
+                </table>
             </main>
 
-            <!-- Task Modal -->
+            <!-- modal -->
             <div class="modal fade" id="taskModal" tabindex="-1">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content shadow-lg rounded-3">
                         <!-- Header -->
-                        <div class="modal-header bg-primary text-white">
+                        <div class="modal-header text-white">
                             <h5 class="modal-title">
                                 <i class="bi bi-list-task me-2"></i> Task Details
                             </h5>
@@ -249,37 +199,37 @@
                                 <!-- Task Info -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Task ID</p>
+                                        <p class="mb-1">Task ID</p>
                                         <h6 id="taskId" class="fw-bold"></h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Priority</p>
-                                        <span id="taskPriority" class="badge bg-warning text-dark px-3 py-2"></span>
+                                        <p class="mb-1">Priority</p>
+                                        <span id="taskPriority" class="badge   px-3 py-2"></span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <p class="mb-1 text-muted">Title</p>
-                                        <h5 id="taskTitle" class="fw-semibold text-dark"></h5>
+                                        <p class="mb-1">Title</p>
+                                        <h5 id="taskTitle" class="fw-semibold"></h5>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Deadline</p>
+                                        <p class="mb-1 ">Deadline</p>
                                         <h6 id="taskDeadline"></h6>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="mb-1 text-muted">Created At</p>
+                                        <p class="mb-1 ">Created At</p>
                                         <h6 id="taskCreated"></h6>
                                     </div>
                                 </div>
 
                                 <div class="row mb-4">
                                     <div class="col-md-12">
-                                        <p class="mb-1 text-muted">Description</p>
-                                        <div class="p-3 border rounded bg-light">
+                                        <p class="mb-1 ">Description</p>
+                                        <div id="dec" class="p-3 border rounded bg-light">
                                             <p id="taskDesc" class="mb-0"></p>
                                         </div>
                                     </div>
@@ -376,10 +326,12 @@
         </div>
     </div>
 
+
+
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/fontawesome/js/all.min.js"></script>
     <script src="/js/sidebar.js"></script>
-    <script src="/js/my_tasks.js" type="module"></script>
+    <script type="module" src="/js/tasks.js"></script>
 </body>
 
 </html>

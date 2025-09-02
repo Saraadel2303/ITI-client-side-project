@@ -41,7 +41,7 @@ body {
   color: var(--color-text) !important;
 }
 
-.main-side> div > ul > li > a {
+.main-side > div > ul > li > a {
   color: var(--color-text) !important;
 }
 
@@ -72,7 +72,7 @@ body {
 }
 
 a.active {
-  background-color: var( --color-sidebar-active) !important;
+  background-color: var(--color-sidebar-active) !important;
 }
 
 .main-btn {
@@ -115,6 +115,17 @@ a.active {
   height: 0.75rem;
 }
 
+.accordion-button::after {
+  filter: invert(22%) sepia(98%) saturate(7478%) hue-rotate(240deg)
+    brightness(92%) contrast(90%);
+}
+
+/* When accordion is open */
+.accordion-button:not(.collapsed)::after {
+  filter: invert(100%) brightness(200%);
+  /* White icon */
+}
+
 .accordion {
   margin: 0px;
   padding: 0px;
@@ -123,7 +134,7 @@ a.active {
 .navbar {
   background-color: var(--color-bg) !important;
   border-bottom: 1px solid var(--color-border) !important;
-  box-shadow: 0 1px 2px  var(--color-border) ;
+  box-shadow: 0 1px 2px var(--color-border);
   padding: 13px 24px;
   width: 100%;
   margin: 0;
@@ -132,7 +143,7 @@ a.active {
 .navbar .welcome-text {
   font-weight: 600;
   font-size: 16px;
-  color: var( --color-sidebar-active);
+  color: var(--color-sidebar-active);
 }
 
 .navbar i {
@@ -155,4 +166,36 @@ a.active {
 .navbar .dropdown-item:hover {
   background: var(--color-sidebar-hover);
   color: #534feb;
+}
+
+.accordion,
+.accordion-collapse,
+.accordion-body,
+.accordion-header,
+.collapsed {
+  background-color: var(--color-sidebar-bg) !important;
+  color: var(--color-text) !important;
+}
+
+.accordion-button {
+  color: var(--color-text) !important;
+}
+
+.accordion-body > ul > li > a {
+  color: var(--color-text) !important;
+}
+
+#flush-headingOne .accordion-header{
+  color: var(--color-text) !important;
+}
+
+.accordion-button {
+  background-color: #f8f9fa; /* light gray */
+  color: #333;
+}
+
+/* When open (active) */
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-sidebar-active) !important; /* your active color */
+  color: var(--color-text) !important; /* make text white */
 }

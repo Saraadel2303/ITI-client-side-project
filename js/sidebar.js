@@ -23,11 +23,9 @@ if (role !== "security") {
 if (role !== "employee") {
   my_attendance.style.display = "none";
   req.style.display = "none";
-  my_tasks.style.display = "none";
 } else {
   my_attendance.style.display = "";
   req.style.display = "";
-  my_tasks.style.display = "";
 }
 
 if (role !== "manger") {
@@ -42,20 +40,18 @@ if (role !== "manger") {
 
 if (role !== "hr") {
   settings.style.display = "none";
-  reports.style.display = "none";
 } else {
   settings.style.display = "";
-  reports.style.display = "";
 }
 
-const currentPage = window.location.pathname.split("/").pop(); // e.g., "request_center.html"
+const currentPage = window.location.pathname.split("/").pop(); 
 
 // Loop through all sidebar links
 document.querySelectorAll("#sidebar .nav-link").forEach((link) => {
   const linkPage = link.getAttribute("href");
 
   if (linkPage === currentPage) {
-    link.classList.add("active"); // highlight current page
+    link.classList.add("active");
 
     // If inside an accordion, also open parent
     const parentCollapse = link.closest(".accordion-collapse");

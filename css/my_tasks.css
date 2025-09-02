@@ -44,7 +44,7 @@ body {
   cursor: grab;
   transition: transform 0.15s ease;
 }
-.card-body > p{
+.card-body > p {
   color: var(--color-text) !important;
 }
 
@@ -76,54 +76,46 @@ body {
   outline: none !important;
 }
 
-.mynav li a {
-  display: block;
-  color: #000;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-  font-weight: normal;
-}
-
-.mynav li a:hover {
-  background: #2563eb;
-  color: #fff;
-}
-
-.mynav li a.active {
-  background-color: #2563eb;
-  color: #fff;
-}
-
-.mynav li a i {
-  width: 25px;
-  text-align: center;
-}
-
-.notification-badge {
-  background-color: rgba(255, 255, 255, 0.7);
-  float: right;
-  color: #222;
-  font-size: 14px;
-  padding: 0px 8px;
-  border-radius: 2px;
-}
-
-.logout a {
-  background-color: #2563eb;
-  border-radius: 8px;
-  padding: 10px 15px;
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.navsmall {
-  background-color: #2563eb;
-  padding: 10px 15px;
-  color: white;
-}
-
 /* sidebar end */
+
+.open-btn {
+  background-color: var(--btn-bg) !important;
+  color: var(--btn-text);
+}
+
+.modal-header {
+  background-color: var(--color-table-header-bg);
+  border-bottom: var(--color-border);
+}
+
+.modal-content,.modal-body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.modal-body > .container-fluid {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.modal-footer {
+  background-color: var(--color-bg);
+  border-top: var(--color-border) !important;
+
+}
+
+#commentsList,.muted {
+  color: var(--color-muted) !important;
+}
+
+#taskDesc{
+  color: var( --color-muted) !important;
+}
+
+@media (max-width: 570px) {
+  #tasksTable th,
+  #tasksTable td {
+    padding: 0.1rem 0.1rem !important;
+    font-size: 0.6rem !important;
+  }
+}
