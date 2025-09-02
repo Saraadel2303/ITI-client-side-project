@@ -27,9 +27,9 @@ $(async function () {
     tasks.filter((el) => el.status == "Completed"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(
-        item
-      )}'>
+      let card = `<div class="card task-card open-task" id="task-${
+        item.id
+      }" data-task='${JSON.stringify(item)}'>
                     <div class="card-body" id="${item.id}">
                         <span class="badge ${badgeClass} badge-custom">${
         item.priority
@@ -52,9 +52,9 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card open-task"  id="task-${item.id}" data-task='${JSON.stringify(
-        item
-      )}'>
+      let card = `<div class="card task-card open-task"  id="task-${
+        item.id
+      }" data-task='${JSON.stringify(item)}'>
                     <div class="card-body" id="${item.id}">
                           <div class="d-flex justify-content-between">
                              <span class="badge ${badgeClass} badge-custom">${
@@ -98,14 +98,14 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(
-        item
-      )}'>
+      let card = `<div class="card task-card open-task" id="task-${
+        item.id
+      }" data-task='${JSON.stringify(item)}'>
                     <div class="card-body" id="${item.id}">
                           <div class="d-flex justify-content-between">
                             <span class="badge ${badgeClass} badge-custom">${
-                              item.priority
-                            }</span>
+        item.priority
+      }</span>
                           </div>
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
@@ -164,6 +164,7 @@ $(async function () {
 
   $(".task-list")
     .sortable({
+      cursor: "default",
       connectWith: ".task-list",
       items: "> .task-card",
       placeholder: "drag-placeholder",
@@ -173,7 +174,11 @@ $(async function () {
       helper: "clone",
       appendTo: "body",
       start: function (e, ui) {
+        ui.helper.css("cursor", "pointer"); 
         ui.placeholder.height(ui.item.outerHeight());
+      },
+      stop: function(e, ui){
+        ui.item.css("cursor", "pointer");
       },
       over: function () {
         $(this).addClass("is-over");
@@ -263,6 +268,48 @@ $(async function () {
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");
 
+    // Clear old history
+    $("#historyList").empty();
+    if (task.history && task.history.length > 0) {
+      task.history.forEach((h) => {
+        $("#historyList").append(`
+      <div class="d-flex mb-3">
+        <div class="flex-shrink-0">
+          <i class="bi bi-clock" fs-4 text-secondary"></i>
+        </div>
+        <div class="flex-grow-1 ms-3">
+          <div class="bg-light p-3 rounded shadow-sm">
+            <div class="d-flex justify-content-between">
+              <h6 class="mb-1 fw-semibold text-muted">${h.action}</h6>
+              <small class="text-muted">${h.at}</small>
+            </div>
+            <p class="mb-0 text-muted">By <strong>${h.by}</strong></p>
+          </div>
+        </div>
+      </div>
+    `);
+      });
+    } else {
+      $("#historyList").append(`<p class="muted">No history yet</p>`);
+    }
+
+    $("#attachmentsList").empty();
+    if (task.attachments && task.attachments.length > 0) {
+      task.attachments.forEach((att) => {
+        $("#attachmentsList").append(`
+        <li class="mb-2">
+          <a href="${att.url}" target="_blank" class="d-flex align-items-center text-decoration-none">
+            <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+            <span>${att.name}</span>
+          </a>
+        </li>
+      `);
+      });
+    } else {
+      $("#attachmentsList").append(
+        `<li class="muted">No attachments</li>`
+      );
+    }
     // Clear previous comments
     let commentsList = $("#commentsList");
     commentsList.empty();
@@ -289,11 +336,31 @@ $(async function () {
         commentsList.append(commentHTML);
       });
     } else {
-      commentsList.append(`<p class="text-muted">No comments yet.</p>`);
+      commentsList.append(`<p class="muted">No comments yet.</p>`);
     }
 
     // Show modal
     let modal = new bootstrap.Modal(document.getElementById("taskModal"));
     modal.show();
   });
+
+  let today = new Date().toISOString().split("T")[0];
+  $("#deadlineDate").attr("min", today);
+
+  $("#markCompletedBtn").on("click", function () {
+    $("#completionDateModal").modal("show");
+  });
+
+  $("#saveCompletionDate").on("click", function () {
+    let date = $("#deadlineDate").val();
+
+    if (!date) {
+      toastr.error("Choose a valid date");
+      return;
+    }
+    toastr.success("Request sent successfully");
+
+    $("#completionDateModal").modal("hide");
+  });
 });
+

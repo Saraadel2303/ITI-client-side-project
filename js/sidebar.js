@@ -22,6 +22,7 @@ $(function () {
       $(this).html('<i class="bi bi-moon-stars me-2"></i>Dark Mode');
     }
   });
+  $("#user-name").text(loggedInUser.name);
 });
 
 if (role !== "security") {
