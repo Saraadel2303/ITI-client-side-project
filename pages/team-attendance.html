@@ -23,8 +23,15 @@
   <body>
     <!-- Unified Sidebar Navigation -->
     <aside class="sidebar">
-      <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
-      <ul class="nav flex-column">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
+        <!-- زرار التبديل -->
+        <button id="themeToggle" class="btn btn-sm">
+          <i id="themeIcon" class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <ul class="nav flex-column mt-3">
         <li class="nav-item">
           <a class="nav-link" id="approvals-link" href="managers.html">
             <i class="fas fa-clipboard-list me-2"></i>Approvals
@@ -46,24 +53,6 @@
         </li>
       </ul>
     </aside>
-
-    <script>
-      // Auto-detect current page and set active link
-      document.addEventListener("DOMContentLoaded", function () {
-        const currentPage = window.location.pathname.split("/").pop();
-        document
-          .querySelectorAll(".sidebar .nav-link")
-          .forEach((link) => link.classList.remove("active"));
-
-        if (currentPage === "managers.html" || currentPage === "") {
-          document.getElementById("approvals-link").classList.add("active");
-        } else if (currentPage === "teamTasks.html") {
-          document.getElementById("tasks-link").classList.add("active");
-        } else if (currentPage === "team-attendance.html") {
-          document.getElementById("attendance-link").classList.add("active");
-        }
-      });
-    </script>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -146,5 +135,7 @@
 
     <!-- ✅ Script الخاص بالديناميك -->
     <script src="../js/team-attendance.js"></script>
+
+ 
   </body>
 </html>
