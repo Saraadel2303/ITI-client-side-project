@@ -27,7 +27,7 @@ $(async function () {
     tasks.filter((el) => el.status == "Completed"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(
         item
       )}'>
                     <div class="card-body" id="${item.id}">
@@ -52,7 +52,7 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+      let card = `<div class="card task-card open-task"  id="task-${item.id}" data-task='${JSON.stringify(
         item
       )}'>
                     <div class="card-body" id="${item.id}">
@@ -98,12 +98,12 @@ $(async function () {
     function (index, item) {
       let badgeClass = getBadgeColor(item);
 
-      let card = `<div class="card task-card open-task" data-task='${JSON.stringify(
+      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(
         item
       )}'>
                     <div class="card-body" id="${item.id}">
                           <div class="d-flex justify-content-between">
-                            <span class="badge bg-info badge-custom">${
+                            <span class="badge ${badgeClass} badge-custom">${
                               item.priority
                             }</span>
                           </div>
@@ -117,7 +117,6 @@ $(async function () {
                 </div>`;
       $("#to_do").append(card);
       let daysLeft = daysUntil(item.deadline);
-      console.log(daysLeft);
 
       if (daysLeft === 0) {
         $(`#task-${item.id}`).prepend(
@@ -132,6 +131,7 @@ $(async function () {
           `<div class="alert alert-secondary text-center fw-bold p-1 m-3 mb-1" role="alert">📅 Due in ${daysLeft} days</div>`
         );
       }
+
       if (isOverdue(item.deadline)) {
         $(`#task-${item.id}`).prepend(
           '<div class="alert alert-danger text-center fw-bold m-3 mb-1 p-2" role="alert">🚨 Overdue Task!</div>'
@@ -189,7 +189,7 @@ $(async function () {
           card
             .find(".card-body")
             .prepend(
-              '<span class="badge bg-success badge-custom badge-completed ms-1">Completed ✅</span>'
+              '<span class="badge bg-success badge-custom badge-completed mb-1">Completed ✅</span>'
             );
           updateStatus(card.find(".card-body").attr("id"), "Completed");
           console.log(
@@ -239,19 +239,26 @@ $(async function () {
       $("#taskPriority").addClass("bg-info");
     }
     $("#taskStatus").text(task.status);
-    // if (task.status == "To DO") {
-    //   $("#taskStatus").removeClass("bg-warning");
-    //   $("#taskStatus").removeClass("bg-info");
-    //   $("#taskStatus").addClass("bg-primary");
-    // } else if (task.status == "In progress") {
-    //   $("#taskStatus").removeClass("bg-danger");
-    //   $("#taskStatus").removeClass("bg-info");
-    //   $("#taskStatus").addClass("bg-warning-subtle");
-    // } else if (task.status == "Completed") {
-    //   $("#taskStatus").removeClass("bg-danger");
-    //   $("#taskStatus").removeClass("bg-warning");
-    //   $("#taskStatus").addClass("bg-success");
-    // }
+    $("#taskStatus").text(task.status);
+    if (task.status == "To Do") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-success-subtle text-success"
+      );
+      $("#taskStatus").addClass("bg-primary-subtle text-primary");
+    }
+    if (task.status == "In Progress") {
+      $("#taskStatus").removeClass(
+        "bg-success-subtle text-success bg-success-subtle text-success"
+      );
+
+      $("#taskStatus").addClass("bg-warning-subtle text-warning");
+    }
+    if (task.status == "Completed") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-primary-subtle text-primary"
+      );
+      $("#taskStatus").addClass("bg-success-subtle text-success");
+    }
     $("#taskDeadline").text(task.deadline);
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");

@@ -77,9 +77,30 @@ $(async function () {
       $("#taskPriority").addClass("bg-warning");
     } else if (task.priority == "Medium") {
       $("#taskPriority").removeClass("bg-danger");
-      $("#taskPriority").removeClass("bg-waning");
+      $("#taskPriority").removeClass("bg-warning");
       $("#taskPriority").addClass("bg-info");
     }
+    $("#taskStatus").text(task.status);
+    if (task.status == "To Do") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-success-subtle text-success"
+      );
+      $("#taskStatus").addClass("bg-primary-subtle text-primary");
+    }
+    if (task.status == "In Progress") {
+      $("#taskStatus").removeClass(
+        "bg-success-subtle text-success bg-success-subtle text-success"
+      );
+
+      $("#taskStatus").addClass("bg-warning-subtle text-warning");
+    }
+    if (task.status == "Completed") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-primary-subtle text-primary"
+      );
+      $("#taskStatus").addClass("bg-success-subtle text-success");
+    }
+
     $("#taskDeadline").text(task.deadline);
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");

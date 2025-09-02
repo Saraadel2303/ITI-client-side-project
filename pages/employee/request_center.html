@@ -97,8 +97,8 @@
                     <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
                         <div class="accordion-item">
                             <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
                                     aria-controls="flush-collapseOne">
                                     <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
                                     Tasks
@@ -110,11 +110,12 @@
                                     <ul class="btn-toggle-nav pb-1 small list-unstyled">
                                         <li class=""><a href="tasks_list.html"
                                                 class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i
-                                                        class="fa-regular fa-eye"></i></span>Tasks Table</a>
+                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
+                                                Table</a>
                                         </li>
                                         <li class="mt-1">
-                                            <a href="my_tasks.html" class="nav-link link-dark rounded text-decoration-none">
+                                            <a href="my_tasks.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
                                                 <span class="bi me-2"><i
                                                         class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
                                         </li>
@@ -319,11 +320,37 @@
                         <span class="">Request center</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="my_tasks.html" class="nav-link link-dark  text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-thumbtack"></i></span>
-                        <span class=" fs-6 fs-md-6 fs-lg-4">My Tasks</span>
-                    </a>
+                <li id="tasks">
+                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
+                                    Tasks
+                                </button>
+                            </div>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                                        <li class=""><a href="tasks_list.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
+                                                Table</a>
+                                        </li>
+                                        <li class="mt-1">
+                                            <a href="my_tasks.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi me-2"><i
+                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
