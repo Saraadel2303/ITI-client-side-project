@@ -235,3 +235,8 @@ button[type="submit"] {
     background-color: var(--btn-bg);
     border-color: var(--btn-bg);
 }
+
+select option{
+  background-color: var(--color-bg);
+  color: var(--color-text) !important;
+}

@@ -5,6 +5,7 @@ $(document).ready(async function () {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   let id = loggedInUser?.id;
   let requests = await Request.employeeRequests(id);
+  let weekIndex = getWeekIndexInYear();
 
   let table = $("#requestsTable").DataTable({
     data: requests,
@@ -86,7 +87,7 @@ $(document).ready(async function () {
     unhighlight: function (element) {
       $(element).removeClass("is-invalid");
     },
-    submitHandler: function (form, e) {
+    submitHandler: async function (form, e) {
       e.preventDefault();
       let newRow = {
         id: lastId,
@@ -104,6 +105,20 @@ $(document).ready(async function () {
       $("#history").addClass("active show");
       $("#home-tab").removeClass("active");
       $("#send").removeClass("active show");
+      await Request.saveEmployeeRequest(
+        id,
+        $("#type").val(),
+        {
+          requestedDate: $("#requestedDate").val(),
+          reason: $("#reason").val(),
+          minutesExpectedLate: $("#minutesValue").val(),
+          weekIndex,
+          overtimeHours: $("#overtimeHours").val(),
+          taskId: $("#taskId").val(),
+        },
+        "Pending"
+      );
+      toastr.success("Request sent successfully");
 
       form.reset();
     },
@@ -131,8 +146,6 @@ $(document).ready(async function () {
       })
     );
   });
-
-  let weekIndex = getWeekIndexInYear();
 
   let quotas = {
     late: {
