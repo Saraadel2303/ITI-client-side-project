@@ -119,3 +119,11 @@ body {
     font-size: 0.6rem !important;
   }
 }
+
+.card {
+  cursor: pointer;
+}
+
+.card:active {
+  cursor: pointer;
+}

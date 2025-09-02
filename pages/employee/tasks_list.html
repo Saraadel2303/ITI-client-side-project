@@ -141,7 +141,7 @@
                     <i class="bi bi-list"></i>
                 </button>
 
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, Maria Smith</span>
+                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text" id="user-name"></span></span>
 
                 <div class="ms-auto dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
@@ -165,6 +165,15 @@
 
             <!-- Main content -->
             <main class="p-4">
+                <div id="bulkActions" class="alert alert-light d-none">
+                    <span id="selectedCount">0</span> selected
+                    <button id="bulkDelete" class="btn btn-danger btn-sm ms-2">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                    <button id="bulkDone" class="btn btn-success btn-sm ms-2">
+                        <i class="bi bi-check2-circle"></i> Mark as Done
+                    </button>
+                </div>
                 <table id="tasksTable" class="table table-borderless text-center  table-hover align-middle"
                     style="width:100%">
                     <thead class="">
@@ -200,7 +209,7 @@
                                     <div class="col-md-6">
                                         <span id="taskStatus" class="badge  px-3 my-1  py-2"></span>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 justify-content-end d-flex">
                                         <span id="taskPriority" class="badge px-3 my-1 py-2"></span>
                                     </div>
                                 </div>
@@ -272,11 +281,8 @@
 
                         <!-- Footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                <i class="bi bi-x-circle me-1"></i> Close
-                            </button>
                             <button type="button" class="btn btn-success">
-                                <i class="bi bi-check2-circle me-1"></i> Mark as Done
+                                <i class="bi bi-check2-circle me-1"></i> Request Deadline Extension
                             </button>
                         </div>
                     </div>
