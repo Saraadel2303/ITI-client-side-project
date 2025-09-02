@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
     <!-- FontAwesome -->
     <link
@@ -14,95 +14,121 @@
     <link rel="stylesheet" href="../css/managers.css" />
 
     <title>Team Tasks</title>
-</head>
-<body>
-
-     <!-- Sidebar -->
+  </head>
+  <body>
+    <!-- Unified Sidebar Navigation -->
     <aside class="sidebar">
       <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link active" href="#approvals-queue"
-            ><i class="fas fa-clipboard-list me-2"></i>Approvals</a
-          >
+          <a class="nav-link" href="managers.html" id="approvals-link">
+            <i class="fas fa-clipboard-list me-2"></i>Approvals
+          </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="teamTasks.html">
-              <i class="fas fa-tasks me-2"></i>Team Tasks
-            </a>
+          <a class="nav-link" href="teamTasks.html" id="tasks-link">
+            <i class="fas fa-tasks me-2"></i>Team Tasks
+          </a>
         </li>
-        <a class="nav-link" href="team-attendance.html">
-          <i class="fas fa-users-viewfinder me-2"></i>Team Attendance
-        </a>
+        <li class="nav-item">
+          <a class="nav-link" href="team-attendance.html" id="attendance-link">
+            <i class="fas fa-users-viewfinder me-2"></i>Team Attendance
+          </a>
+        </li>
       </ul>
     </aside>
 
+    <script>
+      // Auto-detect current page and set active link
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll(".sidebar .nav-link");
+
+        // Remove active class from all links
+        navLinks.forEach((link) => link.classList.remove("active"));
+
+        // Add active class to current page link
+        switch (currentPage) {
+          case "managers.html":
+          case "": // for root or when no specific page
+            document.getElementById("approvals-link").classList.add("active");
+            break;
+          case "teamTasks.html":
+            document.getElementById("tasks-link").classList.add("active");
+            break;
+          case "team-attendance.html":
+            document.getElementById("attendance-link").classList.add("active");
+            break;
+        }
+      });
+    </script>
 
     <div class="container mt-4">
-    <!-- Welcome -->
-    <h5 class="mb-4">👋 Welcome, <span class="fw-bold text-primary">Manager</span></h5>
+      <!-- Welcome -->
+      <h5 class="mb-4">
+        👋 Welcome, <span class="fw-bold text-primary">Manager</span>
+      </h5>
 
-    <!-- Top Widgets -->
-    <div class="row mb-4">
-      <div class="col-md-3">
-        <div class="card-box bg-white">
-          <h6>Assigned Tasks</h6>
-          <h3 class="text-primary">12</h3>
+      <!-- Top Widgets -->
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card-box bg-white">
+            <h6>Assigned Tasks</h6>
+            <h3 class="text-primary">12</h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-box bg-white">
+            <h6>Extensions Pending</h6>
+            <h3 class="text-warning">3</h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-box bg-white">
+            <h6>Overdue Tasks</h6>
+            <h3 class="text-danger">5</h3>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card-box bg-white">
+            <h6>Completed Tasks</h6>
+            <h3 class="text-danger">5</h3>
+          </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card-box bg-white">
-          <h6>Extensions Pending</h6>
-          <h3 class="text-warning">3</h3>
-        </div>
+
+      <!-- Table Section -->
+      <h6 class="mb-3"><i class="fas fa-tasks me-2"></i>Team Tasks Board</h6>
+      <div class="task-table bg-white p-3">
+        <table class="table align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Task</th>
+              <th>Assigned To</th>
+              <th>Deadline</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="5" class="text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="mt-2">Loading tasks...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-3">
-        <div class="card-box bg-white">
-          <h6>Overdue Tasks</h6>
-          <h3 class="text-danger">5</h3>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card-box bg-white">
-          <h6>Completed Tasks</h6>
-          <h3 class="text-danger">5</h3>
-        </div>
+
+      <!-- Bulk Actions -->
+      <div class="mt-3">
+        <button class="btn btn-danger">Bulk Actions</button>
       </div>
     </div>
-
-    <!-- Table Section -->
-    <h6 class="mb-3"><i class="fas fa-tasks me-2"></i>Team Tasks Board</h6>
-    <div class="task-table bg-white p-3">
-      <table class="table align-middle">
-        <thead class="table-light">
-          <tr>
-            <th>Task</th>
-            <th>Assigned To</th>
-            <th>Deadline</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-         <tbody>
-                    <tr>
-                        <td colspan="5" class="text-center py-4">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="mt-2">Loading tasks...</div>
-                        </td>
-                    </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Bulk Actions -->
-    <div class="mt-3">
-      <button class="btn btn-danger">Bulk Actions</button>
-    </div>
-  </div>
 
     <script type="module" src="../js/modules/team-Task.js"></script>
-    
-</body>
+  </body>
 </html>
