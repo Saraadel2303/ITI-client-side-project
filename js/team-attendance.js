@@ -10,11 +10,21 @@ const logs = JSON.parse(localStorage.getItem("actionLogs")) || [];
 console.log("📦 Loaded requests:", data.requests);
 console.log("📦 Loaded logs:", logs);
 
-// 🟢 Step 2: Prepare employees list
+// 🟢 Step 2: Keep only the latest log per requestId
+let latestLogs = Object.values(
+  logs.reduce((acc, log) => {
+    acc[log.requestId] = log; // overwrite → keeps last one only
+    return acc;
+  }, {})
+);
+
+console.log("📌 Latest logs only:", latestLogs);
+
+// 🟢 Step 3: Prepare employees list
 const employees = {};
 data.employees.forEach((emp) => {
-  if (!employees[emp.name]) {
-    employees[emp.name] = {
+  if (!employees[emp.id]) {
+    employees[emp.id] = {
       name: emp.name,
       attendance: { Mon: "✔️", Tue: "✔️", Wed: "✔️", Thu: "✔️", Fri: "✔️" },
       stats: { present: 0, absent: 0, late: 0, leave: 0 },
@@ -22,18 +32,18 @@ data.employees.forEach((emp) => {
   }
 });
 
-// 🟢 Step 3: Apply logs to attendance
-logs.forEach((log) => {
+// 🟢 Step 4: Apply latest logs to attendance
+latestLogs.forEach((log) => {
   const emp = employees[log.employee];
   if (!emp) return;
 
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  const day = days[log.requestId % 5]; // توزيع الأيام حسب الـ requestId
+  const day = days[log.requestId % 5]; // توزيع مؤقت حسب requestId
 
   if (log.newStatus === "Approved") {
     if (log.type === "Late") {
       emp.attendance[day] = "⏰";
-    } else if (log.type === "Leave") {
+    } else if (log.type === "Leave" || log.type === "Absence") {
       emp.attendance[day] = "🌴";
     }
   } else if (log.newStatus === "Rejected") {
@@ -41,7 +51,7 @@ logs.forEach((log) => {
   }
 });
 
-// 🟢 Step 4: Count stats
+// 🟢 Step 5: Count stats
 Object.values(employees).forEach((emp) => {
   Object.values(emp.attendance).forEach((status) => {
     switch (status) {
@@ -61,7 +71,7 @@ Object.values(employees).forEach((emp) => {
   });
 });
 
-// 🟢 Step 5: Render Heatmap Table
+// 🟢 Step 6: Render Heatmap Table
 const heatmapBody = document.querySelector(".heatmap-table tbody");
 heatmapBody.innerHTML = "";
 
@@ -82,7 +92,7 @@ Object.values(employees).forEach((emp) => {
   heatmapBody.appendChild(row);
 });
 
-// 🟢 Step 6: Render Weekly Attendance Table
+// 🟢 Step 7: Render Weekly Attendance Table
 const weeklyBody = document.querySelector("section.card-container table tbody");
 weeklyBody.innerHTML = "";
 
@@ -97,12 +107,16 @@ Object.values(employees).forEach((emp) => {
   weeklyBody.appendChild(row);
 });
 
-// 🟢 Step 7: Charts Data
-const labels = Object.keys(employees);
-const presentData = labels.map((name) => employees[name].stats.present);
-const absentData = labels.map((name) => employees[name].stats.absent);
-const lateData = labels.map((name) => employees[name].stats.late);
-const leaveData = labels.map((name) => employees[name].stats.leave);
+// 🟢 Step 8: Charts Data
+const labels = Object.values(employees).map((e) => e.name);
+const presentData = labels.map(
+  (_, i) => Object.values(employees)[i].stats.present
+);
+const absentData = labels.map(
+  (_, i) => Object.values(employees)[i].stats.absent
+);
+const lateData = labels.map((_, i) => Object.values(employees)[i].stats.late);
+const leaveData = labels.map((_, i) => Object.values(employees)[i].stats.leave);
 
 // Bar Chart
 const ctxBar = document.getElementById("attendanceBarChart").getContext("2d");
