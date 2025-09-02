@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/imgs/logo.png">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
+
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+
+
+
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/employee.css">
+    <link rel="stylesheet" href="/css/my_tasks.css">
+
+    <title>Tasks List</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar d-none d-lg-block bg-white  p-3">
+            <a href="#"
+                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
+                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
+                        srcset="">
+                    <span class="fs-2 mb-4  side-title d-none d-md-inline">HR</span>
+                </span>
+            </a>
+            <ul class="nav nav-pills flex-column mb-auto gap-3">
+                <li id="attendance">
+                    <a href="#" class="nav-link link-dark">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="bi me-2" width="16" height="16"
+                            fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                            <path
+                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                            <path
+                                d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                        </svg>
+                        Attendance board
+                    </a>
+                </li>
+                <li id="my_attendance" class="text-center">
+                    <a href="#" class="nav-link link-dark text-sm-center text-lg-start">
+                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
+                        <span class="d-none d-lg-inline">My Attendance</span>
+                    </a>
+                </li>
+                <li id="req" class="text-center">
+                    <a href="request_center.html" class="nav-link active text-sm-center text-lg-start ">
+                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
+                        <span class="d-none  d-lg-inline">Request center</span>
+                    </a>
+                </li>
+                <li id="team_tasks" class="text-center">
+                    <a href="#" class="nav-link link-dark">
+                        <span class="bi me-2"><i class="fa-solid fa-list-check"></i></span>
+                        Team Tasks
+                    </a>
+                </li>
+                <li id="team_attendance">
+                    <a href="#" class="nav-link link-dark">
+                        <span class="bi me-2"><i class="fa-solid fa-people-group"></i></span>
+                        Team Attendance
+                    </a>
+                </li>
+                <li id="approval">
+                    <a href="#" class="nav-link link-dark">
+                        <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
+                        Approval queue
+                    </a>
+                </li>
+                <li id="settings">
+                    <a href="#" class="nav-link link-dark">
+                        <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
+                        Settings
+                    </a>
+                </li>
+                <li id="tasks">
+                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
+                                    Tasks
+                                </button>
+                            </div>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                                        <li class=""><a href="tasks_list.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
+                                                Table</a>
+                                        </li>
+                                        <li class="mt-1">
+                                            <a href="my_tasks.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi me-2"><i
+                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Area -->
+        <div class="flex-grow-1">
+            <!-- Navbar (inside main area, next to sidebar) -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+                <!-- Sidebar toggle for small screens -->
+                <button class="btn btn-outline-primary d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#sidebarOffcanvas">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, Maria Smith</span>
+
+                <div class="ms-auto dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-4 me-2"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="#" id="toggleTheme">
+                                <i class="bi bi-moon-stars me-2"></i>Dark Mode
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="p-4">
+                <table id="tasksTable" class="table table-borderless text-center  table-hover align-middle"
+                    style="width:100%">
+                    <thead class="">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Priority</th>
+                            <th class="text-center">status</th>
+
+                            <th class="text-center">Deadline</th>
+                            <th class="text-center">action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </main>
+
+            <!-- modal -->
+            <div class="modal fade" id="taskModal" tabindex="-1">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content shadow-lg rounded-3">
+                        <!-- Header -->
+                        <div class="modal-header text-white">
+                            <h5 class="modal-title">
+                                <i class="bi bi-list-task me-2"></i> Task Details
+                            </h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <!-- Task Info -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <p class="mb-1">Task ID</p>
+                                        <h6 id="taskId" class="fw-bold"></h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-1">Priority</p>
+                                        <span id="taskPriority" class="badge   px-3 py-2"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <p class="mb-1">Title</p>
+                                        <h5 id="taskTitle" class="fw-semibold"></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <p class="mb-1 ">Deadline</p>
+                                        <h6 id="taskDeadline"></h6>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-1 ">Created At</p>
+                                        <h6 id="taskCreated"></h6>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-12">
+                                        <p class="mb-1 ">Description</p>
+                                        <div id="dec" class="p-3 border rounded bg-light">
+                                            <p id="taskDesc" class="mb-0"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Comments Section -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold mb-3"><i class="bi bi-chat-dots me-2"></i> Comments</h6>
+
+                                        <!-- Comments List -->
+                                        <div id="commentsList" class="mb-3">
+                                            <!-- Example Comment -->
+                                            <div class="d-flex mb-3">
+                                                <div class="flex-shrink-0">
+                                                    <i class="bi bi-person-circle fs-3 text-secondary"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="bg-light p-3 rounded shadow-sm">
+                                                        <div class="d-flex justify-content-between">
+                                                            <h6 class="mb-1 fw-semibold">John Doe</h6>
+                                                            <small class="text-muted">2h ago</small>
+                                                        </div>
+                                                        <p class="mb-0">This task looks urgent, please prioritize it.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Add Comment -->
+                                        <!-- <div class="input-group">
+                                            <input type="text" id="newComment" class="form-control"
+                                                placeholder="Write a comment...">
+                                            <button class="btn btn-primary" id="addCommentBtn">
+                                                <i class="bi bi-send-fill"></i>
+                                            </button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle me-1"></i> Close
+                            </button>
+                            <button type="button" class="btn btn-success">
+                                <i class="bi bi-check2-circle me-1"></i> Mark as Done
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sidebar Offcanvas (for sm & md) -->
+    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas">
+        <div class="offcanvas-header pt-0">
+            <a href="#"
+                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <span class="align-self-center text-sm-center text-md-center text-lg-start mt-5"><img
+                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
+                        srcset="">
+                    <span class="fs-2 mb-4  side-title">HR</span>
+                </span>
+            </a>
+            <button type="button" class="btn-close mt-0 pt-0" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="nav nav-pills flex-column mb-auto gap-3">
+                <li class="">
+                    <a href="#" class="nav-link link-dark text-lg-start">
+                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
+                        <span class="">My Attendance</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="request_center.html" class="nav-link active  text-lg-start ">
+                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
+                        <span class="">Request center</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="my_tasks.html" class="nav-link link-dark  text-lg-start">
+                        <span class="bi me-2"><i class="fa-solid fa-thumbtack"></i></span>
+                        <span class=" fs-6 fs-md-6 fs-lg-4">My Tasks</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/fontawesome/js/all.min.js"></script>
+    <script src="/js/sidebar.js"></script>
+    <script type="module" src="/js/tasks.js"></script>
+</body>
+
+</html>
