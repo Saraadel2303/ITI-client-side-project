@@ -65,22 +65,28 @@ function renderAllTables(data) {
 
 // يرسم أعمدة الطلب حسب نوعه
 
+// يرسم أعمدة الطلب حسب نوعه
 function renderRequestRow(r) {
   switch (r.type) {
+    // 🟣 Late Requests
     case "Late":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
-        <td>${r.payload.minutesExpectedLate || "-"}</td>
+        <td>${r.payload.scheduledIn || "-"}</td>
+        <td>${r.payload.actualIn || "-"}</td>
         <td>${r.payload.reason || "-"}</td>
       `;
 
+    // 🟣 Absence / Leave Requests
     case "Absence":
-    case "leave": // عشان مرات مكتوبة Absence ومرات leave
+    case "leave":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
+        <td>${r.payload.absenceType || "-"}</td>
         <td>${r.payload.reason || "-"}</td>
       `;
 
+    // 🟣 Overtime Requests
     case "Overtime":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
@@ -88,17 +94,20 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
+    // 🟣 Extension Requests
     case "DeadlineExtension":
       return `
-        <td>${r.payload.taskId || "-"}</td>
+        <td>${r.payload.taskName || "-"}</td>
+        <td>${r.payload.originalDeadline || "-"}</td>
         <td>${r.payload.requestedDate || "-"}</td>
         <td>${r.payload.reason || "-"}</td>
       `;
 
+    // 🟣 Work From Home Requests
     case "WFH":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
-        <td>${r.payload.weekIndex || "-"}</td>
+        <td>Week ${r.payload.weekIndex || "-"}</td>
         <td>${r.payload.reason || "-"}</td>
       `;
 
