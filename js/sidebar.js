@@ -2,6 +2,10 @@ const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 let role = loggedInUser?.role?.toLowerCase();
 
 $(function () {
+  setTheme();
+});
+
+function setTheme() {
   $("body").hasClass("dark-theme");
   const theme = localStorage.getItem("theme");
   if (theme == "dark") {
@@ -23,7 +27,7 @@ $(function () {
     }
   });
   $("#user-name").text(loggedInUser.name);
-});
+}
 
 if (role !== "security") {
   attendance.style.display = "none";
