@@ -150,6 +150,26 @@ new Chart(ctxBar, {
   options: { responsive: true, plugins: { legend: { position: "top" } } },
 });
 
+// 🟢 Step 8: Render Action Logs
+const logsTableBody = document.querySelector(".action-logs-table tbody");
+logsTableBody.innerHTML = "";
+
+logs.forEach((log, index) => {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${log.employee}</td>
+    <td>${log.type}</td>
+    <td>
+      <span class="badge ${
+        log.newStatus === "Approved" ? "bg-success" : "bg-danger"
+      }">${log.newStatus}</span>
+    </td>
+    <td>${log.date}</td>
+  `;
+  logsTableBody.appendChild(row);
+});
+
 // Pie Chart
 const totalPresent = presentData.reduce((a, b) => a + b, 0);
 const totalAbsent = absentData.reduce((a, b) => a + b, 0);
