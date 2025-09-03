@@ -1,13 +1,47 @@
-/* خلفية */
+@import url("theme.css");
+
+html,
 body {
-  background-color: #4e73df;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
   margin: 0;
+  padding: 0;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+#img {
+  max-width: 100%;
+  height: 45rem;
+}
+
+.login-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  border-radius: 25px;
+  padding: 12px;
+}
+
+.btn-custom {
+  border-radius: 25px;
+  padding: 12px;
+  background: var(--color-sidebar-active);
+  color: #fff;
+  font-size: 16px;
+}
+
+.btn-custom:hover {
+  background: var(--color-sidebar-active);
+}
+
+.bg-custom {
+  background-color: var(--color-sidebar-active);
+}

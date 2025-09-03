@@ -56,11 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (user) {
           // localStorage
-          localStorage.setItem("loggedInUser", JSON.stringify(user.name));
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
 
           //redirect based on role
           if (user.role.toLowerCase() === "employee") {
-            window.location.href = "/pages/employee/my_tasks.html";
+            window.location.href = "/pages/employee/attendance.html";
           } else if (user.role.toLowerCase() === "manager") {
             window.location.href = "pages/managers.html";
           } else if (user.role.toLowerCase() === "hr") {

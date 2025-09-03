@@ -8,6 +8,14 @@ $(async function () {
   let table = $("#tasksTable").DataTable({
     data: tasks,
     columns: [
+      {
+        data: null,
+        orderable: false,
+        ordering: false,
+        render: function (data, type, row) {
+          return `<input type="checkbox" class="row-select" data-id="${row.id}">`;
+        },
+      },
       { data: "id" },
       { data: "title" },
       { data: "priority" },
@@ -37,8 +45,18 @@ $(async function () {
     responsive: true,
     scrollX: false,
     autoWidth: true,
+    select: {
+      style: "multi",
+      selector: "td:first-child",
+    },
     columnDefs: [
-      { targets: 1, type: "priority" }, // apply to Priority column
+      {
+        targets: 0,
+        orderable: false,
+        className: "select-checkbox",
+        defaultContent: "",
+      },
+      { targets: 1, type: "priority" },
     ],
     order: [[1, "asc"]],
   });
@@ -151,5 +169,20 @@ $(async function () {
 
     let modal = new bootstrap.Modal(document.getElementById("taskModal"));
     modal.show();
+  });
+
+  $("#bulkDone").on("click", function () {
+    let ids = $(".row-select:checked")
+      .map(function () {
+        return $(this).data("id");
+      })
+      .get();
+
+    if (ids.length === 0) {
+      toastr.warning("No tasks selected!");
+      return;
+    }
+
+    toastr.success("Approved tasks: " + ids.join(", "));
   });
 });

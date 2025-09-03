@@ -72,6 +72,11 @@
   color: #fff !important;
 }
 
+.table thead tr th {
+  background: var(--color-table-header-bg) !important;
+  color: var(--color-table-header-text) !important;
+}
+
 .table {
   background-color: var(--color-bg);
   border-radius: 0.7rem;

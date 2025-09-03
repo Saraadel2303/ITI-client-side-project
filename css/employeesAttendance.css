@@ -148,6 +148,7 @@ body {
   margin: auto;
 }
 #calendar .fc-toolbar-title{
+    color: var(--color-muted);
     font-size: 18px;
 }
 
