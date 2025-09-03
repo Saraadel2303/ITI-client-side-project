@@ -4,7 +4,6 @@ import {
   getEmployeesByDepartment,
   getTopIdealEmployees,
 } from "./hrUtils.js";
-import { loadData } from "./dataService.js";
 
 export async function renderHomeCharts() {
   const attendanceTrend = await getAttendanceTrend(7);
@@ -19,28 +18,35 @@ export async function renderHomeCharts() {
         {
           label: "Present",
           data: attendanceTrend.map((d) => d.present),
-          backgroundColor: "#534fea",
+          borderColor: "#ff6b35", 
+          backgroundColor: "rgba(255, 107, 53, 0.2)",
           tension: 0.3,
+          fill: true,
         },
         {
           label: "Absent",
           data: attendanceTrend.map((d) => d.absent),
-          backgroundColor: "#4bc0c0",
+          borderColor: "#4bc0c0",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
           tension: 0.3,
+          fill: true,
         },
       ],
     },
+
     options: {
       responsive: true,
-      maintainAspectRatio: false, // يخلي الرسمه تاخد مساحة الكارد
+      maintainAspectRatio: false, 
       plugins: {
         legend: { position: "bottom" },
+       
       },
       scales: {
         y: {
           beginAtZero: true,
           ticks: {
             stepSize: 1,
+            colors: "#000000",
           },
         },
         x: {
@@ -78,6 +84,7 @@ export async function renderTasksChart() {
       plugins: {
         legend: {
           position: "left",
+          labels: { boxWidth: 12, padding: 20 },
         },
       },
     },
@@ -102,15 +109,14 @@ async function renderDeptChart() {
             "#6b65ff",
             "#9b8cff",
             "#ffc107",
-            "#20c997",
-            "#dc3545",
+            "#20c997"
           ],
         },
       ],
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, // يخلي الرسمه تاخد مساحة الكارد
+      maintainAspectRatio: false, 
 
       plugins: {
         legend: {
@@ -121,7 +127,7 @@ async function renderDeptChart() {
   });
 }
 
-// تناديها بعد تحميل الصفحة
+
 renderDeptChart();
 
 // end department chart
@@ -153,7 +159,7 @@ async function renderIdealEmployeesChart() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, // يخلي الرسمه تاخد مساحة الكارد
+      maintainAspectRatio: false, 
 
       plugins: {
         legend: { display: false },
@@ -164,9 +170,7 @@ async function renderIdealEmployeesChart() {
         },
       },
       scales: {
-        y: { beginAtZero: true 
-        
-        },
+        y: { beginAtZero: true },
       },
     },
   });

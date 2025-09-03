@@ -8,7 +8,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* يمنع أي scroll عام */
+  overflow: hidden;
   font-family: var(--font-main);
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -59,11 +59,13 @@ body {
 
 .content {
   background-color: var(--color-bg);
-  min-height: 100vh;
   padding: 1rem;
   transition: background-color 0.3s;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.title {
+  padding-left: 1rem;
 }
 
 /* ==========================
@@ -91,6 +93,7 @@ body {
   display: block;
   padding: 10px 15px;
   border-radius: 8px;
+  border: none;
   font-weight: 500;
   color: var(--btn-text);
   background-color: var(--btn-bg);
@@ -99,10 +102,11 @@ body {
 }
 .logout a:hover {
   background-color: var(--btn-bg-hover);
+  color: var(--btn-text);
 }
 
 .navsmall {
-  background-color: var(--navsmall-bg);
+  background-color: var(--color-bg);
   color: var(--navsmall-text);
   padding: 10px 15px;
 }
@@ -111,7 +115,27 @@ body {
   color: var(--navsmall-text);
   text-decoration: none;
 }
-
+.face {
+  color: var(--btn-bg-hover);
+}
+.menu {
+  color: var(--btn-bg-hover);
+}
+.hr{
+  color: var(--color-sidebar-active);
+}
+/* ==========================
+Nav
+========================== */
+.navbar {
+  background-color: var(--color-sidebar-bg);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+#logedusername {
+  color: var(--color-sidebar-hover);
+  font-weight: 600;
+}
 /* ==========================
    Cards + Tables
 ========================== */
@@ -137,6 +161,19 @@ body {
 .table-primary {
   background-color: var(--color-table-header-bg);
   color: var(--color-table-header-text);
+}
+.pagi{
+  border: none;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-weight: 500;
+  color: var(--btn-text);
+  background-color: var(--btn-bg);
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+.pagi:hover{
+  background-color: var(--btn-bg-hover);
 }
 
 /* ==========================
@@ -272,8 +309,7 @@ form label {
 }
 
 .save-btn,
-.export,
-#toggleThemeBtn {
+.export {
   border: none;
   border-radius: 6px;
   padding: 10px 20px;
