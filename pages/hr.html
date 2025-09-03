@@ -32,46 +32,39 @@
               src="/imgs/logo.png"
               alt="logo"
             />
-            <span class="hr fs-5 mb-4 side-title mt-3 d-md-inline">HR System</span>
+            <span class="hr fs-5 mb-4 side-title mt-3 d-md-inline"
+              >HR System</span
+            >
           </span>
         </a>
         <hr />
         <ul class="mynav nav nav-pills flex-column mb-auto">
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="dashboard">
               <i class="fa-solid fa-house"></i> Home
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="reports">
               <i class="fa-solid fa-paste"></i> Company Statistics
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="payroll">
               <i class="fa-solid fa-wallet"></i> Payroll Impact
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="settings">
               <i class="fa-solid fa-gear"></i> Settings
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="employee">
               <i class="fa-solid fa-medal"></i> Ideal Employee
             </a>
           </li>
         </ul>
-        <!-- <button id="toggleThemeBtn" class="btn btn-secondary">
-          Change theme
-        </button> -->
-        <hr />
-        <div class="d-flex logout">
-          <a href="../login.html" class="btn btn-outline-light w-100">
-            <i class="fa-solid fa-right-from-bracket"></i> logout
-          </a>
-        </div>
       </div>
 
       <div class="bg-light flex-fill">
@@ -82,7 +75,7 @@
             data-bs-toggle="offcanvas"
             data-bs-target="#bdSidebar"
           >
-            <i class=" menu fa-solid fa-bars fs-4"></i>
+            <i class="menu fa-solid fa-bars fs-4"></i>
           </a>
           <span class="ms-2 menu">Menu</span>
         </div>
@@ -104,14 +97,18 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="#" id="toggleThemeBtnLight"
-                  ><i class="bi bi-brightness-high me-2"></i>Light Mode</a
+                <a class="dropdown-item" href="#" id="toggleThemeBtn"
+                  ><i class="bi bi-moon-stars "></i> Dark mode</a
                 >
               </li>
               <li>
-                <a class="dropdown-item" href="#" id="toggleThemeBtnDark"
-                  ><i class="bi bi-moon-stars me-2"></i>Dark Mode</a
-                >
+                <hr class="dropdown-divider" />
+              </li>
+              <li></li>
+              <li class="logout">
+                <a href="../login.html" class="dropdown-item">
+                  <i class="fa-solid fa-right-from-bracket"></i> logout
+                </a>
               </li>
             </ul>
           </div>
@@ -280,9 +277,10 @@
 
                   <div class="card shadow-sm p-3 mt-4">
                     <h5 class="mb-3">
-                      Payroll Impact <span id="payroll-month"> (This Month)</span>
+                      Payroll Impact
+                      <span id="payroll-month"> (This Month)</span>
                     </h5>
-                    <div class=" table-responsive rounded-2">
+                    <div class="table-responsive rounded-2">
                       <table
                         class="ta table table-bordered table-striped text-center payroll-table"
                       >

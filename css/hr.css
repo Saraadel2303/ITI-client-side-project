@@ -49,7 +49,6 @@ body {
   flex-direction: column;
   border-right: 1px solid var(--color-border);
 }
-
 .bg-light.flex-fill {
   flex: 1;
   height: 100%;
@@ -89,22 +88,6 @@ body {
   color: #fff;
 }
 
-.logout a {
-  display: block;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 500;
-  color: var(--btn-text);
-  background-color: var(--btn-bg);
-  text-decoration: none;
-  transition: 0.3s;
-}
-.logout a:hover {
-  background-color: var(--btn-bg-hover);
-  color: var(--btn-text);
-}
-
 .navsmall {
   background-color: var(--color-bg);
   color: var(--navsmall-text);
@@ -121,7 +104,7 @@ body {
 .menu {
   color: var(--btn-bg-hover);
 }
-.hr{
+.hr {
   color: var(--color-sidebar-active);
 }
 /* ==========================
@@ -162,7 +145,7 @@ Nav
   background-color: var(--color-table-header-bg);
   color: var(--color-table-header-text);
 }
-.pagi{
+.pagi {
   border: none;
   border-radius: 6px;
   padding: 5px 10px;
@@ -172,7 +155,7 @@ Nav
   transition: background-color 0.3s;
   cursor: pointer;
 }
-.pagi:hover{
+.pagi:hover {
   background-color: var(--btn-bg-hover);
 }
 
@@ -319,7 +302,6 @@ form label {
   transition: background-color 0.3s;
 }
 .save-btn:hover,
-.export:hover,
-#toggleThemeBtn:hover {
+.export:hover {
   background-color: var(--btn-bg-hover);
 }

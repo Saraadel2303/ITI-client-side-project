@@ -15,12 +15,16 @@ import { renderHomeCharts, renderTasksChart } from "./charts.js";
 import { fillTodayAttendanceTable } from "./tables.js";
 
 // dark\light mode toggle
-document.getElementById("toggleThemeBtnLight").addEventListener("click", () => {
-  document.body.classList.remove("dark-theme");
+let toggle = document.querySelector("#toggleThemeBtn");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+  if (document.body.classList.contains("dark-theme")) {
+    toggle.innerHTML = `<i class="bi bi-brightness-high me-2"></i>Light Mode`;
+  } else {
+    toggle.innerHTML = `<i class="bi bi-moon me-2"></i>Dark Mode`;
+  }
 });
-document.getElementById("toggleThemeBtnDark").addEventListener("click", () => {
-  document.body.classList.add("dark-theme");
-});
+
 // #################################
 
 //  hr dashboard routing
@@ -142,7 +146,6 @@ document.getElementById("settingsForm").addEventListener("submit", (e) => {
   const weekday_mult = +document.getElementById("weekday_mult").value;
   const weekend_mult = +document.getElementById("weekend_mult").value;
   const ideal_bonus = +document.getElementById("ideal_bonus").value;
-
 
   if (
     penalty_30 < 0 ||
