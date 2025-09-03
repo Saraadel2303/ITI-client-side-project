@@ -43,6 +43,7 @@ if (!loggedInUser) {
     .then(response => response.json())
     .then(data => {
       employee = data.employees.find(e => e.id === employeeIdToShow);
+      console.log(data.employees);
 
       attendanceRecords = data.attendanceRecords
         .filter(a => a.employeeId === employeeIdToShow)
