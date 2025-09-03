@@ -8,10 +8,8 @@ export default async function fetchAndRenderTasks() {
         console.log('Tasks loaded:', tasks.length);
         console.log('Employees loaded:', employees.length);
 
-        // Update dashboard stats
         updateDashboardStats(tasks);
 
-        // Render table
         renderTasksTable(tasks, employees);
 
     } catch (err) {
@@ -113,7 +111,6 @@ function renderTasksTable(tasks, employees) {
     const tbody = document.querySelector('.task-table table tbody');
     if (!tbody) return;
 
-    // احسب عدد كل حالة قبل المسح
     let toDoCount = 0, overdueCount = 0, extensionCount = 0, completedCount = 0, inProgressCount = 0;
     Array.from(tbody.querySelectorAll('tr')).forEach(row => {
         const statusCell = row.querySelector('td:nth-child(4) .badge');
@@ -125,18 +122,13 @@ function renderTasksTable(tasks, employees) {
         if (status === "In Progress") inProgressCount++;
     });
 
-    // زود العدادات في الكروت حسب نفس منطق الأزرار الفردية
     const cards = document.querySelectorAll('.card-box h3');
     if (cards.length >= 4) {
-        // Extension Pending: تزيد بعدد Extension Req. و To Do
         cards[1].textContent = parseInt(cards[1].textContent, 10) + extensionCount + toDoCount;
-        // Overdue Tasks: تزيد بعدد Overdue و In Progress
         cards[2].textContent = parseInt(cards[2].textContent, 10) + overdueCount + inProgressCount;
-        // Completed Tasks: تزيد بعدد Completed
         cards[3].textContent = parseInt(cards[3].textContent, 10) + completedCount;
     }
 
-    // امسح كل الصفوف
     tbody.innerHTML = '<tr><td colspan="5" class="text-center">No tasks found</td></tr>';
 });
 }
@@ -177,11 +169,6 @@ function handleAction(taskId, action) {
 }
 
 
-
-
-
-
-// Show error message
 function showError(message) {
     const tbody = document.querySelector(".task-table table tbody");
     if (tbody) {
@@ -189,8 +176,14 @@ function showError(message) {
     }
 }
 
-// Initialize when DOM is loaded
+// document.querySelector(".logout").addEventListener("click", () => {
+//   localStorage.removeItem("loggedInUser");
+
+//   window.location.replace("login.html");
+// });
+
+
+
 document.addEventListener("DOMContentLoaded", fetchAndRenderTasks);
 
-// Make handleAction available globally
 window.handleAction = handleAction;
