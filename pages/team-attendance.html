@@ -23,14 +23,7 @@
   <body>
     <!-- Unified Sidebar Navigation -->
     <aside class="sidebar">
-      <div class="d-flex justify-content-between align-items-center">
-        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
-        <!-- زرار التبديل -->
-        <button id="themeToggle" class="btn btn-sm">
-          <i id="themeIcon" class="fas fa-moon"></i>
-        </button>
-      </div>
-
+      <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
       <ul class="nav flex-column mt-3">
         <li class="nav-item">
           <a class="nav-link" id="approvals-link" href="managers.html">
@@ -43,17 +36,33 @@
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link active"
-            id="attendance-link"
-            href="team-attendance.html"
-          >
+          <a class="nav-link active" id="attendance-link" href="team-attendance.html">
             <i class="fas fa-users-viewfinder me-2"></i>Team Attendance
           </a>
         </li>
       </ul>
     </aside>
-
+  
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Navbar -->
+      <nav class="navbar d-flex justify-content-between align-items-center border-bottom px-3">
+        <span class="welcome-text">👋 Welcome, <b id="username">Basel Embaby</b></span>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-dark text-decoration-none" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle fs-4 me-2"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-high me-2"></i>Light Mode</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars me-2"></i>Dark Mode</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+          </ul>
+        </div>
+      </nav>
+  
+  
     <!-- Main Content -->
     <main class="main-content">
       <h1>Team Attendance Analytics</h1>

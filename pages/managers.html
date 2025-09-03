@@ -7,6 +7,11 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <!-- FontAwesome -->
     <link
       rel="stylesheet"
@@ -14,17 +19,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/managers.css" />
   </head>
   <body>
+   
     <aside class="sidebar">
-      <div class="d-flex justify-content-between align-items-center">
-        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
-        <!-- زرار التبديل -->
-        <button id="themeToggle" class="btn btn-sm">
-          <i id="themeIcon" class="fas fa-moon"></i>
-        </button>
-      </div>
+      <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
       <ul class="nav flex-column mt-3">
         <li class="nav-item">
           <a class="nav-link active" href="managers.html">
@@ -43,135 +44,156 @@
         </li>
       </ul>
     </aside>
-
-    <!-- Main -->
-    <main class="main-content">
-      <h1>Welcome, basel👋</h1>
-
-      <!-- Approvals Queue -->
-      <section id="approvals-queue" class="card-container">
-        <h2>
-          <i class="fas fa-check-circle me-2 text-success"></i>Approvals Queue
-        </h2>
-
-        <!-- Tabs -->
-        <ul class="nav nav-tabs" id="approvalTabs" role="tablist">
-          <li class="nav-item">
-            <button
-              class="nav-link active"
-              data-bs-toggle="tab"
-              data-bs-target="#late"
-              type="button"
-            >
-              Late
-            </button>
-          </li>
-          <li class="nav-item">
-            <button
-              class="nav-link"
-              data-bs-toggle="tab"
-              data-bs-target="#absence"
-              type="button"
-            >
-              Absence
-            </button>
-          </li>
-          <li class="nav-item">
-            <button
-              class="nav-link"
-              data-bs-toggle="tab"
-              data-bs-target="#overtime"
-              type="button"
-            >
-              Overtime
-            </button>
-          </li>
-          <li class="nav-item">
-            <button
-              class="nav-link"
-              data-bs-toggle="tab"
-              data-bs-target="#extension"
-              type="button"
-            >
-              Extensions
-            </button>
-          </li>
-        </ul>
-
-        <div class="tab-content mt-3">
-          <!-- Late Requests -->
-          <div class="tab-pane fade show active" id="late" role="tabpanel">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Employee</th>
-                  <th>Date</th>
-                  <th>Scheduled In</th>
-                  <th>Actual In</th>
-                  <th>Reason</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-
-          <!-- Absence Requests -->
-          <div class="tab-pane fade" id="absence" role="tabpanel">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Employee</th>
-                  <th>Date(s)</th>
-                  <th>Absence Type</th>
-                  <th>Reason</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-
-          <!-- Overtime Requests -->
-          <div class="tab-pane fade" id="overtime" role="tabpanel">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Employee</th>
-                  <th>Date</th>
-                  <th>Hours Requested</th>
-                  <th>Task/Reason</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-
-          <!-- Extension Requests -->
-          <div class="tab-pane fade" id="extension" role="tabpanel">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Employee</th>
-                  <th>Task Name</th>
-                  <th>Original Deadline</th>
-                  <th>Requested Extension</th>
-                  <th>Reason</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
+  
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Top Navbar -->
+      <nav class="navbar">
+        <span class="welcome-text">👋 Welcome, <b id="username">Basel Embaby</b></span>
+        <div class="dropdown">
+          <a href="#" data-bs-toggle="dropdown"><i class="bi bi-person-circle fs-4 me-2"></i></a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-high me-2"></i>Light Mode</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars me-2"></i>Dark Mode</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+          </ul>
         </div>
-      </section>
-    </main>
+      </nav>
+  
 
+
+
+    <div>
+ 
+      <!-- Main -->
+      <main class="main-content">
+
+        <!-- Approvals Queue -->
+        <section id="approvals-queue" class="card-container">
+          <h2>
+            <i class="fas fa-check-circle me-2 text-success"></i>Approvals Queue
+          </h2>
+
+          <!-- Tabs -->
+          <ul class="nav nav-tabs" id="approvalTabs" role="tablist">
+            <li class="nav-item">
+              <button
+                class="nav-link active"
+                data-bs-toggle="tab"
+                data-bs-target="#late"
+                type="button"
+              >
+                Late
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#absence"
+                type="button"
+              >
+                Absence
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#overtime"
+                type="button"
+              >
+                Overtime
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#extension"
+                type="button"
+              >
+                Extensions
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content mt-3">
+            <!-- Late Requests -->
+            <div class="tab-pane fade show active" id="late" role="tabpanel">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employee</th>
+                    <th>Date</th>
+                    <th>Scheduled In</th>
+                    <th>Actual In</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <!-- Absence Requests -->
+            <div class="tab-pane fade" id="absence" role="tabpanel">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employee</th>
+                    <th>Date(s)</th>
+                    <th>Absence Type</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <!-- Overtime Requests -->
+            <div class="tab-pane fade" id="overtime" role="tabpanel">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employee</th>
+                    <th>Date</th>
+                    <th>Hours Requested</th>
+                    <th>Task/Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+            <!-- Extension Requests -->
+            <div class="tab-pane fade" id="extension" role="tabpanel">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employee</th>
+                    <th>Task Name</th>
+                    <th>Original Deadline</th>
+                    <th>Requested Extension</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
     <!-- Bootstrap JS -->
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/manager.js"></script>
