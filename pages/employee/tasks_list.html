@@ -141,7 +141,8 @@
                     <i class="bi bi-list"></i>
                 </button>
 
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text" id="user-name"></span></span>
+                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text"
+                        id="user-name"></span></span>
 
                 <div class="ms-auto dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
@@ -164,11 +165,14 @@
 
             <!-- Main content -->
             <main class="p-4">
-                <div id="bulkActions" class="alert alert-light d-none">
+                <!-- <div id="bulkActions" class="alert alert-light">
                     <span id="selectedCount">0</span> selected
                     <button id="bulkDelete" class="btn btn-danger btn-sm ms-2">
                         <i class="bi bi-trash"></i> Delete
                     </button>
+
+                </div> -->
+                <div class="mb-2">
                     <button id="bulkDone" class="btn btn-success btn-sm ms-2">
                         <i class="bi bi-check2-circle"></i> Mark as Done
                     </button>
@@ -177,6 +181,7 @@
                     style="width:100%">
                     <thead class="">
                         <tr>
+                            <th class="text-center"><input type="checkbox" class="text-center" name="" id=""></th>
                             <th class="text-center">ID</th>
                             <th class="text-center">Title</th>
                             <th class="text-center">Priority</th>
