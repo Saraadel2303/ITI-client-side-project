@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (user) {
           // localStorage
-          localStorage.setItem("loggedInUser", JSON.stringify(user.name));
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
 
           //redirect based on role
           if (user.role.toLowerCase() === "employee") {
