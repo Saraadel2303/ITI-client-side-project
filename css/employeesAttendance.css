@@ -1,4 +1,4 @@
-@import url("/theme.css");
+/* @import url("/theme.css"); */
 
 /* -------------------- Base -------------------- */
 body {
@@ -207,4 +207,12 @@ body.dark-theme {
   --btn-bg: #7c6cff;
   --btn-bg-hover: #9b8cff;
   --btn-text: #ffffff;
+}
+
+.custom, #attendanceTable > tr> td{
+  background-color: var(--color-card-bg) !important;
+  color: var(--color-text);
+}
+h2{
+  color: var(--color-sidebar-active);
 }
