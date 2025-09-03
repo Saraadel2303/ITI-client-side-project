@@ -1,8 +1,8 @@
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-let role = loggedInUser?.role?.toLowerCase();
+const loggedIn = JSON.parse(localStorage.getItem("loggedInUser"));
+let role = loggedIn?.role?.toLowerCase();
 
 $(function () {
-  if (!loggedInUser) {
+  if (!loggedIn) {
     window.location.replace("/login.html");
   }
   document.querySelector(".logout").addEventListener("click", (e) => {
@@ -35,7 +35,7 @@ function setTheme() {
       $(this).html('<i class="bi bi-moon-stars me-2"></i>Dark Mode');
     }
   });
-  $("#user-name").text(loggedInUser.name);
+  $("#user-name").text(loggedIn.name);
 }
 
 if (role !== "security") {
