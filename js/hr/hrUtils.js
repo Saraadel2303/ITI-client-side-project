@@ -1,14 +1,14 @@
 import { loadData } from "./dataService.js";
 
-const today = new Date().toISOString().split("T")[0]; 
+const today = new Date().toISOString().split("T")[0];
 
-// ----------- عدد الموظفين -----------
+// number of employees
 export async function getEmpCount() {
   const data = await loadData();
   return (data.employees || []).length;
 }
 
-// ----------- عدد الحضور النهاردة -----------
+//number of presents today
 export async function getPresntsToday() {
   const data = await loadData();
   return (data.attendanceRecords || []).filter(
@@ -16,7 +16,7 @@ export async function getPresntsToday() {
   ).length;
 }
 
-// ----------- عدد الغياب النهاردة -----------
+//number of absents today
 export async function getAbsentCount() {
   const data = await loadData();
   return (data.attendanceRecords || []).filter(
@@ -24,7 +24,7 @@ export async function getAbsentCount() {
   ).length;
 }
 
-// ----------- عدد طلبات WFH النهاردة -----------
+// number of WFH today
 export async function getWFHCount() {
   const data = await loadData();
   return (data.requests || []).filter(
@@ -32,7 +32,7 @@ export async function getWFHCount() {
   ).length;
 }
 
-// ----------- عدد المهام المتأخرة -----------
+// get late tasks count
 export async function getLateTasksCount() {
   const data = await loadData();
   return (data.tasks || []).filter(
@@ -40,7 +40,7 @@ export async function getLateTasksCount() {
   ).length;
 }
 
-// ----------- اتجاه الحضور لآخر X يوم -----------
+// attendance trend for last 7 days
 export async function getAttendanceTrend(days = 7) {
   const data = await loadData();
   const records = data.attendanceRecords || [];
@@ -64,7 +64,7 @@ export async function getAttendanceTrend(days = 7) {
   return trend;
 }
 
-// ----------- حالة المهام -----------
+// tasks status count
 export async function getTasksStatusCount() {
   const data = await loadData();
   const tasks = data.tasks || [];
@@ -76,7 +76,7 @@ export async function getTasksStatusCount() {
   };
 }
 
-// ----------- عدد الأقسام -----------
+// number of departments
 export async function getDepartmentCount() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -88,7 +88,7 @@ export async function getDepartmentCount() {
   return deptSet.size;
 }
 
-// ----------- عدد الموظفين في كل قسم -----------
+// number of employees in each department
 export async function departmentEmpCount() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -103,7 +103,7 @@ export async function departmentEmpCount() {
   return deptCounts;
 }
 
-// ----------- متوسط نسبة الحضور العامة -----------
+// avg attendance
 export async function getAvgAttendance() {
   const data = await loadData();
   const records = data.attendanceRecords || [];
@@ -119,7 +119,7 @@ export async function getAvgAttendance() {
   return +((presentCount / total) * 100).toFixed(0);
 }
 
-// ----------- متوسط عدد الموظفين لكل قسم -----------
+// avg employees per department
 export async function getEmployeesPerDeptAvg() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -127,12 +127,12 @@ export async function getEmployeesPerDeptAvg() {
   const deptSet = new Set(
     employees.map((emp) => emp.department).filter(Boolean)
   );
-  const deptCount = deptSet.size || 1; 
+  const deptCount = deptSet.size || 1;
 
   return +(employees.length / deptCount).toFixed(1);
 }
 
-// ----------- توزيع الموظفين حسب الأقسام (للـ Chart) -----------
+// chart for employees by department
 export async function getEmployeesByDepartment() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -149,7 +149,7 @@ export async function getEmployeesByDepartment() {
   };
 }
 
-// ----------- متوسط الحضور لكل قسم -----------
+// avg attendance per department
 export async function getAvgAttendancePerDept() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -184,7 +184,7 @@ export async function getAvgAttendancePerDept() {
   return { labels, values };
 }
 
-// ----------- أفضل 3 موظفين  -----------
+// top 3 ideal emp 
 export async function getTopIdealEmployees() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -217,50 +217,108 @@ export async function getTopIdealEmployees() {
   return scores.sort((a, b) => b.score - a.score).slice(0, 3);
 }
 
-// ----------- الموظف المثالي (الأول) -----------
+// bring back the top one of ideal emp
 export async function getIdealEmployee() {
   const top = await getTopIdealEmployees();
   return top[0];
 }
 
-// ----------- هل الموظف غائب النهاردة؟ -----------
-export function isAbsentToday(data, empId, today) {
-  if (!data || !data.attendanceRecords) return false;
-  return data.attendanceRecords.some(
-    (r) =>
-      r.employeeId === empId &&
-      r.date === today &&
-      r.status === "Absent" &&
-      !r.isWFH &&
-      !r.isLeave
-  );
+
+
+//sorting employees by department 
+export function empSort(a, b) {
+  if (a.department < b.department) return -1;
+  if (a.department > b.department) return 1;
+  return a.name.localeCompare(b.name);
 }
 
-// ----------- عدد مرات التأخير لموظف -----------
-export function getLateCount(data, empId) {
-  if (!data || !data.attendanceRecords) return 0;
-  return data.attendanceRecords.filter(
-    (r) => r.employeeId === empId && r.status === "Late" && r.minutesLate > 0
-  ).length;
-}
+//payroll impact fun
 
-// ----------- الموظفين المتأخرين النهاردة (مرتبة حسب القسم) -----------
-export function getLateEmployeesTodaySorted(data, today) {
-  if (!data || !data.employees || !data.attendanceRecords) return [];
+export async function buildPayrollRows(settings) {
+  if (!settings) {
+    settings = JSON.parse(localStorage.getItem("settings")) || {};
+  }
 
-  const todayLates = data.attendanceRecords.filter(
-    (r) => r.date === today && r.status === "Late" && r.minutesLate > 0
-  );
+  settings.penalties = settings.penalties || {
+    "16_30": 0,
+    "31_60": 0,
+    "61_120": 0,
+    cap: 25,
+  };
+  settings.overtime = settings.overtime || {
+    policy: "pay",
+    weekday: 1.25,
+    weekend: 1.5,
+  };
+  settings.ideal = settings.ideal || { bonus: 10, badge: "🌟 Ideal Employee" };
 
-  const employees = todayLates.map((r) => {
-    const emp = data.employees.find((e) => e.id === r.employeeId);
+  const data = await loadData();
+  const employees = data.employees || [];
+  const attendance = data.attendanceRecords || [];
+  const overtime = data.overtime || [];
+  const tasks = data.tasks || [];
+
+  const idealEmp = await getIdealEmployee();
+
+  const rows = employees.map((emp) => {
+    const baseSalary = parseFloat(emp.monthlySalary) || 0;
+    let deductions = 0;
+    let bonus = 0;
+
+    // deduction from late
+    const empAttendance = attendance.filter((r) => r.employeeId === emp.id);
+    let empDeductions = 0;
+
+    empAttendance.forEach((r) => {
+      if (r.status === "Late" && r.minutesLate) {
+        if (r.minutesLate >= 16 && r.minutesLate <= 30) {
+          empDeductions += (settings.penalties["16_30"] / 100) * baseSalary;
+        } else if (r.minutesLate >= 31 && r.minutesLate <= 60) {
+          empDeductions += (settings.penalties["31_60"] / 100) * baseSalary;
+        } else if (r.minutesLate >= 61 && r.minutesLate <= 120) {
+          empDeductions += (settings.penalties["61_120"] / 100) * baseSalary;
+        }
+      }
+    });
+
+    const capAmount = (settings.penalties.cap / 100) * baseSalary;
+    deductions += Math.min(empDeductions, capAmount);
+    //deduction from late tasks
+    const empTasks = tasks.filter((t) => t.employeeId === emp.id);
+    empTasks.forEach((t) => {
+      if (new Date(t.deadline) < new Date() && t.status !== "Completed") {
+        deductions += 0.05 * baseSalary;
+      }
+    });
+
+    //over time bouns
+    const empOvertime = overtime.filter((o) => o.employeeId === emp.id);
+    empOvertime.forEach((o) => {
+      const hours = o.hours || 0;
+      if (o.type === "weekday") {
+        bonus += hours * (settings.overtime.weekday - 1) * (baseSalary / 160);
+      } else if (o.type === "weekend") {
+        bonus += hours * (settings.overtime.weekend - 1) * (baseSalary / 160);
+      }
+    });
+
+    // Ideal Employee Bonus 
+    if (idealEmp && emp.id === idealEmp.id) {
+      bonus += (settings.ideal.bonus / 100) * baseSalary;
+    }
+
+    const netSalary = baseSalary - deductions + bonus;
     return {
-      id: emp?.id || "-",
-      name: emp?.username || "Unknown",
-      department: emp?.department || "-",
-      minutesLate: r.minutesLate,
+      id: emp.id,
+      name:
+        emp.name +
+        (idealEmp && emp.id === idealEmp.id ? ` ${settings.ideal.badge}` : ""),
+      baseSalary: baseSalary.toFixed(2),
+      deductions: deductions.toFixed(2),
+      bonus: bonus.toFixed(2),
+      netSalary: netSalary.toFixed(2),
     };
   });
 
-  return employees.sort((a, b) => a.department.localeCompare(b.department));
+  return rows;
 }

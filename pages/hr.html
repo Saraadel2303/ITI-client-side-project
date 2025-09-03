@@ -14,6 +14,10 @@
     />
     <link rel="stylesheet" href="../css/hr.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
   </head>
   <body>
     <div class="container-fluid p-0 d-flex h-100">
@@ -28,46 +32,39 @@
               src="/imgs/logo.png"
               alt="logo"
             />
-            <span class="fs-5 mb-4 side-title mt-3 d-md-inline">HR System</span>
+            <span class="hr fs-5 mb-4 side-title mt-3 d-md-inline"
+              >HR System</span
+            >
           </span>
         </a>
         <hr />
         <ul class="mynav nav nav-pills flex-column mb-auto">
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="dashboard">
               <i class="fa-solid fa-house"></i> Home
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="reports">
               <i class="fa-solid fa-paste"></i> Company Statistics
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="payroll">
               <i class="fa-solid fa-wallet"></i> Payroll Impact
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="settings">
               <i class="fa-solid fa-gear"></i> Settings
             </a>
           </li>
-          <li class="nav-item mb-1">
+          <li class="nav-item mb-3">
             <a href="#" data-route="employee">
               <i class="fa-solid fa-medal"></i> Ideal Employee
             </a>
           </li>
         </ul>
-        <button id="toggleThemeBtn" class="btn btn-secondary">
-          Change theme
-        </button>
-        <hr />
-        <div class="d-flex logout">
-          <a href="../login.html" class="btn btn-outline-light w-100">
-            <i class="fa-solid fa-right-from-bracket"></i> logout
-          </a>
-        </div>
       </div>
 
       <div class="bg-light flex-fill">
@@ -78,17 +75,51 @@
             data-bs-toggle="offcanvas"
             data-bs-target="#bdSidebar"
           >
-            <i class="fa-solid fa-bars"></i>
+            <i class="menu fa-solid fa-bars fs-4"></i>
           </a>
+          <span class="ms-2 menu">Menu</span>
         </div>
+
+        <!-- Top Navbar -->
+        <nav
+          class="navbar d-flex justify-content-between align-items-center px-3"
+        >
+          <span class="welcome-black">
+            Welcome, <b id="logedusername"></b
+          ></span>
+          <div class="dropdown">
+            <a
+              href="#"
+              class="d-flex align-items-center text-decoration-none"
+              data-bs-toggle="dropdown"
+            >
+              <i class="face bi bi-person-circle fs-4 me-2"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#" id="toggleThemeBtn"
+                  ><i class="bi bi-moon-stars "></i> Dark mode</a
+                >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li></li>
+              <li class="logout">
+                <a href="../login.html" class="dropdown-item">
+                  <i class="fa-solid fa-right-from-bracket"></i> logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- start Content -->
         <div class="p-2 content">
           <div class="row">
             <div class="col" id="contentArea">
               <section id="dashboard" class="page-section">
                 <div class="title mb-3">
-                  <h2 class="fs-4 mb-1">
-                    Welcome Mr <span class="fw-bold" id="logedusername"></span>
-                  </h2>
+                  <h2 class="fs-4 mb-1">Home</h2>
                   <p class="fs-6 opacity-50">
                     Overview of company attendance & KPIs
                   </p>
@@ -136,7 +167,7 @@
                     </div>
                   </div>
 
-                  <div class="mt-4 table-section">
+                  <div class="mt-2 p-3 table-section">
                     <div class="d-flex justify-content-between mb-3">
                       <h3 class="fs-5 fw-bold">Employee's Attendance</h3>
                       <input
@@ -245,7 +276,10 @@
                   </div>
 
                   <div class="card shadow-sm p-3 mt-4">
-                    <h5 class="mb-3">Payroll Impact (This Month)</h5>
+                    <h5 class="mb-3">
+                      Payroll Impact
+                      <span id="payroll-month"> (This Month)</span>
+                    </h5>
                     <div class="table-responsive rounded-2">
                       <table
                         class="ta table table-bordered table-striped text-center payroll-table"
@@ -253,7 +287,7 @@
                         <thead class="table-dark">
                           <tr>
                             <th>Employee ID</th>
-                            <th>Month</th>
+                            <th>Name</th>
                             <th>Base Salary</th>
                             <th>Deductions</th>
                             <th>Bonus</th>

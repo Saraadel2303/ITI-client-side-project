@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
           u.password === password
       );
 
-      return user || null; // رجّع الـ user كله مش بس role
+      return user || null;
     } catch (error) {
       console.error("❌ Error loading data1.json:", error);
       return null;
@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const user = await getUserByUsernameAndPassword(username, password);
 
         if (user) {
-      // localStorage
-          localStorage.setItem("loggedInUser", JSON.stringify(user));
+          // localStorage
+          localStorage.setItem("loggedInUser", JSON.stringify(user.name));
 
           //redirect based on role
           if (user.role.toLowerCase() === "employee") {
@@ -78,7 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
+  document.querySelector("#showPassword")?.addEventListener("change", (e) => {
+    const passwordInput = document.getElementById("signinPassword");
+    if (e.target.checked) {
+      passwordInput.type = "text";
+    } else {
+      passwordInput.type = "password";
+    }
+  });
   // ================== FORM VALIDATION ================== //
   function validateUsername(username) {
     return username.length > 0;
