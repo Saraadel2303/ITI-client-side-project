@@ -19,7 +19,7 @@
 
 
 /***** Settings *****/
-const officialStart = "09:00"; // وقت بدء العمل الرسمي
+const officialStart = "09:00";
 const todayStr = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
 
 let employee = null;
@@ -46,7 +46,7 @@ if (!loggedInUser) {
 
       attendanceRecords = data.attendanceRecords
         .filter(a => a.employeeId === employeeIdToShow)
-        .sort((a, b) => a.date.localeCompare(b.date)); // ترتيب من الأقدم للأحدث
+        .sort((b,a) => a.date.localeCompare(b.date));
 
       if (!employee) {
         console.error("Employee not found!");
@@ -130,7 +130,6 @@ function populateAttendanceTable() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${a.date}</td>
-      <td>${employee.name}</td>
       <td>${a.checkIn || "-"}</td>
       <td>${a.checkOut || "-"}</td>
       <td><span class="badge" style="background-color:${getStatusColor(a)}; color:white">${a.status}</span></td>
