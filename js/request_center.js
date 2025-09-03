@@ -5,6 +5,7 @@ $(document).ready(async function () {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   let id = loggedInUser?.id;
   let requests = await Request.employeeRequests(id);
+  let weekIndex = getWeekIndexInYear();
 
   let table = $("#requestsTable").DataTable({
     data: requests,
@@ -86,7 +87,7 @@ $(document).ready(async function () {
     unhighlight: function (element) {
       $(element).removeClass("is-invalid");
     },
-    submitHandler: function (form, e) {
+    submitHandler: async function (form, e) {
       e.preventDefault();
       let newRow = {
         id: lastId,
@@ -104,6 +105,20 @@ $(document).ready(async function () {
       $("#history").addClass("active show");
       $("#home-tab").removeClass("active");
       $("#send").removeClass("active show");
+      await Request.saveEmployeeRequest(
+        id,
+        $("#type").val(),
+        {
+          requestedDate: $("#requestedDate").val(),
+          reason: $("#reason").val(),
+          minutesExpectedLate: $("#minutesValue").val(),
+          weekIndex,
+          overtimeHours: $("#overtimeHours").val(),
+          taskId: $("#taskId").val(),
+        },
+        "Pending"
+      );
+      toastr.success("Request sent successfully");
 
       form.reset();
     },
@@ -131,8 +146,6 @@ $(document).ready(async function () {
       })
     );
   });
-
-  let weekIndex = getWeekIndexInYear();
 
   let quotas = {
     late: {
@@ -186,27 +199,18 @@ $(document).ready(async function () {
   }
 
   function getWeekIndexInYear(date = new Date()) {
-    // Copy the date object
     const d = new Date(
       Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
     );
 
-    // Get the day of the week (0 = Sunday, 1 = Monday, etc.)
     const dayNum = d.getUTCDay() || 7;
 
-    // Move to Thursday of the current week
     d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-
-    // Find first day of the year
     const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-
-    // Calculate week index
     const weekIndex = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
 
     return weekIndex;
   }
-
-  // Example usage
   console.log(
     "Week index in year:",
     new Date().getMonth() + 1,

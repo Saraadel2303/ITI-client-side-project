@@ -141,7 +141,7 @@
                     <i class="bi bi-list"></i>
                 </button>
 
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, Maria Smith</span>
+                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text" id="user-name"></span></span>
 
                 <div class="ms-auto dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
@@ -157,14 +157,22 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </nav>
 
             <!-- Main content -->
             <main class="p-4">
+                <div id="bulkActions" class="alert alert-light d-none">
+                    <span id="selectedCount">0</span> selected
+                    <button id="bulkDelete" class="btn btn-danger btn-sm ms-2">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                    <button id="bulkDone" class="btn btn-success btn-sm ms-2">
+                        <i class="bi bi-check2-circle"></i> Mark as Done
+                    </button>
+                </div>
                 <table id="tasksTable" class="table table-borderless text-center  table-hover align-middle"
                     style="width:100%">
                     <thead class="">
@@ -173,7 +181,6 @@
                             <th class="text-center">Title</th>
                             <th class="text-center">Priority</th>
                             <th class="text-center">status</th>
-
                             <th class="text-center">Deadline</th>
                             <th class="text-center">action</th>
                         </tr>
@@ -199,12 +206,10 @@
                                 <!-- Task Info -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <p class="mb-1">Task ID</p>
-                                        <h6 id="taskId" class="fw-bold"></h6>
+                                        <span id="taskStatus" class="badge  px-3 my-1  py-2"></span>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p class="mb-1">Priority</p>
-                                        <span id="taskPriority" class="badge   px-3 py-2"></span>
+                                    <div class="col-md-6 justify-content-end d-flex">
+                                        <span id="taskPriority" class="badge px-3 my-1 py-2"></span>
                                     </div>
                                 </div>
 
@@ -230,7 +235,7 @@
                                     <div class="col-md-12">
                                         <p class="mb-1 ">Description</p>
                                         <div id="dec" class="p-3 border rounded bg-light">
-                                            <p id="taskDesc" class="mb-0"></p>
+                                            <p id="taskDesc" class="mb-0 fw-semibold"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -275,11 +280,8 @@
 
                         <!-- Footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                <i class="bi bi-x-circle me-1"></i> Close
-                            </button>
                             <button type="button" class="btn btn-success">
-                                <i class="bi bi-check2-circle me-1"></i> Mark as Done
+                                <i class="bi bi-check2-circle me-1"></i> Request Deadline Extension
                             </button>
                         </div>
                     </div>
@@ -316,11 +318,37 @@
                         <span class="">Request center</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="my_tasks.html" class="nav-link link-dark  text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-thumbtack"></i></span>
-                        <span class=" fs-6 fs-md-6 fs-lg-4">My Tasks</span>
-                    </a>
+                <li id="tasks">
+                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
+                                    Tasks
+                                </button>
+                            </div>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                                        <li class=""><a href="tasks_list.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
+                                                Table</a>
+                                        </li>
+                                        <li class="mt-1">
+                                            <a href="my_tasks.html"
+                                                class="nav-link link-dark rounded text-decoration-none">
+                                                <span class="bi me-2"><i
+                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

@@ -57,7 +57,8 @@ $(async function () {
   };
 
   $("#tasksTable").DataTable({
-    retrieve: true,
+    destroy: true,
+    lengthChange: false,
     columnDefs: [{ type: "priority", targets: [2] }],
   });
 
@@ -77,16 +78,53 @@ $(async function () {
       $("#taskPriority").addClass("bg-warning");
     } else if (task.priority == "Medium") {
       $("#taskPriority").removeClass("bg-danger");
-      $("#taskPriority").removeClass("bg-waning");
+      $("#taskPriority").removeClass("bg-warning");
       $("#taskPriority").addClass("bg-info");
     }
+    $("#taskStatus").text(task.status);
+    if (task.status == "To Do") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-success-subtle text-success"
+      );
+      $("#taskStatus").addClass("bg-primary-subtle text-primary");
+    }
+    if (task.status == "In Progress") {
+      $("#taskStatus").removeClass(
+        "bg-success-subtle text-success bg-success-subtle text-success"
+      );
+
+      $("#taskStatus").addClass("bg-warning-subtle text-warning");
+    }
+    if (task.status == "Completed") {
+      $("#taskStatus").removeClass(
+        "bg-warning-subtle text-warning bg-primary-subtle text-primary"
+      );
+      $("#taskStatus").addClass("bg-success-subtle text-success");
+    }
+
     $("#taskDeadline").text(task.deadline);
     $("#taskCreated").text(task.createdAt);
     $("#taskDesc").text(task.description || "No description");
 
+    $("#attachmentsList").empty();
+    if (task.attachments && task.attachments.length > 0) {
+      task.attachments.forEach((att) => {
+        $("#attachmentsList").append(`
+        <li class="mb-2">
+          <a href="${att.url}" target="_blank" class="d-flex align-items-center text-decoration-none">
+            <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+            <span>${att.name}</span>
+          </a>
+        </li>
+      `);
+      });
+    } else {
+      $("#attachmentsList").append(
+        `<li class="text-muted">No attachments</li>`
+      );
+    }
     let commentsList = $("#commentsList");
     commentsList.empty();
-
     if (task.comments && task.comments.length > 0) {
       task.comments.forEach((c) => {
         let commentHTML = `
