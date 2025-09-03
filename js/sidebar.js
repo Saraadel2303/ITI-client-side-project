@@ -2,6 +2,15 @@ const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 let role = loggedInUser?.role?.toLowerCase();
 
 $(function () {
+  if (!loggedInUser) {
+    window.location.replace("/login.html");
+  }
+  document.querySelector(".logout").addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.removeItem("loggedInUser");
+    window.location.replace("/login.html");
+  });
+
   setTheme();
 });
 
@@ -61,14 +70,11 @@ if (role !== "hr") {
 
 const currentPage = window.location.pathname.split("/").pop();
 
-// Loop through all sidebar links
-document.querySelectorAll("#sidebar .nav-link").forEach((link) => {
+document.querySelectorAll(".main-side .nav-link").forEach((link) => {
   const linkPage = link.getAttribute("href");
 
   if (linkPage === currentPage) {
     link.classList.add("active");
-
-    // If inside an accordion, also open parent
     const parentCollapse = link.closest(".accordion-collapse");
     if (parentCollapse) {
       parentCollapse.classList.add("show");
@@ -79,6 +85,6 @@ document.querySelectorAll("#sidebar .nav-link").forEach((link) => {
       if (parentButton) parentButton.classList.remove("collapsed");
     }
   } else {
-    link.classList.remove("active"); // remove active from other links
+    link.classList.remove("active"); 
   }
 });

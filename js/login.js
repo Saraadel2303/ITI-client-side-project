@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           //redirect based on role
           if (user.role.toLowerCase() === "employee") {
-            window.location.href = "pages/employees.html";
+            window.location.href = "/pages/employee/my_tasks.html";
           } else if (user.role.toLowerCase() === "manager") {
             window.location.href = "pages/managers.html";
           } else if (user.role.toLowerCase() === "hr") {
