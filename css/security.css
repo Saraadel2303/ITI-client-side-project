@@ -1,0 +1,247 @@
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #f6f9fc;
+  color: #374151;
+}
+
+/* sidebar start */
+#bdSidebar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fb !important;
+  padding: 15px;
+}
+
+/* #bdSidebar .active{
+  background-color: #534fea;
+}
+
+#bdSidebar .active:hover{
+  background-color: #6b65ff;
+} */
+
+
+.mynav li a {
+  display: block;
+  color: #000;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: normal;
+}
+
+.mynav li a:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.mynav li a .active {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.mynav li a i {
+  width: 25px;
+  text-align: center;
+}
+
+.notification-badge {
+  background-color: rgba(255, 255, 255, 0.7);
+  float: right;
+  color: #222;
+  font-size: 14px;
+  padding: 0px 8px;
+  border-radius: 2px;
+}
+
+.logout a {
+  background-color: #534fea;
+  color: #222;
+  border-radius: 8px;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.logout a:hover{
+  background: #2563eb;
+}
+
+.navsmall {
+  background-color: #2563eb;
+  padding: 10px 15px;
+  color: white;
+}
+
+/* sidebar end */
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  padding: 13px 24px;
+  /* 0.8rem 1.5rem */
+}
+
+.navbar .welcome-text {
+  font-weight: 600;
+  font-size: 16px;
+  color: #2563eb;
+}
+
+.navbar i {
+  color: #2563eb;
+}
+
+.navbar .dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-size: 15px;
+  /* 0.95rem */
+}
+
+.navbar .dropdown-item:hover {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+/* Stats Cards */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 19px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  border: 1px solid #2563eb20;
+}
+
+.stat-card h6 {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #2563eb;
+}
+
+/* Attendance Header */
+.attendance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.attendance-header h5 {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.search-group {
+  display: flex;
+  gap: 8px;
+}
+
+.search-group input {
+  min-width: 360px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  padding: 7px 16px;
+}
+
+.search-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.search-group button {
+  border-radius: 12px;
+  margin: 8px 0;
+}
+
+.bulk-actions {
+  margin: 16px 0;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+
+/* Table */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(7, 31, 83, 0.7);
+}
+
+.table thead th {
+  background: rgb(220, 220, 241);
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table tr {
+  border-bottom: #d2dbee;
+}
+
+.table tbody tr:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Status Pills */
+.status {
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-present {
+  color: #e6f8ec;
+  background-color: #0f8a46;
+}
+
+.status-late {
+  color: #fff3e6;
+  background-color: #b25a00;
+}
+
+.status-absent {
+  color: #ffecec;
+  background-color: #d53131;
+}
+
+.status-leave {
+  color: #ede7fe;
+  background-color: #5a32c2;
+}
+
+.status-wfh {
+  color: #f3f3f3;
+  background: #444;
+}

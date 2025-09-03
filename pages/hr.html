@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HR / Admin</title>
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
-    <!-- font awesome cdn -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -14,11 +12,386 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- custom css -->
     <link rel="stylesheet" href="../css/hr.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
-    
+    <div class="container-fluid p-0 d-flex h-100">
+      <div
+        id="bdSidebar"
+        class="d-flex flex-column flex-shrink-0 p-3 offcanvas-md offcanvas-start"
+      >
+        <a href="#" class="navbar-brand">
+          <span class="align-self-center">
+            <img
+              style="width: 4rem; height: 4rem"
+              src="/imgs/logo.png"
+              alt="logo"
+            />
+            <span class="fs-5 mb-4 side-title mt-3 d-md-inline">HR System</span>
+          </span>
+        </a>
+        <hr />
+        <ul class="mynav nav nav-pills flex-column mb-auto">
+          <li class="nav-item mb-1">
+            <a href="#" data-route="dashboard">
+              <i class="fa-solid fa-house"></i> Home
+            </a>
+          </li>
+          <li class="nav-item mb-1">
+            <a href="#" data-route="reports">
+              <i class="fa-solid fa-paste"></i> Company Statistics
+            </a>
+          </li>
+          <li class="nav-item mb-1">
+            <a href="#" data-route="payroll">
+              <i class="fa-solid fa-wallet"></i> Payroll Impact
+            </a>
+          </li>
+          <li class="nav-item mb-1">
+            <a href="#" data-route="settings">
+              <i class="fa-solid fa-gear"></i> Settings
+            </a>
+          </li>
+          <li class="nav-item mb-1">
+            <a href="#" data-route="employee">
+              <i class="fa-solid fa-medal"></i> Ideal Employee
+            </a>
+          </li>
+        </ul>
+        <button id="toggleThemeBtn" class="btn btn-secondary">
+          Change theme
+        </button>
+        <hr />
+        <div class="d-flex logout">
+          <a href="../login.html" class="btn btn-outline-light w-100">
+            <i class="fa-solid fa-right-from-bracket"></i> logout
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-light flex-fill">
+        <div class="navsmall p-2 d-md-none d-flex text-white">
+          <a
+            href="#"
+            class="text-white"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#bdSidebar"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </a>
+        </div>
+        <div class="p-2 content">
+          <div class="row">
+            <div class="col" id="contentArea">
+              <section id="dashboard" class="page-section">
+                <div class="title mb-3">
+                  <h2 class="fs-4 mb-1">
+                    Welcome Mr <span class="fw-bold" id="logedusername"></span>
+                  </h2>
+                  <p class="fs-6 opacity-50">
+                    Overview of company attendance & KPIs
+                  </p>
+                </div>
+                <div class="container-fluid">
+                  <div class="row g-3 p-2">
+                    <div class="col-12 col-md-3">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Total Employees</p>
+                        <h3 class="total mb-1">0</h3>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Present Today</p>
+                        <h3 class="present mb-1">0</h3>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Absences Today</p>
+                        <h3 class="absences mb-1">0</h3>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Overdue Tasks</p>
+                        <h3 class="tasks mb-1">0</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="home-charts row g-3 mt-3">
+                    <div class="col-12 col-md-6">
+                      <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Attendance Trend</h5>
+                        <canvas id="attendanceChart"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                      <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Tasks Status</h5>
+                        <canvas id="tasksChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 table-section">
+                    <div class="d-flex justify-content-between mb-3">
+                      <h3 class="fs-5 fw-bold">Employee's Attendance</h3>
+                      <input
+                        type="text"
+                        id="searchInput"
+                        class="search form-control"
+                        placeholder="Search by name or ID..."
+                      />
+                    </div>
+                    <div class="table-responsive shadow-sm rounded-3">
+                      <table
+                        class="table table-hover table-striped align-middle text-center mb-0"
+                      >
+                        <thead class="table-dark">
+                          <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody id="attendance-table-body"></tbody>
+                      </table>
+                    </div>
+                    <div
+                      id="pagination"
+                      class="mt-3 d-flex justify-content-end gap-2"
+                    ></div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="reports" class="page-section">
+                <div class="title mb-3">
+                  <h2 class="fs-4 mb-1">Company statistics</h2>
+                  <p class="fs-6 opacity-50">
+                    Overview of company statistics & KPIs
+                  </p>
+                </div>
+                <div class="container-fluid">
+                  <div class="row g-3 p-2">
+                    <div class="col-12 col-md-4">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Departments</p>
+                        <h3 class="deprtments total mb-1">0</h3>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Avg Attendance %</p>
+                        <h3 class="avg mb-1">0</h3>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="overview p-3 h-100">
+                        <p class="opacity-75 mb-2">Employees / Dept (Avg)</p>
+                        <h3 class="emp-dept mb-1">0</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="home-charts row g-3 mt-3">
+                    <div class="col-12 col-md-8 d-flex flex-column gap-3">
+                      <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Employees by Department</h5>
+                        <canvas id="deptChart"></canvas>
+                      </div>
+                      <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Top 3 Ideal Employees</h5>
+                        <canvas id="idealEmpChart"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="card p-3 shadow-sm">
+                        <h5 class="mb-3">Average Attendance per Department</h5>
+                        <div id="attendanceBars"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section id="payroll" class="page-section d-none">
+                <div class="container mt-4">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <div class="card shadow-sm p-3 text-center">
+                        <h5>Total Deductions</h5>
+                        <p
+                          class="fs-4 fw-bold text-danger"
+                          id="totalDeductions"
+                        >
+                          0
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card shadow-sm p-3 text-center">
+                        <h5>Total Bonus</h5>
+                        <p class="fs-4 fw-bold text-success" id="totalBonus">
+                          0
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card shadow-sm p-3 mt-4">
+                    <h5 class="mb-3">Payroll Impact (This Month)</h5>
+                    <div class="table-responsive rounded-2">
+                      <table
+                        class="ta table table-bordered table-striped text-center payroll-table"
+                      >
+                        <thead class="table-dark">
+                          <tr>
+                            <th>Employee ID</th>
+                            <th>Month</th>
+                            <th>Base Salary</th>
+                            <th>Deductions</th>
+                            <th>Bonus</th>
+                            <th>Net Salary</th>
+                          </tr>
+                        </thead>
+                        <tbody id="payrollTable"></tbody>
+                      </table>
+                    </div>
+                    <button class="export">Export</button>
+                  </div>
+                </div>
+              </section>
+
+              <section id="settings" class="page-section d-none">
+                <div class="container mt-4">
+                  <h2 class="mb-4">Settings</h2>
+                  <form id="settingsForm">
+                    <div class="row g-3">
+                      <div class="col-12 col-lg-6">
+                        <div class="card p-3 shadow-sm">
+                          <h5>
+                            <i class="fa-solid fa-alarm-clock"></i> Late Penalty
+                            Settings
+                          </h5>
+                          <label>16–30 min (%)</label>
+                          <input
+                            type="number"
+                            class="form-control mb-2"
+                            id="penalty_30"
+                            value="5"
+                          />
+                          <label>31–60 min (%)</label>
+                          <input
+                            type="number"
+                            class="form-control mb-2"
+                            id="penalty_60"
+                            value="10"
+                          />
+                          <label>61–120 min (%)</label>
+                          <input
+                            type="number"
+                            class="form-control mb-2"
+                            id="penalty_120"
+                            value="20"
+                          />
+                          <label>Monthly Cap (% of Salary)</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="cap"
+                            value="25"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12 col-lg-6">
+                        <div class="card p-3 shadow-sm h-100">
+                          <h5>
+                            <i class="fa-solid fa-hourglass"></i> Overtime
+                            Policy
+                          </h5>
+                          <label>Policy</label>
+                          <select id="overtime_policy" class="form-select mb-2">
+                            <option value="pay" selected>Pay</option>
+                            <option value="timeoff">Time Off</option>
+                          </select>
+                          <label>Weekday Multiplier</label>
+                          <input
+                            type="number"
+                            class="form-control mb-2"
+                            id="weekday_mult"
+                            value="1.25"
+                            step="0.01"
+                          />
+                          <label>Weekend/Holiday Multiplier</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="weekend_mult"
+                            value="1.5"
+                            step="0.01"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="card p-3 shadow-sm">
+                          <h5>
+                            <i class="fa-regular fa-star"></i> Ideal Employee
+                          </h5>
+                          <label>Bonus %</label>
+                          <input
+                            type="number"
+                            class="form-control mb-2"
+                            id="ideal_bonus"
+                            value="10"
+                          />
+                          <label>Badge</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="ideal_badge"
+                            value="🌟 Ideal Employee"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center mt-4">
+                      <button type="submit" class="save-btn">
+                        Save Settings
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </section>
+
+              <section id="employee" class="page-section d-none">
+                <h2>Ideal Employee</h2>
+                <div class="ideal-emp card p-4 shadow-sm text-center">
+                  <h3>
+                    <i class="fa-solid fa-medal"></i> Employee of the Month
+                  </h3>
+                  <h4 id="idealName" class="mt-3"></h4>
+                  <p id="idealStats"></p>
+                  <div class="alert mt-3">
+                    Bonus Awarded: <strong id="bonusValue">0%</strong>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/hr/hr.js" type="module"></script>
   </body>
 </html>

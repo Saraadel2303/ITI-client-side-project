@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Attendance Dashboard</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/managers.css" />
+    <link rel="stylesheet" href="../css/team-attendance.css" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Unified Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4><i class="fas fa-user-tie me-2"></i>Manager Dashboard</h4>
+        <!-- زرار التبديل -->
+        <button id="themeToggle" class="btn btn-sm">
+          <i id="themeIcon" class="fas fa-moon"></i>
+        </button>
+      </div>
+
+      <ul class="nav flex-column mt-3">
+        <li class="nav-item">
+          <a class="nav-link" id="approvals-link" href="managers.html">
+            <i class="fas fa-clipboard-list me-2"></i>Approvals
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="tasks-link" href="teamTasks.html">
+            <i class="fas fa-tasks me-2"></i>Team Tasks
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="attendance-link"
+            href="team-attendance.html"
+          >
+            <i class="fas fa-users-viewfinder me-2"></i>Team Attendance
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Team Attendance Analytics</h1>
+
+      <!-- Heatmap -->
+      <section class="card-container">
+        <h2>
+          <i class="fas fa-chart-line me-2 text-primary"></i>Attendance Heatmap
+        </h2>
+        <div class="table-responsive">
+          <table class="table table-bordered heatmap-table text-center">
+            <thead class="table-light">
+              <tr>
+                <th>Employee</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- ✅ سيتم توليد الصفوف ديناميك من team-attendance.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend mt-3">
+          <span class="present"></span> Present
+          <span class="absent ms-3"></span> Absent
+          <span class="late ms-3"></span> Late
+          <span class="leave ms-3"></span> Leave
+        </div>
+      </section>
+
+      <!-- Action Logs Section -->
+      <section class="card-container">
+        <h2>
+          <i class="fas fa-clipboard-list me-2 text-success"></i> Manager Action
+          Logs
+        </h2>
+        <div class="table-responsive">
+          <table class="table table-bordered text-center action-logs-table">
+            <thead class="table-light">
+              <tr>
+                <th>#</th>
+                <th>Employee</th>
+                <th>Request Type</th>
+                <th>Decision</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- ✅ يتم ملء الصفوف من team-attendance.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Charts Section -->
+      <section class="card-container">
+        <h2>
+          <i class="fas fa-chart-bar me-2 text-warning"></i>Attendance Insights
+        </h2>
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="attendanceBarChart"></canvas>
+          </div>
+          <div class="col-md-6">
+            <canvas id="attendancePieChart"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ✅ Script الخاص بالديناميك -->
+    <script src="../js/team-attendance.js"></script>
+
+ 
+  </body>
+</html>

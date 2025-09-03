@@ -6,6 +6,7 @@
     <title>Security</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- font awesome cdn -->
     <link
       rel="stylesheet"
@@ -18,7 +19,172 @@
     <link rel="stylesheet" href="../css/security.css" />
   </head>
   <body>
-    security page
+    <div class="container-fluid p-0 d-flex h-100">
+        <!-- Sidebar -->
+        <div id="bdSidebar" class="offcanvas-md offcanvas-start d-flex flex-column flex-shrink-0 p-3 bg-light">
+            <a href="#" class="navbar-brand d-flex align-items-center mb-3">
+                <img src="/imgs/logo.png" style="width: 3rem; height: 3rem" class="me-2" alt="Logo">
+                <span class="fs-5 side-title d-none d-md-inline">HR System</span>
+            </a>
+            <hr />
+            <ul class="mynav nav nav-pills flex-column mb-auto">
+                <li class="nav-item mb-1 active">
+                    <a href="#" class="nav-link" data-route="Attendance Board">
+                        <i class="fa-solid fa-house me-2"></i>
+                        Attendance Board
+                    </a>
+                </li>
+            </ul>
+            <div class="mt-auto logout">
+                <a href="../login.html" class="btn w-100">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-light flex-fill">
+            <!-- Navbar for mobile -->
+            <div class="navsmall p-2 d-md-none d-flex bg-primary text-white">
+                <a href="#" class="text-white" data-bs-toggle="offcanvas" data-bs-target="#bdSidebar">
+                    <i class="fa-solid fa-bars fs-4"></i>
+                </a>
+                <span class="ms-2">Menu</span>
+            </div>
+
+            <nav class="navbar d-flex justify-content-between align-items-center border-bottom px-3">
+                <span class="welcome-text">👋 Welcome, <b id="username">Maria Smith</b></span>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
+                        data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-4 me-2"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-brightness-high me-2"></i>Light Mode</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-moon-stars me-2"></i>Dark Mode</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Arabic</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>English</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container my-4">
+                <!-- Stats Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Total Employees</h6>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Present</h6>
+                            <p style="color:#0f8a46">0</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Late</h6>
+                            <p style="color:#b25a00">0</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Absent</h6>
+                            <p style="color:#c12a2a">0</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>Leave</h6>
+                            <p style="color:#5a32c2">0</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <div class="stat-card">
+                            <h6>WFH</h6>
+                            <p style="color:#2563eb">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance Header -->
+                <div class="attendance-header row g-2 align-items-center">
+                    <div class="col-12 col-md-6">
+                        <h5 class="text-primary mb-0"><i class="bi bi-clock-history me-2"></i>Attendance Board</h5>
+                    </div>
+                    <div class="col-12 col-md-6 d-flex gap-2 justify-content-md-end search-group">
+                        <input type="text" placeholder="Search employees Name or ID..."
+                            class="form-control form-control-sm">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">Status</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Present</a></li>
+                                <li><a class="dropdown-item" href="#">Late</a></li>
+                                <li><a class="dropdown-item" href="#">Absent</a></li>
+                                <li><a class="dropdown-item" href="#">Leave</a></li>
+                                <li><a class="dropdown-item" href="#">WFH</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendance Table -->
+                <div class="card border-0 mt-2">
+                    <div class="card-body p-0 table-responsive">
+                        <table class="table mb-0 text-center">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAll"></th>
+                                    <th>Date</th>
+                                    <th>Employee Name</th>
+                                    <th>Employee ID</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions row g-2 mt-3">
+                    <div class="col-12 col-md-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown">Bulk
+                                Actions</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="checkin">Set Check-in</a>
+                                </li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="checkout">Set
+                                        Check-out</a></li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="leave">Mark Leave</a>
+                                </li>
+                                <li><a class="dropdown-item bulk-action" href="#" data-action="wfh">Mark WFH</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <button class="btn btn-success btn-sm" id="applyBulk">Apply</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-success mt-2" id="saveBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/security.js"></script>
   </body>
 </html>

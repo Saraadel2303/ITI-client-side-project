@@ -1,6 +1,6 @@
 {
     "employees": [
-        {
+        {       
             "id": 1,
             "name": "Ahmed Mansour",
             "department": "Software Development",
@@ -77,7 +77,7 @@
         },
         {
             "id": 6,
-            "name": "Mona Tarek",
+            "name": "basel",
             "department": "Executive Office",
             "role": "Manager",
             "monthlySalary": 16000,
@@ -87,8 +87,23 @@
                 "theme": "light",
                 "dateFormat": "MM-YYYY-DD"
             },
-            "username": "mona6",
-            "password": "Pass@1006"
+            "username": "basel",
+            "password": "basel2002"
+        },
+        {
+            "id": 150,
+            "name": "Aya Shehata",
+            "department": "Executive Office",
+            "role": "Manager",
+            "monthlySalary": 16000,
+            "annualVacationDays": 32,
+            "preferences": {
+                "language": "en",
+                "theme": "light",
+                "dateFormat": "MM-YYYY-DD"
+            },
+            "username": "aya",
+            "password": "aya123"
         },
         {
             "id": 7,
@@ -241,8 +256,7 @@
             "password": "Pass@1016"
         }
     ],
-    "attendanceRecords": [
-        {
+    "attendanceRecords": [{
             "id": 1,
             "employeeId": 1,
             "date": "2025-08-09",
@@ -1921,10 +1935,93 @@
             "isWFH": false,
             "isLeave": true,
             "notes": "Annual leave"
+        },
+        {
+            "id": 141,
+            "employeeId": 1,
+            "date": "2025-09-03",
+            "checkIn": "09:02",
+            "checkOut": "17:01",
+            "status": "Present",
+            "minutesLate": 2,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 142,
+            "employeeId": 1,
+            "date": "2025-09-04",
+            "checkIn": null,
+            "checkOut": null,
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": true,
+            "notes": "Annual leave"
+        },
+        {
+            "id": 143,
+            "employeeId": 1,
+            "date": "2025-09-05",
+            "checkIn": "09:15",
+            "checkOut": "17:12",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Arrived late"
+        },
+        {
+            "id": 144,
+            "employeeId": 1,
+            "date": "2025-09-06",
+            "checkIn": "09:00",
+            "checkOut": "17:00",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 145,
+            "employeeId": 1,
+            "date": "2025-09-07",
+            "checkIn": null,
+            "checkOut": null,
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Unexcused absence"
+        },
+        {
+            "id": 146,
+            "employeeId": 1,
+            "date": "2025-09-08",
+            "checkIn": "09:05",
+            "checkOut": "17:20",
+            "status": "Present",
+            "minutesLate": 5,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 147,
+            "employeeId": 1,
+            "date": "2025-09-09",
+            "checkIn": "09:00",
+            "checkOut": "16:50",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Left early"
         }
     ],
-    "tasks": [
-        {
+    "tasks": [{
             "id": 1,
             "title": "Task for Ahmed Mansour",
             "description": "Complete assigned work package",
@@ -2274,8 +2371,7 @@
             "dependencyids": []
         }
     ],
-    "requests": [
-        {
+    "requests": [{
             "id": 1,
             "employeeId": 1,
             "type": "Late",
@@ -2349,7 +2445,7 @@
             "employeeId": 4,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-15",
+                "requestedDate": "2025-08-31",
                 "minutesExpectedLate": 15,
                 "reason": "School drop-off"
             },
@@ -2363,7 +2459,9 @@
             "employeeId": 5,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-16",
+
+                "requestedDate": "2025-08-31",
+
                 "weekIndex": 34,
                 "reason": "Personal errands"
             },
@@ -2391,7 +2489,7 @@
             "employeeId": 7,
             "type": "leave",
             "payload": {
-                "requestedDate": "2025-08-18",
+                "requestedDate": "2025-9-4",
                 "reason": "Sick leave"
             },
             "status": "Approved",
@@ -2418,7 +2516,7 @@
             "employeeId": 9,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-20",
+                "requestedDate": "2025-9-4",
                 "minutesExpectedLate": 10,
                 "reason": "Car breakdown"
             },
@@ -2432,7 +2530,7 @@
             "employeeId": 10,
             "type": "WFH",
             "payload": {
-                "requestedDate": "2025-08-21",
+                "requestedDate": "2025-08-31",
                 "weekIndex": 34,
                 "reason": "Parent-teacher meeting"
             },
@@ -2458,9 +2556,9 @@
         {
             "id": 14,
             "employeeId": 12,
-            "type": "Absence",
+            "type": "leave",
             "payload": {
-                "requestedDate": "2025-08-23",
+                "requestedDate": "2025-31-8",
                 "reason": "Family travel"
             },
             "status": "Rejected",
@@ -2487,7 +2585,7 @@
             "employeeId": 14,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-08-25",
+                "requestedDate": "2025-08-31",
                 "minutesExpectedLate": 25,
                 "reason": "Public transport delay"
             },
@@ -2497,8 +2595,7 @@
             "decidedAt": null
         }
     ],
-    "payrolls": [
-        {
+    "payrolls": [{
             "id": 1,
             "employeeId": 1,
             "month": "2025-08",

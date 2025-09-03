@@ -1,0 +1,189 @@
+/* 🌞 Light Theme (Default) */
+:root {
+  --font-main: "Montserrat", sans-serif;
+
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-text: #212529;
+  --color-muted: #6c757d;
+  --color-sidebar-bg: #f8f9fb;
+  --color-sidebar-link: #000000;
+  --color-sidebar-active: #0d6efd;
+  --color-sidebar-hover: #0b5ed7;
+  --color-card-bg: #ffffff;
+  --color-table-header-bg: #0d6efd;
+  --color-table-header-text: #ffffff;
+  --color-border: #eaedf0;
+
+  /* Buttons */
+  --btn-bg: #0d6efd;
+  --btn-bg-hover: #0b5ed7;
+  --btn-text: #ffffff;
+}
+
+/* 🌚 Dark Theme */
+body.dark-theme {
+  --color-bg: #1e1e2e;
+  --color-text: #e0e0e0;
+  --color-muted: #a1a1b5;
+  --color-sidebar-bg: #2a2a3b;
+  --color-sidebar-link: #e0e0e0;
+  --color-sidebar-active: #7c6cff;
+  --color-sidebar-hover: #9b8cff;
+  --color-card-bg: #2e2e44;
+  --color-table-header-bg: #3a3a5a;
+  --color-table-header-text: #ffffff;
+  --color-border: #2e2e44;
+
+  --btn-bg: #7c6cff;
+  --btn-bg-hover: #9b8cff;
+  --btn-text: #ffffff;
+}
+
+/* ========================= */
+/* 📌 Layout + Base Styles   */
+/* ========================= */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: var(--color-sidebar-bg);
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--color-sidebar-link);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h4 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--color-sidebar-active);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nav links */
+.sidebar .nav-link {
+  color: var(--color-sidebar-link);
+  margin: 6px 0;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.sidebar .nav-link i {
+  margin-right: 8px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background: var(--color-sidebar-active);
+  color: #fff;
+}
+
+.sidebar .nav-link:hover i,
+.sidebar .nav-link.active i {
+  color: #fff;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+.main-content h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+/* Cards & Containers */
+.card-container {
+  background: var(--color-card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.card-container h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--color-text);
+}
+
+.card-box {
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 20px;
+  background: var(--color-card-bg);
+}
+
+/* Tables */
+.task-table,
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--color-card-bg);
+}
+
+.table thead {
+  background: var(--color-table-header-bg);
+  color: var(--color-table-header-text);
+}
+
+/* Theme Toggle Button */
+#themeToggle {  
+  background: transparent;
+  border: none;
+  color: var(--color-sidebar-link);
+  font-size: 18px;  
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+}
+
+#themeToggle:hover {
+  color: var(--color-sidebar-active);
+  transform: rotate(20deg);
+}
+
+#themeIcon {
+  transition: transform 0.3s;
+}
+
+body.dark-theme #themeIcon {
+  transform: rotate(180deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main-content {
+    padding: 15px;
+  }
+}

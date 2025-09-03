@@ -1,0 +1,210 @@
+@import url("/theme.css");
+
+/* -------------------- Base -------------------- */
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+/* -------------------- Sidebar -------------------- */
+#bdSidebar {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-sidebar-bg) !important;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.mynav li a {
+  display: block;
+  color: var(--color-sidebar-link);
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: normal;
+}
+
+.mynav li a:hover {
+  background: var(--color-sidebar-hover);
+  color: var(--color-table-header-text);
+}
+
+.mynav li a.active {
+  background-color: var(--color-sidebar-active);
+  color: var(--color-table-header-text);
+}
+
+.mynav li a i {
+  width: 25px;
+  text-align: center;
+}
+
+.logout a {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 8px;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.logout a:hover {
+  background: var(--btn-bg-hover);
+}
+
+/* -------------------- Navbar -------------------- */
+.navbar {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  padding: 13px 24px;
+  transition: all 0.3s ease;
+}
+
+.navbar .welcome-text {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.navbar i {
+  color: var(--color-text);
+}
+
+.navbar .dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-size: 15px;
+  background: var(--color-card-bg);
+  color: var(--color-text);
+}
+
+.navbar .dropdown-item:hover {
+  background: var(--color-sidebar-hover);
+  color: var(--color-table-header-text);
+}
+
+/* -------------------- Table -------------------- */
+.table thead th {
+  background: var(--color-table-header-bg);
+  color: var(--color-table-header-text);
+  text-align: center;
+}
+
+.table td, .table th {
+  transition: all 0.3s ease;
+  color: var(--color-text);
+}
+
+/* -------------------- Stats Cards -------------------- */
+.stats-cards {
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  padding: 19px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  border: 1px solid #2563eb20;
+}
+
+.stat-card h6 {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin-bottom: 5px;
+}
+
+.stat-card p {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* -------------------- Calendar -------------------- */
+#calendar {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+#calendar .fc-daygrid-day-top a{
+  text-decoration: none;
+  margin: auto;
+}
+#calendar .fc-toolbar-title{
+    font-size: 18px;
+}
+
+
+/* -------------------- Buttons -------------------- */
+.btn, .btn-outline-primary {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-bg);
+  transition: all 0.3s ease;
+}
+
+.btn:hover, .btn-outline-primary:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-text);
+}
+
+/* -------------------- Mobile Navbar -------------------- */
+.navsmall {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 10px 15px;
+}
+
+/* -------------------- Light Theme Variables -------------------- */
+:root {
+  --font-main: "Roboto", sans-serif;
+  --color-bg: #ffffff;
+  --color-text: #212529;
+  --color-muted: #6c757d;
+  --color-sidebar-bg: #f8f9fb;
+  --color-sidebar-link: #000;
+  --color-sidebar-active: #534fea;
+  --color-sidebar-hover: #6b65ff;
+  --color-card-bg: #ffffff;
+  --color-table-header-bg: #534fea;
+  --color-table-header-text: #ffffff;
+  --color-border: #dee2e6;
+  --btn-bg: #534fea;
+  --btn-bg-hover: #433bd1;
+  --btn-text: #ffffff;
+}
+
+/* -------------------- Dark Theme Variables -------------------- */
+body.dark-theme {
+  --color-bg: #1e1e2e;
+  --color-text: #e0e0e0;
+  --color-muted: #a1a1b5;
+  --color-sidebar-bg: #2a2a3b;
+  --color-sidebar-link: #e0e0e0;
+  --color-sidebar-active: #7c6cff;
+  --color-sidebar-hover: #9b8cff;
+  --color-card-bg: #2e2e44;
+  --color-table-header-bg: #3a3a5a;
+  --color-table-header-text: #ffffff;
+  --color-border: #444;
+  --btn-bg: #7c6cff;
+  --btn-bg-hover: #9b8cff;
+  --btn-text: #ffffff;
+}
