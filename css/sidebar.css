@@ -13,8 +13,6 @@ body {
   height: 100vh;
 }
 
-
-
 @media (max-width: 991.98px) {
   .sidebar {
     display: none;
@@ -136,10 +134,10 @@ a.active {
 }
 
 .navbar {
-  background-color: var(--color-bg) !important;
+  background-color: var(--color-sidebar-bg) !important;
   border-bottom: 1px solid var(--color-border) !important;
   box-shadow: 0 1px 2px var(--color-border);
-  padding: 13px 24px;
+  padding: 6px 24px;
   width: 100%;
 }
 
@@ -169,6 +167,28 @@ a.active {
 .navbar .dropdown-item:hover {
   background: var(--color-sidebar-hover);
   color: #534feb;
+}
+
+.btn,
+.btn-outline-primary {
+  /* background-color: var(--btn-bg); */
+  color: var(--btn-text);
+  border: 1px solid var(--btn-bg);
+  transition: all 0.3s ease;
+}
+
+.btn:hover,
+.btn-outline-primary:hover,
+.btn-outline-primary > i:hover {
+  background-color: var(--btn-bg-hover);
+  color: var(--btn-text) !important;
+}
+
+.btn:hover,
+.btn-outline-primary:hover,
+.btn-outline-primary > i:active {
+  background-color: var(--btn-bg-hover) !important;
+  color: var(--btn-text) !important;
 }
 
 .accordion,

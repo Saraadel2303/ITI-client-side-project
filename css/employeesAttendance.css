@@ -155,15 +155,20 @@ body {
 
 /* -------------------- Buttons -------------------- */
 .btn, .btn-outline-primary {
-  background-color: var(--btn-bg);
+  /* background-color: var(--btn-bg); */
   color: var(--btn-text);
   border: 1px solid var(--btn-bg);
   transition: all 0.3s ease;
 }
 
-.btn:hover, .btn-outline-primary:hover {
+.btn:hover, .btn-outline-primary:hover, .btn-outline-primary > i:hover {
   background-color: var(--btn-bg-hover);
-  color: var(--btn-text);
+  color: var(--btn-text) !important;
+}
+
+.btn:hover, .btn-outline-primary:hover, .btn-outline-primary > i:active {
+  background-color: var(--btn-bg-hover) !important;
+  color: var(--btn-text) !important;
 }
 
 /* -------------------- Mobile Navbar -------------------- */
