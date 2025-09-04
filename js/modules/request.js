@@ -28,12 +28,10 @@ export default class Request {
       return [];
     }
   }
-  static async saveEmployeeRequest(empId, type, payload, status) {
+  static async saveEmployeeRequest(newId,empId, type, payload, status) {
     let empRequests = await Request.employeeRequests(empId);
-
-    let lastId = empRequests[empRequests.length - 1].id;
     let newRequest = {
-      id: lastId,
+      id: newId,
       employeeId: empId,
       type: type,
       createdAt: new Date().toLocaleString("sv-SE", { timeZone: "Africa/Cairo" }),
