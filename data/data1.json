@@ -2426,7 +2426,7 @@
             "employeeId": 1,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-09-10",
+                "requestedDate": "2025-09-05",
                 "minutesExpectedLate": 20,
                 "reason": "Traffic congestion"
             },
@@ -2492,10 +2492,10 @@
         },
         {
             "id": 6,
-            "employeeId": 4,
-            "type": "Late",
+            "employeeId": 1,
+            "type": "late",
             "payload": {
-                "requestedDate": "2025-08-31",
+                "requestedDate": "2025-09-05",
                 "minutesExpectedLate": 15,
                 "reason": "School drop-off"
             },
