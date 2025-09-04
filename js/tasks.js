@@ -77,7 +77,7 @@ $(async function () {
   $("#tasksTable").DataTable({
     destroy: true,
     lengthChange: false,
-    columnDefs: [{ type: "priority", targets: [2] }],
+    columnDefs: [{ type: "priority", targets: [3] }],
   });
 
   $(document).on("click", ".open-task", function () {
