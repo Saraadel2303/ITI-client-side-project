@@ -18,7 +18,7 @@ export async function renderHomeCharts() {
         {
           label: "Present",
           data: attendanceTrend.map((d) => d.present),
-          borderColor: "#ff6b35", 
+          borderColor: "#ff6b35",
           backgroundColor: "rgba(255, 107, 53, 0.2)",
           tension: 0.3,
           fill: true,
@@ -36,10 +36,9 @@ export async function renderHomeCharts() {
 
     options: {
       responsive: true,
-      maintainAspectRatio: false, 
+      maintainAspectRatio: false,
       plugins: {
         legend: { position: "bottom" },
-       
       },
       scales: {
         y: {
@@ -109,24 +108,23 @@ async function renderDeptChart() {
             "#6b65ff",
             "#9b8cff",
             "#ffc107",
-            "#20c997"
+            "#20c997",
           ],
         },
       ],
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, 
+      maintainAspectRatio: false,
 
       plugins: {
         legend: {
-          position: "left",
+          display: false,
         },
       },
     },
   });
 }
-
 
 renderDeptChart();
 
@@ -138,7 +136,6 @@ async function renderIdealEmployeesChart() {
   const labels = topEmployees.map((e) => e.name);
   const values = topEmployees.map((e) => e.score);
 
-  // لو أول واحد → Gold
   const colors = labels.map((_, i) =>
     i === 0 ? "#FFD700" : ["#534fea", "#6b65ff", "#9b8cff"][i]
   );
@@ -159,7 +156,7 @@ async function renderIdealEmployeesChart() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, 
+      maintainAspectRatio: false,
 
       plugins: {
         legend: { display: false },

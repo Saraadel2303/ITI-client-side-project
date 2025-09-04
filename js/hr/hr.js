@@ -53,7 +53,7 @@ links.forEach((link) => {
 // logout button
 const logedusername = document.getElementById("logedusername");
 const user = JSON.parse(localStorage.getItem("loggedInUser"));
-logedusername.textContent = ` ${user} `;
+logedusername.textContent = ` ${user.name} `;
 
 document.querySelector(".logout").addEventListener("click", () => {
   localStorage.removeItem("loggedInUser");
@@ -246,6 +246,7 @@ async function renderIdealEmployee() {
 
   if (emp) {
     document.getElementById("idealName").textContent = emp.name;
+    document.getElementById("idealDep").textContent = emp.department
     document.getElementById(
       "idealStats"
     ).textContent = `Overall Score: ${emp.score}%`;

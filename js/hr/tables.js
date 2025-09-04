@@ -140,6 +140,7 @@ async function renderPayrollTable() {
   const tbody = document.getElementById("payrollTable");
   tbody.innerHTML = "";
 
+  console.log(rows)
   if (!rows || rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6">No payroll data found</td></tr>`;
     return;

@@ -3,6 +3,7 @@
 /* ==========================
    Global + Base Styles
 ========================== */
+
 html,
 body {
   height: 100%;
@@ -304,4 +305,7 @@ form label {
 .save-btn:hover,
 .export:hover {
   background-color: var(--btn-bg-hover);
+}
+#employee{
+  height: 100%;
 }

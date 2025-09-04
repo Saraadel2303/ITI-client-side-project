@@ -108,13 +108,22 @@ export async function getAvgAttendance() {
   const data = await loadData();
   const records = data.attendanceRecords || [];
 
-  if (records.length === 0) return 0;
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
 
-  let presentCount = records.filter(
+  const monthlyRecords = records.filter((r) => {
+    const d = new Date(r.date);
+    return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+  });
+
+  if (monthlyRecords.length === 0) return 0;
+
+  let presentCount = monthlyRecords.filter(
     (r) => r.status === "Present" || r.status === "Late" || r.status === "WFH"
   ).length;
 
-  let total = records.length;
+  let total = monthlyRecords.length;
 
   return +((presentCount / total) * 100).toFixed(0);
 }
@@ -184,7 +193,7 @@ export async function getAvgAttendancePerDept() {
   return { labels, values };
 }
 
-// top 3 ideal emp 
+// top 3 ideal emp
 export async function getTopIdealEmployees() {
   const data = await loadData();
   const employees = data.employees || [];
@@ -211,7 +220,12 @@ export async function getTopIdealEmployees() {
 
     const finalScore = ((attendancePct + tasksPct) / 2).toFixed(0);
 
-    scores.push({ name: emp.name, score: finalScore });
+    scores.push({
+      id: emp.id,
+      name: emp.name,
+      department: emp.department,
+      score: finalScore,
+    });
   });
 
   return scores.sort((a, b) => b.score - a.score).slice(0, 3);
@@ -223,9 +237,7 @@ export async function getIdealEmployee() {
   return top[0];
 }
 
-
-
-//sorting employees by department 
+//sorting employees by department
 export function empSort(a, b) {
   if (a.department < b.department) return -1;
   if (a.department > b.department) return 1;
@@ -302,10 +314,11 @@ export async function buildPayrollRows(settings) {
       }
     });
 
-    // Ideal Employee Bonus 
+    // Ideal Employee Bonus
     if (idealEmp && emp.id === idealEmp.id) {
       bonus += (settings.ideal.bonus / 100) * baseSalary;
     }
+    console.log(idealEmp);
 
     const netSalary = baseSalary - deductions + bonus;
     return {
