@@ -90,21 +90,7 @@
             "username": "basel",
             "password": "basel2002"
         },
-        {
-            "id": 150,
-            "name": "Aya Shehata",
-            "department": "Executive Office",
-            "role": "Manager",
-            "monthlySalary": 16000,
-            "annualVacationDays": 32,
-            "preferences": {
-                "language": "en",
-                "theme": "light",
-                "dateFormat": "MM-YYYY-DD"
-            },
-            "username": "aya",
-            "password": "aya123"
-        },
+
         {
             "id": 7,
             "name": "Hossam Saeed",
