@@ -137,7 +137,7 @@ async function renderIdealEmployeesChart() {
   const values = topEmployees.map((e) => e.score);
 
   const colors = labels.map((_, i) =>
-    i === 0 ? "#FFD700" : ["#534fea", "#6b65ff", "#9b8cff"][i]
+    i === 0 ? "#fe6100ff" : ["#534fea", "#6b65ff", "#9b8cff"][i]
   );
 
   const ctx = document.getElementById("idealEmpChart").getContext("2d");
