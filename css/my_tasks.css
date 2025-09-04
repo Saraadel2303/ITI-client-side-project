@@ -112,7 +112,7 @@ body {
   color: var( --color-muted) !important;
 }
 
-@media (max-width: 570px) {
+@media (max-width: 600px) {
   #tasksTable th,
   #tasksTable td {
     padding: 0.1rem 0.1rem !important;

@@ -171,7 +171,17 @@ $(async function () {
     modal.show();
   });
 
+  check();
+});
+
+function check() {
+  $("#selectAll").on("click", function () {
+    $(".row-select").prop("checked", this.checked);
+  });
   $("#bulkDone").on("click", function () {
+    console.log("approve");
+    const table = $("#tasksTable").DataTable();
+
     let ids = $(".row-select:checked")
       .map(function () {
         return $(this).data("id");
@@ -183,6 +193,21 @@ $(async function () {
       return;
     }
 
-    toastr.success("Approved tasks: " + ids.join(", "));
+    table.rows().every(function () {
+      let rowData = this.data();
+      let rowId = rowData[1];
+      console.log(ids.includes(Number(rowId)), rowData[1]);
+
+      if (ids.includes(Number(rowId))) {
+        rowData[4] = "Completed";
+        this.data(rowData).invalidate();
+      }
+    });
+
+    table.draw(false);
+    $("input.row-select", table.rows().nodes()).prop("checked", false);
+    $("#selectAll").prop("checked", false);
+
+    toastr.success("Completed tasks: " + ids.join(", "));
   });
-});
+}
