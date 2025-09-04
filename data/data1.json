@@ -1,6 +1,6 @@
 {
     "employees": [
-        {       
+        {
             "id": 1,
             "name": "Ahmed Mansour",
             "department": "Software Development",
@@ -256,7 +256,8 @@
             "password": "Pass@1016"
         }
     ],
-    "attendanceRecords": [{
+    "attendanceRecords": [
+        {
             "id": 1,
             "employeeId": 1,
             "date": "2025-08-09",
@@ -2021,7 +2022,8 @@
             "notes": "Left early"
         }
     ],
-    "tasks": [{
+    "tasks": [
+        {
             "id": 1,
             "title": "Task for Ahmed Mansour",
             "description": "Complete assigned work package",
@@ -2064,7 +2066,7 @@
         },
         {
             "id": 3,
-            "title": "Task for Karim Adel",
+            "title": "Add project documentation",
             "description": "Complete assigned work package",
             "priority": "High",
             "deadline": "2025-09-01",
@@ -2107,10 +2109,10 @@
         },
         {
             "id": 5,
-            "title": "Task for Youssef Ibrahim",
+            "title": "Task for install packages",
             "description": "Complete assigned work package",
             "priority": "Low",
-            "deadline": "2025-09-02",
+            "deadline": "2025-09-04",
             "assignees": [
                 1
             ],
@@ -2125,6 +2127,13 @@
                 {
                     "by": "john",
                     "text": "great job",
+                    "at": "2025-09-02"
+                }
+            ],
+            "history": [
+                {
+                    "action": "Status changed to Completed",
+                    "by": "Admin",
                     "at": "2025-09-02"
                 }
             ],
@@ -2349,7 +2358,7 @@
             "title": "change dark theme colors",
             "description": "Complete assigned work package",
             "priority": "High",
-            "deadline": "2025-09-15",
+            "deadline": "2025-09-05",
             "assignees": [
                 1
             ],
@@ -2364,6 +2373,46 @@
                     "url": "https://s24.q4cdn.com/216390268/files/doc_downloads/test.pdf"
                 }
             ],
+            "history": [
+                {
+                    "action": "Status changed to Completed",
+                    "by": "Admin",
+                    "at": "2025-09-02"
+                }
+            ],
+            "comments": [],
+            "createdBy": "system",
+            "createdAt": "2025-08-01T09:00:00Z",
+            "updatedAt": "2025-08-20T18:00:00Z",
+            "dependencyids": []
+        },
+        {
+            "id": 18,
+            "title": "change light theme colors",
+            "description": "Complete assigned work package",
+            "priority": "High",
+            "deadline": "2025-09-06",
+            "assignees": [
+                1
+            ],
+            "status": "To Do",
+            "attachments": [
+                {
+                    "name": "important",
+                    "url": "/imgs/wireframe.png"
+                },
+                {
+                    "name": "report",
+                    "url": "https://s24.q4cdn.com/216390268/files/doc_downloads/test.pdf"
+                }
+            ],
+            "history": [
+                {
+                    "action": "Status changed to Completed",
+                    "by": "Admin",
+                    "at": "2025-09-02"
+                }
+            ],
             "comments": [],
             "createdBy": "system",
             "createdAt": "2025-08-01T09:00:00Z",
@@ -2371,16 +2420,17 @@
             "dependencyids": []
         }
     ],
-    "requests": [{
+    "requests": [
+        {
             "id": 1,
             "employeeId": 1,
             "type": "Late",
             "payload": {
-                "requestedDate": "2025-07-10",
+                "requestedDate": "2025-09-10",
                 "minutesExpectedLate": 20,
                 "reason": "Traffic congestion"
             },
-            "status": "Pending",
+            "status": "Approved",
             "managerComment": "Awaiting confirmation",
             "createdAt": "2025-08-01 08:00:00 AM",
             "decidedAt": null
@@ -2459,9 +2509,7 @@
             "employeeId": 5,
             "type": "WFH",
             "payload": {
-
                 "requestedDate": "2025-08-31",
-
                 "weekIndex": 34,
                 "reason": "Personal errands"
             },
@@ -2595,7 +2643,8 @@
             "decidedAt": null
         }
     ],
-    "payrolls": [{
+    "payrolls": [
+        {
             "id": 1,
             "employeeId": 1,
             "month": "2025-08",
