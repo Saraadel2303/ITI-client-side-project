@@ -11,14 +11,14 @@ $(document).ready(async function () {
       used: requests.filter(
         (el) =>
           new Date(el.payload.requestedDate).getMonth() + 1 ==
-            new Date().getMonth() + 1 && el.type == "Late"
+            new Date().getMonth() + 1 && el.type.toLowerCase() == "late" && el.status == "Approved"
       ).length,
       limit: 2,
       period: "Month",
     },
     wfh: {
       used: requests.filter(
-        (el) => el.payload.weekIndex == weekIndex && el.type == "WFH"
+        (el) => el.payload.weekIndex == weekIndex && el.type.toLowerCase() == "wfh" && el.status == "Approved"
       ).length,
       limit: 2,
       period: "Week",
@@ -60,11 +60,11 @@ $(document).ready(async function () {
     order: [[0, "desc"]],
   });
 
-  let lastId = 0;
+  let newId = 0;
 
   $.getJSON("/data/data1.json", function (data) {
     if (data.requests.length > 0) {
-      lastId = data.requests[data.requests.length - 1].id;
+      newId = data.requests[data.requests.length - 1].id + 1 + requests[requests.length -1].id;
     }
   });
 
@@ -117,7 +117,7 @@ $(document).ready(async function () {
         return;
       }
       let newRow = {
-        id: lastId,
+        id: newId,
         employeeId: id,
         type: $("#type").val(),
         createdAt: new Date().toISOString().split("T")[0],
@@ -133,7 +133,8 @@ $(document).ready(async function () {
       $("#home-tab").removeClass("active");
       $("#send").removeClass("active show");
       await Request.saveEmployeeRequest(
-        lastId,
+        newId,
+        id,
         $("#type").val(),
         {
           requestedDate: $("#requestedDate").val(),
