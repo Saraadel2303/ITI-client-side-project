@@ -1,64 +1,29 @@
-/***** Sidebar *****/
-// const links = document.querySelectorAll(".mynav a");
-// const sections = document.querySelectorAll(".page-section");
-
-// links.forEach((link) => {
-//   link.addEventListener("click", (e) => {
-//     e.preventDefault();
-
-//     links.forEach((l) => l.classList.remove("active"));
-//     link.classList.add("active");
-
-//     sections.forEach((section) => section.classList.add("d-none"));
-
-//     const route = link.getAttribute("data-route");
-//     document.getElementById(route).classList.remove("d-none");
-//   });
-// });
-
-
 
 /***** Settings *****/
 const officialStart = "09:00";
 const todayStr = new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
 
-let employee = null;
 let attendanceRecords = [];
 let employeeIdToShow = null;
 
-/***** loggedInUser *****/
+/***** Get loggedInUser from localStorage *****/
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")); 
 
-// if (loggedInUser && loggedInUser.name) {
-//     document.getElementById('username').textContent = loggedInUser.name;
-// }
-
 if (!loggedInUser) {
-  console.error("No logged-in user found!");
+  console.error("No logged-in user found in localStorage!");
 } else {
   employeeIdToShow = loggedInUser.id;
 
-  /***** Fetch data *****/
-  fetch("/data/data1.json")
-    .then(response => response.json())
-    .then(data => {
-      employee = data.employees.find(e => e.id === employeeIdToShow);
-      console.log(data.employees);
+  /***** Fetch attendance from localStorage *****/
+  const storedAttendance = JSON.parse(localStorage.getItem("attendance")) || [];
 
-      attendanceRecords = data.attendanceRecords
-        .filter(a => a.employeeId === employeeIdToShow)
-        .sort((b,a) => a.date.localeCompare(b.date));
+  attendanceRecords = storedAttendance
+    .filter(a => a.employeeId === employeeIdToShow)
+    .sort((b, a) => a.date.localeCompare(b.date));
 
-      if (!employee) {
-        console.error("Employee not found!");
-        return;
-      }
-
-      updateSummaryCards();
-      populateAttendanceTable();
-      initCalendar();
-    })
-    .catch(err => console.error("Error loading data:", err));
+  updateSummaryCards();
+  populateAttendanceTable();
+  initCalendar();
 }
 
 /***** Update Cards *****/
@@ -78,7 +43,7 @@ function updateSummaryCards() {
     } else if (a.checkIn) {
       const [hCheck, mCheck] = a.checkIn.split(":").map(Number);
       const [hOfficial, mOfficial] = officialStart.split(":").map(Number);
-      const minutesLate = (hCheck*60 + mCheck) - (hOfficial*60 + mOfficial);
+      const minutesLate = (hCheck * 60 + mCheck) - (hOfficial * 60 + mOfficial) - 15;
 
       a.minutesLate = minutesLate > 0 ? minutesLate : 0;
       a.status = minutesLate > 0 ? "Late" : "Present";
@@ -104,15 +69,15 @@ function getTotalHours(checkIn, checkOut) {
   if (!checkIn || !checkOut) return "-";
   const [h1, m1] = checkIn.split(":").map(Number);
   const [h2, m2] = checkOut.split(":").map(Number);
-  const total = (h2*60 + m2) - (h1*60 + m1);
-  const hours = Math.floor(total/60);
+  const total = (h2 * 60 + m2) - (h1 * 60 + m1);
+  const hours = Math.floor(total / 60);
   const minutes = total % 60;
   return `${hours}h ${minutes}m`;
 }
 
 /***** Status Colors *****/
 function getStatusColor(a) {
-  switch(a.status) {
+  switch (a.status) {
     case "Present": return "#0f8a46";
     case "Late": return "#b25a00";
     case "Absent": return "#c12a2a";

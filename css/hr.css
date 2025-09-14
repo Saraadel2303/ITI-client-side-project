@@ -50,9 +50,9 @@ body {
   flex-direction: column;
   border-right: 1px solid var(--color-border);
 }
-.bg-light.flex-fill {
+.flex-fill {
   flex: 1;
-  height: 100%;
+  background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
 }
@@ -306,6 +306,13 @@ form label {
 .export:hover {
   background-color: var(--btn-bg-hover);
 }
-#employee{
+#employee {
   height: 100%;
+}
+#overtime_policy {
+  background-color: var(--color-card-bg);
+  color: var(--btn-text);
+}
+#overtime_policy option {
+  color: var(--btn-text);
 }

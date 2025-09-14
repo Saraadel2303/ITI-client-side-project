@@ -1,9 +1,50 @@
+// export default async function fetchAndRenderTasks() {
+//   try {
+//     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+//     let employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+//     const response = await fetch("../data/data1.json");
+//     const data = await response.json();
+
+//       tasks = data.tasks || [];
+//       employees = data.employees || [];
+
+//     // save in local storage
+//     localStorage.setItem("tasks", JSON.stringify(tasks));
+//     localStorage.setItem("employees", JSON.stringify(employees));
+
+//     console.log("Tasks loaded:", tasks.length);
+//     console.log("Employees loaded:", employees.length);
+
+//     // Update dashboard stats
+//     updateDashboardStats(tasks);
+
+//     // Render table
+//     renderTasksTable(tasks, employees);
+//   } catch (err) {
+//     console.error("Error loading tasks:", err);
+//     showError("Error loading tasks: " + err.message);
+//   }
+// }
+
 export default async function fetchAndRenderTasks() {
   try {
-    const response = await fetch("../data/data1.json");
-    const data = await response.json();
-    const tasks = data.tasks || [];
-    const employees = data.employees || [];
+    // Load from localStorage first
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    let employees = JSON.parse(localStorage.getItem("employees")) || [];
+
+    // Only fetch from JSON if localStorage is empty
+    if (tasks.length === 0 || employees.length === 0) {
+      const response = await fetch("../data/data1.json");
+      const data = await response.json();
+
+      tasks = data.tasks || [];
+      employees = data.employees || [];
+
+      // Save in localStorage once
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      localStorage.setItem("employees", JSON.stringify(employees));
+    }
 
     console.log("Tasks loaded:", tasks.length);
     console.log("Employees loaded:", employees.length);
@@ -20,33 +61,54 @@ export default async function fetchAndRenderTasks() {
 }
 
 function updateDashboardStats(tasks) {
-  document.querySelectorAll(".card-box h3")[3].textContent = "0";
-  const assignedCount = tasks.length;
-  const extensionsCount = tasks.filter(
-    (t) => t.status === "Extension Req."
-  ).length;
-  const overdueCount = tasks.filter((t) => t.status === "Overdue").length;
-  const inProgressCount = tasks.filter(
-    (t) => t.status === "In Progress"
-  ).length;
-  const completedCount = tasks.filter((t) => t.status === "Completed").length;
+  // document.querySelectorAll(".card-box h3")[3].textContent = "0";
+  // const assignedCount = tasks.length;
+  // const extensionsCount = tasks.filter(
+  //   (t) => t.status === "Extension Req."
+  // ).length;
+  // const overdueCount = tasks.filter((t) => t.status === "Overdue").length;
+  // const inProgressCount = tasks.filter(
+  //   (t) => t.status === "In Progress"
+  // ).length;
+  // const completedCount = tasks.filter((t) => t.status === "Completed").length;
 
-  const cards = document.querySelectorAll(".card-box h3");
+  // const cards = document.querySelectorAll(".card-box h3");
 
-  if (cards.length >= 3) {
-    cards[0].textContent = assignedCount;
-    cards[1].textContent = extensionsCount;
-    cards[2].textContent = overdueCount;
-    cards[3].textContent = completedCount;
+  // if (cards.length >= 3) {
+  //   cards[0].textContent = assignedCount;
+  //   cards[1].textContent = extensionsCount;
+  //   cards[2].textContent = overdueCount;
+  //   cards[3].textContent = completedCount;
+  // }
+
+  // console.log("Stats updated:", {
+  //   total: assignedCount,
+  //   extensions: extensionsCount,
+  //   overdue: overdueCount,
+  //   inProgress: inProgressCount,
+  //   completed: completedCount,
+  // });
+
+  function updateDashboardStats(tasks) {
+    const assignedCount = tasks.length;
+    const extensionsCount = tasks.filter(
+      (t) => t.status === "Extension Req."
+    ).length;
+    const overdueCount = tasks.filter((t) => t.status === "Overdue").length;
+    const inProgressCount = tasks.filter(
+      (t) => t.status === "In Progress"
+    ).length;
+    const completedCount = tasks.filter((t) => t.status === "Completed").length;
+
+    const cards = document.querySelectorAll(".card-box h3");
+
+    if (cards.length >= 4) {
+      cards[0].textContent = assignedCount;
+      cards[1].textContent = extensionsCount; // Extension Pending
+      cards[2].textContent = overdueCount; // Overdue Tasks
+      cards[3].textContent = completedCount; // Completed
+    }
   }
-
-  console.log("Stats updated:", {
-    total: assignedCount,
-    extensions: extensionsCount,
-    overdue: overdueCount,
-    inProgress: inProgressCount,
-    completed: completedCount,
-  });
 }
 
 function renderTasksTable(tasks, employees) {
@@ -117,7 +179,7 @@ function renderTasksTable(tasks, employees) {
     const tbody = document.querySelector(".task-table table tbody");
     if (!tbody) return;
 
-    // احسب عدد كل حالة قبل المسح
+    // calculate before delete
     let toDoCount = 0,
       overdueCount = 0,
       extensionCount = 0,
@@ -147,39 +209,55 @@ function renderTasksTable(tasks, employees) {
         parseInt(cards[3].textContent, 10) + completedCount;
     }
 
-    // امسح كل الصفوف
     tbody.innerHTML =
       '<tr><td colspan="5" class="text-center">No tasks found</td></tr>';
   });
 }
 
+function initDashboardCounters() {
+  const cards = document.querySelectorAll(".card-box h3");
+  cards.forEach((c) => (c.textContent = "0"));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initDashboardCounters();
+  fetchAndRenderTasks(); // render tasks but counters stay at 0
+});
+
 function handleAction(taskId, action) {
-  console.log(`Action ${action} triggered for task ${taskId}`);
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const taskIndex = tasks.findIndex((t) => t.id == taskId);
+  if (taskIndex === -1) return;
 
-  const row = document.querySelector(`tr[data-task-id="${taskId}"]`);
-
-  const statusCell = row.querySelector("td:nth-child(4) .badge");
-  const status = statusCell ? statusCell.textContent.trim() : "";
+  const task = tasks[taskIndex];
+  const cards = document.querySelectorAll(".card-box h3");
+  // cards[0] = Assigned
+  // cards[1] = Extension Pending
+  // cards[2] = Overdue
+  // cards[3] = Completed
 
   if (action === "follow-up") {
-    if (status === "To Do") {
-      const extensionCard = document.querySelectorAll(".card-box h3")[1];
-      if (extensionCard) {
-        let current = parseInt(extensionCard.textContent, 10) || 0;
-        extensionCard.textContent = current + 1;
-      }
+    if (task.status === "To Do") {
+      task.status = "Overdue";
+      cards[2].textContent = parseInt(cards[2].textContent, 10) + 1;
+    } else {
+      task.status = "Completed";
+      cards[3].textContent = parseInt(cards[3].textContent, 10) + 1;
     }
-    row.remove();
+  } else if (action === "approve") {
+    task.status = "Extension Req.";
+    cards[1].textContent = parseInt(cards[1].textContent, 10) + 1;
+  } else if (action === "reassign") {
+    task.status = "Overdue";
+    cards[2].textContent = parseInt(cards[2].textContent, 10) + 1;
   }
 
-  if (action === "reassign") {
-    row.remove();
-    const overdueCard = document.querySelectorAll(".card-box h3")[2];
-    if (overdueCard) {
-      let current = parseInt(overdueCard.textContent, 10) || 0;
-      overdueCard.textContent = current + 1;
-    }
-  }
+  // Save updated tasks
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  // Remove row after action
+  const row = document.querySelector(`tr[data-task-id="${taskId}"]`);
+  if (row) row.remove();
 }
 
 // Show error message
@@ -190,10 +268,8 @@ function showError(message) {
   }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", fetchAndRenderTasks);
 
-// Make handleAction available globally
 window.handleAction = handleAction;
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");

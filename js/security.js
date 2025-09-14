@@ -16,14 +16,11 @@ links.forEach((link) => {
   });
 });
 
-
 /***** loggedInUser *****/
-const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    if (loggedInUser && loggedInUser.name) {
-        document.getElementById('username').textContent = loggedInUser.name;
-    }
-
-
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+if (loggedInUser && loggedInUser.name) {
+  document.getElementById("username").textContent = loggedInUser.name;
+}
 
 /***** 1) Basic variables *****/
 let employees = [];
@@ -33,7 +30,7 @@ let selectedAction = null;
 
 /***** 2) Utility functions *****/
 function getTodayStr() {
-  return new Date().toLocaleDateString("en-GB").replace(/\//g, "-");
+  return new Date().toISOString().split("T")[0];
 }
 
 function getEmployee(empId) {
@@ -44,7 +41,7 @@ function getStatus(record) {
   if (record.isLeave) return "Leave";
   if (record.isWFH) return "WFH";
   if (!record.checkIn) return "Absent";
-  if (record.checkIn <= "09:00") return "Present";
+  if (record.checkIn <= "09:15") return "Present";
   if (record.checkIn <= "11:00") return "Late";
   return "Absent";
 }
@@ -76,12 +73,18 @@ function buildRowHtml(record) {
   const statusClass = getStatusClass(status);
   const disabled = record.isLeave ? "disabled" : "";
 
-  const leaveBadge = record.isLeave ? `<span class="badge bg-info me-1">Leave</span>` : "";
-  const wfhBadge = record.isWFH ? `<span class="badge bg-primary">WFH</span>` : "";
+  const leaveBadge = record.isLeave
+    ? `<span class="badge bg-info me-1">Leave</span>`
+    : "";
+  const wfhBadge = record.isWFH
+    ? `<span class="badge bg-primary">WFH</span>`
+    : "";
 
   return `
     <tr>
-      <td><input type="checkbox" class="row-checkbox" data-id="${record.employeeId}"></td>
+      <td><input type="checkbox" class="row-checkbox" data-id="${
+        record.employeeId
+      }"></td>
       <td>${record.date}</td>
       <td>${employee.name}</td>
       <td>${employee.id}</td>
@@ -143,7 +146,9 @@ function updateStats() {
   const late = attendance.filter((r) => r.status === "Late").length;
   const leave = attendance.filter((r) => r.isLeave).length;
   const wfh = attendance.filter((r) => r.isWFH).length;
-  const absent = attendance.filter((r) => r.status === "Absent" && !r.isLeave && !r.isWFH).length;
+  const absent = attendance.filter(
+    (r) => r.status === "Absent" && !r.isLeave && !r.isWFH
+  ).length;
 
   const cards = document.querySelectorAll(".stat-card p");
   if (cards.length >= 6) {
@@ -158,7 +163,10 @@ function updateStats() {
 
 /***** 7) Check in/out changes *****/
 document.addEventListener("change", function (e) {
-  if (!e.target.matches('input[data-type="checkin"], input[data-type="checkout"]')) return;
+  if (
+    !e.target.matches('input[data-type="checkin"], input[data-type="checkout"]')
+  )
+    return;
 
   const empId = e.target.dataset.id;
   const type = e.target.dataset.type;
@@ -171,50 +179,95 @@ document.addEventListener("change", function (e) {
   if (type === "checkout") rec.checkOut = val;
 
   if (rec.checkIn && rec.checkOut && rec.checkIn > rec.checkOut) {
-    alert(`⚠ Check-in cannot be after Check-out for ${getEmployee(rec.employeeId).name}`);
+    toastr.error(
+      `⚠ Check-in cannot be after Check-out for ${
+        getEmployee(rec.employeeId).name
+      }`,
+    );
   }
 
   renderTable();
 });
+// minutesLate
+function calculateMinutesLate(checkIn) {
+  if (!checkIn) return 0;
 
+  const [h, m] = checkIn.split(":").map(Number);
+  const checkInMinutes = h * 60 + m;
+
+  const workStart = 9 * 60;
+  return checkInMinutes > workStart ? checkInMinutes - workStart : 0;
+}
 /***** 8) Bulk actions *****/
 function setupBulkHandlers() {
-  const selectAllEl = document.getElementById("selectAll") || document.querySelector("table thead input[type='checkbox']");
+  const selectAllEl =
+    document.getElementById("selectAll") ||
+    document.querySelector("table thead input[type='checkbox']");
 
   if (selectAllEl) {
     selectAllEl.addEventListener("change", function () {
-      document.querySelectorAll(".row-checkbox").forEach((cb) => (cb.checked = this.checked));
+      document
+        .querySelectorAll(".row-checkbox")
+        .forEach((cb) => (cb.checked = this.checked));
     });
   }
 
   document.querySelectorAll(".bulk-action").forEach((item) => {
     item.addEventListener("click", function (e) {
       e.preventDefault();
-      document.querySelectorAll(".bulk-action").forEach((x) => x.classList.remove("active"));
+      document
+        .querySelectorAll(".bulk-action")
+        .forEach((x) => x.classList.remove("active"));
       this.classList.add("active");
       selectedAction = (this.dataset.action || "").toLowerCase();
     });
   });
 
-  const applyBtn = document.getElementById("applyBulk") || document.querySelector(".bulk-actions .btn-success");
+  const applyBtn =
+    document.getElementById("applyBulk") ||
+    document.querySelector(".bulk-actions .btn-success");
 
   if (applyBtn) {
     applyBtn.addEventListener("click", function () {
-      if (!selectedAction) return alert("⚠ Please select a bulk action first!");
-      const checked = Array.from(document.querySelectorAll(".row-checkbox:checked"));
-      if (!checked.length) return alert("⚠ Please select at least one employee!");
+      if (!selectedAction)
+        return toastr.error("⚠ Please select a bulk action first!");
+      const checked = Array.from(
+        document.querySelectorAll(".row-checkbox:checked")
+      );
+      if (!checked.length)
+        return toastr.error("⚠ Please select at least one employee!");
+
+      const requests = JSON.parse(localStorage.getItem("requests") || "[]");
 
       checked.forEach((cb) => {
         const empId = cb.dataset.id;
-        const rec = attendance.find((r) => String(r.employeeId) === String(empId));
+        const rec = attendance.find(
+          (r) => String(r.employeeId) === String(empId)
+        );
         if (!rec) return;
 
         if (selectedAction === "leave") {
-          if (!hasApprovedRequest(empId, "leave")) return alert("Not Found");
+          const found = requests.some(
+            (r) =>
+              String(r.employeeId) === String(empId) &&
+              r.type.toLowerCase() === "leave" &&
+              r.status.toLowerCase() === "approved" &&
+              r.payload.requestedDate == getTodayStr()
+          );
+          if (!found)
+            return toastr.error("Leave request not found or not approved!");
           rec.isLeave = true;
           rec.isWFH = false;
         } else if (selectedAction === "wfh") {
-          if (!hasApprovedRequest(empId, "wfh")) return alert("Not Found");
+          const found = requests.some(
+            (r) =>
+              String(r.employeeId) === String(empId) &&
+              r.type.toLowerCase() === "wfh" &&
+              r.status.toLowerCase() === "approved" &&
+              r.payload.requestedDate == getTodayStr()
+          );
+          if (!found)
+            return toastr.error("WFH request not found or not approved!");
           rec.isWFH = true;
           rec.isLeave = false;
         } else if (selectedAction === "checkin") {
@@ -225,7 +278,9 @@ function setupBulkHandlers() {
       });
 
       selectedAction = null;
-      document.querySelectorAll(".bulk-action").forEach((x) => x.classList.remove("active"));
+      document
+        .querySelectorAll(".bulk-action")
+        .forEach((x) => x.classList.remove("active"));
       if (selectAllEl) selectAllEl.checked = false;
 
       renderTable();
@@ -236,7 +291,10 @@ function setupBulkHandlers() {
 /***** 9) Filters *****/
 function setupFilters() {
   const searchInput = document.querySelector(".search-group input");
-  const statusItems = document.querySelectorAll(".search-group .dropdown-menu .dropdown-item");
+  const statusItems = document.querySelectorAll(
+    ".search-group .dropdown-menu .dropdown-item"
+  );
+  const filterBtn = document.querySelector(".search-group .dropdown-toggle"); // 🔹 الزرار نفسه
 
   if (searchInput) searchInput.addEventListener("input", filterTable);
 
@@ -246,6 +304,13 @@ function setupFilters() {
         e.preventDefault();
         statusItems.forEach((x) => x.classList.remove("active"));
         this.classList.add("active");
+
+        if (this.textContent === "All") {
+          filterBtn.textContent = "Status";
+        } else {
+          filterBtn.textContent = this.textContent;
+        }
+
         filterTable();
       });
     });
@@ -253,14 +318,22 @@ function setupFilters() {
 }
 
 function filterTable() {
-  const searchVal = (document.querySelector(".search-group input")?.value || "").toLowerCase();
-  const selectedStatus = document.querySelector(".search-group .dropdown-menu .active")?.textContent || "";
+  const searchVal = (
+    document.querySelector(".search-group input")?.value || ""
+  ).toLowerCase();
+  const selectedStatus =
+    document.querySelector(".search-group .dropdown-menu .active")
+      ?.textContent || "All";
 
   const filtered = attendance.filter((rec) => {
     const emp = getEmployee(rec.employeeId);
-    const matchesSearch = (emp.name || "").toLowerCase().includes(searchVal) || String(emp.id).includes(searchVal);
+    const matchesSearch =
+      (emp.name || "").toLowerCase().includes(searchVal) ||
+      String(emp.id).includes(searchVal);
+
     const status = getStatus(rec);
-    const matchesStatus = !selectedStatus || status === selectedStatus;
+    const matchesStatus = selectedStatus === "All" || status === selectedStatus;
+
     return matchesSearch && matchesStatus;
   });
 
@@ -269,9 +342,19 @@ function filterTable() {
 
 /***** 10) Save data to localStorage *****/
 document.getElementById("saveBtn")?.addEventListener("click", () => {
-  attendance.forEach((r) => (r.status = getStatus(r)));
-  localStorage.setItem("attendance", JSON.stringify(attendance));
-  alert("✅ Changes saved successfully!");
+  attendance.forEach((r) => {
+    r.status = getStatus(r);
+    r.minutesLate = calculateMinutesLate(r.checkIn);
+  });
+  console.log(attendance);
+  let allRecords = JSON.parse(localStorage.getItem("attendance")) || [];
+  const today = new Date().toISOString().split("T")[0];
+  allRecords = allRecords.filter((rec) => rec.date !== today);
+
+  allRecords.push(...attendance);
+  localStorage.setItem("attendance", JSON.stringify(allRecords));
+
+  toastr.success("✅ Today's attendance saved!");
 });
 
 /***** 11) Initialize *****/
@@ -282,7 +365,3 @@ initData()
     setupFilters();
   })
   .catch((err) => console.error(err));
-
-
-
-

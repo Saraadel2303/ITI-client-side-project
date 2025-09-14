@@ -3,12 +3,14 @@ import {
   getEmpCount,
   getPresntsToday,
   getAbsentCount,
+  getWFHCount,
   getLateTasksCount,
   getDepartmentCount,
   getAvgAttendance,
   getEmployeesPerDeptAvg,
   getAvgAttendancePerDept,
   getIdealEmployee,
+  // getWFHCount,
 } from "./hrUtils.js";
 
 import { renderHomeCharts, renderTasksChart } from "./charts.js";
@@ -67,12 +69,13 @@ async function fillHRDashboard() {
   const PresentsToday = await getPresntsToday();
   const absentCount = await getAbsentCount();
 
-  const lateTasksCount = await getLateTasksCount();
+  // const lateTasksCount = await getLateTasksCount();
+  const WFHCount = await getWFHCount();
 
   document.querySelector(".total").textContent = empCount;
   document.querySelector(".present").textContent = PresentsToday;
   document.querySelector(".absences").textContent = absentCount;
-  document.querySelector(".tasks").textContent = lateTasksCount;
+  document.querySelector(".tasks").textContent = WFHCount;
 }
 
 fillHRDashboard();
@@ -158,7 +161,7 @@ document.getElementById("settingsForm").addEventListener("submit", (e) => {
   ) {
     Swal.fire({
       title: "Error",
-      text: "You can't Enter a Negative Number In Inbut Field",
+      text: "You can't Enter a Negative Number In Input Field",
       icon: "error",
       confirmButtonText: "Ok",
       confirmButtonColor: "#534fea",
