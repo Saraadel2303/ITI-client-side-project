@@ -254,18 +254,23 @@ function setupFilters() {
 
 function filterTable() {
   const searchVal = (document.querySelector(".search-group input")?.value || "").toLowerCase();
-  const selectedStatus = document.querySelector(".search-group .dropdown-menu .active")?.textContent || "";
+  const selectedStatus = document.querySelector(".search-group .dropdown-menu .active")?.textContent || "All";
 
   const filtered = attendance.filter((rec) => {
     const emp = getEmployee(rec.employeeId);
-    const matchesSearch = (emp.name || "").toLowerCase().includes(searchVal) || String(emp.id).includes(searchVal);
+    const matchesSearch =
+      (emp.name || "").toLowerCase().includes(searchVal) ||
+      String(emp.id).includes(searchVal);
+
     const status = getStatus(rec);
-    const matchesStatus = !selectedStatus || status === selectedStatus;
+    const matchesStatus = selectedStatus === "All" || status === selectedStatus;
+
     return matchesSearch && matchesStatus;
   });
 
   renderRows(filtered);
 }
+
 
 /***** 10) Save data to localStorage *****/
 document.getElementById("saveBtn")?.addEventListener("click", () => {
