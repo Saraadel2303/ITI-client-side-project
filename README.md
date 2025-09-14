@@ -1,7 +1,7 @@
 # ITI Client Side Project - HR System
 
 A modern, responsive HR System for attendance, permissions, and tasks management — built with **HTML, CSS, JavaScript, and Bootstrap**.
-Developed as part of the ITI Mansoura program.
+Developed as part of the ITI Mansoura  .
 
 ---
 
