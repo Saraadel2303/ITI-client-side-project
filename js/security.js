@@ -299,9 +299,6 @@ function filterTable() {
     const matchesSearch =
       (emp.name || "").toLowerCase().includes(searchVal) ||
       String(emp.id).includes(searchVal);
-    const matchesSearch =
-      (emp.name || "").toLowerCase().includes(searchVal) ||
-      String(emp.id).includes(searchVal);
 
     const status = getStatus(rec);
     const matchesStatus = selectedStatus === "All" || status === selectedStatus;
