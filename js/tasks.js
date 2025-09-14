@@ -171,10 +171,10 @@ $(async function () {
     modal.show();
   });
 
-  check();
+  check(tasks);
 });
 
-function check() {
+function check(tasks) {
   $("#selectAll").on("click", function () {
     $(".row-select").prop("checked", this.checked);
   });
@@ -199,7 +199,11 @@ function check() {
       console.log(ids.includes(Number(rowId)), rowData[1]);
 
       if (ids.includes(Number(rowId))) {
+        let task = tasks.find((el) => el.id == rowId);
         rowData[4] = "Completed";
+        task.status = "Completed";
+        Task.updateTask(task);
+        console.log(task);
         this.data(rowData).invalidate();
       }
     });

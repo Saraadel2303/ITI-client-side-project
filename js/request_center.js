@@ -5,6 +5,7 @@ $(document).ready(async function () {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   let id = loggedInUser?.id;
   let requests = await Request.employeeRequests(id);
+  let allRequests = await Request.getRequests();
   let weekIndex = getWeekIndexInYear();
   let quotas = {
     late: {
@@ -45,6 +46,7 @@ $(document).ready(async function () {
           return `<span class="${color}">${data}</span>`;
         },
       },
+      { data: "payload.reason", defaultContent: "-" },
       { data: "createdAt" },
       { data: "decidedAt" },
       { data: "managerComment" },
@@ -63,17 +65,6 @@ $(document).ready(async function () {
     scrollX: false,
     autoWidth: true,
     order: [[0, "desc"]],
-  });
-
-  let newId = 0;
-
-  $.getJSON("/data/data1.json", function (data) {
-    if (data.requests.length > 0) {
-      newId =
-        data.requests[data.requests.length - 1].id +
-        1 +
-        requests[requests.length - 1].id;
-    }
   });
 
   $("#requestForm").validate({
@@ -127,13 +118,15 @@ $(document).ready(async function () {
       let now = new Date();
       let date = new Date().toISOString().split("T")[0];
       let time = now.toLocaleTimeString();
+      let newId = allRequests[allRequests.length - 1].id + 1 ;
+
       let newRow = {
         id: newId,
         employeeId: id,
         type: $("#type").val(),
         createdAt: `${date}  ${time}`,
         status: "Pending",
-        reason: "",
+        payload: { reason: $("#notes").val() },
         decidedAt: "",
         managerComment: "",
       };
@@ -149,7 +142,7 @@ $(document).ready(async function () {
         $("#type").val(),
         {
           requestedDate: $("#requestedDate").val(),
-          reason: $("#reason").val(),
+          reason: $("#notes").val(),
           minutesExpectedLate: $("#minutesValue").val(),
           weekIndex,
           overtimeHours: $("#overtimeHours").val(),

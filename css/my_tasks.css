@@ -3,7 +3,11 @@
 body {
   /* background: #f8f9fa; */
 }
-
+body,
+body * {
+  transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease,
+    height 0.3s ease, font-size 0.3s ease;
+}
 .kanban-column {
   background-color: var(--color-kanban-list-bg);
 
@@ -88,7 +92,8 @@ body {
   border-bottom: var(--color-border);
 }
 
-.modal-content,.modal-body {
+.modal-content,
+.modal-body {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
@@ -101,15 +106,15 @@ body {
 .modal-footer {
   background-color: var(--color-bg);
   border-top: var(--color-border) !important;
-
 }
 
-#commentsList,.muted {
+#commentsList,
+.muted {
   color: var(--color-muted) !important;
 }
 
-#taskDesc{
-  color: var( --color-muted) !important;
+#taskDesc {
+  color: var(--color-muted) !important;
 }
 
 @media (max-width: 600px) {

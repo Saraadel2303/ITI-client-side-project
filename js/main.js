@@ -16,7 +16,6 @@ $(function () {
 });
 
 function setTheme() {
-  $("body").hasClass("dark-theme");
   const theme = localStorage.getItem("theme");
   if (theme == "dark") {
     $("body").addClass("dark-theme");

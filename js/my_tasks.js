@@ -160,9 +160,9 @@ $(async function () {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
   function updateStatus(tid, status) {
-    let task = tasks.find((el) => (el.id = id));
+    let task = tasks.find((el) => (el.id = tid));
     task.status = status;
-    Task.updateTask(tid, task, id);
+    Task.updateTask(task, id);
   }
 
   $(".task-list")

@@ -1,3 +1,8 @@
+body,
+body * {
+  transition: background-color 0.5s ease, color 0.5s ease, width 0.5s ease,
+    height 0.5s ease, font-size 0.5s ease;
+}
 .pending {
   background-color: #fbf5e8;
   color: #d39c1d;
@@ -29,8 +34,9 @@
 .dataTables_wrapper {
   color: var(--color-text);
 }
+
 .dataTables_wrapper .dataTables_filter input {
-  border: 2px solid var(--color-border);
+  border: 2px solid rgba(223, 222, 243, 0.4);
   border-radius: 8px;
   padding: 6px 12px;
   margin-left: 0.5rem;
