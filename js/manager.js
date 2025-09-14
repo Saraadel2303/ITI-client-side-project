@@ -1,14 +1,6 @@
-// ==========================
-// 📌 Manager Dashboard Logic
-// ==========================
-
-// مفاتيح التخزين
 const STORAGE_KEY = "requestsState";
 const LOGS_KEY = "actionLogs";
 
-// ==========================
-// 🟣 تحميل البيانات
-// ==========================
 async function loadRequests() {
   console.log("🔄 جاري تحميل البيانات ...");
 
@@ -31,13 +23,9 @@ async function loadRequests() {
   renderLogs();
 }
 
-// ==========================
-// 🟣 رسم كل الجداول
-// ==========================
 function renderAllTables(data) {
   console.log("✅ تم توزيع الطلبات على الجداول");
 
-  // تفريغ الجداول
   document.querySelectorAll("tbody").forEach((tbody) => (tbody.innerHTML = ""));
 
   data.requests.forEach((r) => {
@@ -63,12 +51,8 @@ function renderAllTables(data) {
   });
 }
 
-// يرسم أعمدة الطلب حسب نوعه
-
-// يرسم أعمدة الطلب حسب نوعه
 function renderRequestRow(r) {
   switch (r.type) {
-    // 🟣 Late Requests
     case "Late":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
@@ -77,7 +61,6 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Absence / Leave Requests
     case "Absence":
     case "leave":
       return `
@@ -86,7 +69,6 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Overtime Requests
     case "Overtime":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
@@ -94,7 +76,6 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Extension Requests
     case "DeadlineExtension":
       return `
         <td>${r.payload.taskName || "-"}</td>
@@ -103,7 +84,6 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Work From Home Requests
     case "WFH":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
@@ -116,33 +96,22 @@ function renderRequestRow(r) {
   }
 }
 
-// ==========================
-// 🟣 التعامل مع الأكشنز Approve/Reject
-// ==========================
 function handleAction(requestId, newStatus) {
   const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-  // عدل حالة الطلب
   const request = data.requests.find((r) => r.id === requestId);
   if (request) {
     request.status = newStatus;
   }
 
-  // احفظ النسخة المعدلة
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   console.log(`⚡ Action: ${request?.employeeId} → ${newStatus}`);
 
-  // سجل في اللوج
   saveLog(request, newStatus);
-
-  // إعادة رسم
   renderAllTables(data);
   renderLogs();
 }
 
-// ==========================
-// 🟣 اللوجز
-// ==========================
 function saveLog(request, newStatus) {
   const logs = JSON.parse(localStorage.getItem(LOGS_KEY)) || [];
   const log = {
@@ -179,9 +148,6 @@ function renderLogs() {
   });
 }
 
-// ==========================
-// 🟣 ألوان البادجات
-// ==========================
 function getStatusColor(status) {
   switch (status) {
     case "Approved":
@@ -193,9 +159,6 @@ function getStatusColor(status) {
   }
 }
 
-// ==========================
-// 🟣 Event Delegation
-// ==========================
 document.addEventListener("click", (e) => {
   if (e.target.closest(".btn-approve")) {
     const row = e.target.closest("tr");
@@ -210,16 +173,12 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ==========================
-// 🟣 عند تشغيل الصفحة
-// ==========================
 document.addEventListener("DOMContentLoaded", loadRequests);
 
 const toggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 const body = document.body;
 
-// Check localStorage (لو عايز تخلي التغيير يفضل بعد ريفريش الصفحة)
 if (localStorage.getItem("theme") === "dark") {
   body.classList.add("dark-theme");
   themeIcon.classList.remove("fa-moon");

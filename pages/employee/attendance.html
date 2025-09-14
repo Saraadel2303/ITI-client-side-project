@@ -1,338 +1,438 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/imgs/logo.png" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/imgs/logo.png">
-
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- font awesome cdn -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- custom css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="/css/employeesAttendance.css" />
 
-    <!-- Calender -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
 
-
-
-    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/sidebar.css" />
 
     <title>Tasks List</title>
-    <style>
-    </style>
-</head>
+    <style></style>
+  </head>
 
-<body>
+  <body>
     <div class="d-flex">
-        <!-- Sidebar -->
-        <div id="sidebar" class="main-side sidebar d-none d-lg-block bg-white  p-3">
-            <a href="#"
-                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
-                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
-                        srcset="">
-                    <span class="fs-2 mb-4  side-title d-none d-md-inline">HR</span>
-                </span>
+      <div
+        id="sidebar"
+        class="main-side sidebar d-none d-lg-block bg-white p-3"
+      >
+        <a
+          href="#"
+          class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <span
+            class="align-self-center text-sm-center text-md-center text-lg-start"
+            ><img
+              class="mb-3 text-sm-center"
+              style="width: 4rem; height: 4rem"
+              src="/imgs/logo.png"
+              alt=""
+              srcset=""
+            />
+            <span class="fs-2 mb-4 side-title d-none d-md-inline">HR</span>
+          </span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-auto gap-3">
+          <li id="attendance">
+            <a href="#" class="nav-link link-dark">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="bi me-2"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-card-checklist"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"
+                />
+                <path
+                  d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"
+                />
+              </svg>
+              Attendance board
             </a>
-            <ul class="nav nav-pills flex-column mb-auto gap-3">
-                <li id="attendance">
-                    <a href="#" class="nav-link link-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="bi me-2" width="16" height="16"
-                            fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                            <path
-                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
-                            <path
-                                d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
-                        </svg>
-                        Attendance board
-                    </a>
-                </li>
-                <li id="my_attendance" class="text-center">
-                    <a href="attendance.html" class="nav-link link-dark text-sm-center text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
-                        <span class="d-none d-lg-inline">My Attendance</span>
-                    </a>
-                </li>
-                <li id="req" class="text-center">
-                    <a href="request_center.html" class="nav-link active text-sm-center text-lg-start ">
-                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
-                        <span class="d-none  d-lg-inline">Request center</span>
-                    </a>
-                </li>
-                <li id="team_tasks" class="text-center">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-list-check"></i></span>
-                        Team Tasks
-                    </a>
-                </li>
-                <li id="team_attendance">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-people-group"></i></span>
-                        Team Attendance
-                    </a>
-                </li>
-                <li id="approval">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
-                        Approval queue
-                    </a>
-                </li>
-                <li id="settings">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
-                        Settings
-                    </a>
-                </li>
-                <li id="tasks">
-                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
-                                    Tasks
-                                </button>
-                            </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
-                                        <li class=""><a href="tasks_list.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
-                                                Table</a>
-                                        </li>
-                                        <li class="mt-1">
-                                            <a href="my_tasks.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi me-2"><i
-                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Main Area -->
-        <div class="flex-grow-1">
-            <!-- Navbar (inside main area, next to sidebar) -->
-            <nav class="position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3">
-                <!-- Sidebar toggle for small screens -->
-                <button class="btn btn-outline-primary d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#sidebarOffcanvas">
-                    <i class="bi bi-list"></i>
-                </button>
-
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text"
-                        id="user-name"></span></span>
-
-                <div class="ms-auto dropdown">
-                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
-                        data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4 me-2"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="#" id="toggleTheme">
-                                <i class="bi bi-moon-stars me-2"></i>Dark Mode
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item logout" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
+          </li>
+          <li id="my_attendance" class="text-center">
+            <a
+              href="attendance.html"
+              class="nav-link link-dark text-sm-center text-lg-start"
+            >
+              <span class="bi me-2"
+                ><i class="fa-solid fa-user-check"></i
+              ></span>
+              <span class="d-none d-lg-inline">My Attendance</span>
+            </a>
+          </li>
+          <li id="req" class="text-center">
+            <a
+              href="request_center.html"
+              class="nav-link active text-sm-center text-lg-start"
+            >
+              <span class="bi me-2"><i class="fa-solid fa-bullhorn"></i></span>
+              <span class="d-none d-lg-inline">Request center</span>
+            </a>
+          </li>
+          <li id="team_tasks" class="text-center">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-list-check"></i
+              ></span>
+              Team Tasks
+            </a>
+          </li>
+          <li id="team_attendance">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-people-group"></i
+              ></span>
+              Team Attendance
+            </a>
+          </li>
+          <li id="approval">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
+              Approval queue
+            </a>
+          </li>
+          <li id="settings">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
+              Settings
+            </a>
+          </li>
+          <li id="tasks">
+            <div
+              class="accordion accordion-flush pt-0"
+              id="accordionFlushExample"
+            >
+              <div class="accordion-item">
+                <div class="accordion-header" id="flush-headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    <span class="bi me-3"
+                      ><i class="fa-regular fa-file-lines"></i
+                    ></span>
+                    Tasks
+                  </button>
+                </div>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body">
+                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                      <li class="">
+                        <a
+                          href="tasks_list.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-eye"></i></span
+                          >Tasks Table</a
+                        >
+                      </li>
+                      <li class="mt-1">
+                        <a
+                          href="my_tasks.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-file-lines"></i></span
+                          >Tasks Board</a
+                        >
+                      </li>
                     </ul>
+                  </div>
                 </div>
-            </nav>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-            <!-- Main content -->
-            <main class="p-4">
-                <div class=" flex-fill">
-                    <!-- Navbar Mobile -->
+      <div class="flex-grow-1">
+        <nav
+          class="position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3"
+        >
+          <button
+            class="btn btn-outline-primary d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebarOffcanvas"
+          >
+            <i class="bi bi-list"></i>
+          </button>
 
-                    <div class="container my-4">
-                        <!-- Page Header -->
-                        <div class="text-center mb-4">
-                            <h2 class="fw-bold">My Attendance Dashboard</h2>
-                            <p class="text-muted">Track your daily attendance & working hours</p>
-                        </div>
+          <span class="navbar-text fw-semibold welcome-text"
+            >👋 Welcome, <span class="welcome-text" id="user-name"></span
+          ></span>
 
+          <div class="ms-auto dropdown">
+            <a
+              href="#"
+              class="d-flex align-items-center text-dark text-decoration-none"
+              data-bs-toggle="dropdown"
+            >
+              <i class="bi bi-person-circle fs-4 me-2"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#" id="toggleTheme">
+                  <i class="bi bi-moon-stars me-2"></i>Dark Mode
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item logout" href="#"
+                  ><i class="bi bi-translate me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
 
-                        <!-- Stats Cards -->
-                        <div class="row g-3 mb-4 d-flex justify-content-center " id="summaryCards">
-                            <div class="col-6 col-md-4 col-lg-2">
-                                <div class="stat-card">
-                                    <h6>Present</h6>
-                                    <p id="presentCount" style="color:#0f8a46">0</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2">
-                                <div class="stat-card">
-                                    <h6>Late</h6>
-                                    <p id="lateCount" style="color:#b25a00">0</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2">
-                                <div class="stat-card">
-                                    <h6>Absent</h6>
-                                    <p id="absentCount" style="color:#c12a2a">0</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2">
-                                <div class="stat-card">
-                                    <h6>Leave</h6>
-                                    <p id="leaveCount" style="color:#5a32c2">0</p>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4 col-lg-2">
-                                <div class="stat-card">
-                                    <h6>WFH</h6>
-                                    <p id="wfhCount" style="color:#2563eb">0</p>
-                                </div>
-                            </div>
-                        </div>
+        <main class="p-4">
+          <div class="flex-fill">
+            <div class="container my-4">
+              <div class="text-center mb-4">
+                <h2 class="fw-bold">My Attendance Dashboard</h2>
+                <p class="text-muted">
+                  Track your daily attendance & working hours
+                </p>
+              </div>
 
+              <div
+                class="row g-3 mb-4 d-flex justify-content-center"
+                id="summaryCards"
+              >
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="stat-card">
+                    <h6>Present</h6>
+                    <p id="presentCount" style="color: #0f8a46">0</p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="stat-card">
+                    <h6>Late</h6>
+                    <p id="lateCount" style="color: #b25a00">0</p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="stat-card">
+                    <h6>Absent</h6>
+                    <p id="absentCount" style="color: #c12a2a">0</p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="stat-card">
+                    <h6>Leave</h6>
+                    <p id="leaveCount" style="color: #5a32c2">0</p>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                  <div class="stat-card">
+                    <h6>WFH</h6>
+                    <p id="wfhCount" style="color: #2563eb">0</p>
+                  </div>
+                </div>
+              </div>
 
-                        <!-- Calendar -->
-                        <div class="row mb-4">
-                            <div class="col-12">
-                                <div id="calenderCard" class="card custom shadow-sm">
-                                    <div id="calenderBody" class="custom card-body">
-                                        <h5 class="mb-3 text-primary custom">
-                                            <i class="fa-regular fa-calendar-days me-2"></i>Attendance Calendar
-                                        </h5>
+              <div class="row mb-4">
+                <div class="col-12">
+                  <div id="calenderCard" class="card custom shadow-sm">
+                    <div id="calenderBody" class="custom card-body">
+                      <h5 class="mb-3 text-primary custom">
+                        <i class="fa-regular fa-calendar-days me-2"></i
+                        >Attendance Calendar
+                      </h5>
 
-                                        <div id="calendar" class="custom"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Attendance Table -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card shadow-sm custom">
-                                    <div class="card-body custom">
-                                        <h5 class="mb-3 text-primary"><i class="bi bi-clock-history me-2"></i>Attendance
-                                            Records
-                                        </h5>
-                                        <div class="custom table-responsive">
-                                            <table class="custom table table-bordered align-middle text-center table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Date</th>
-                                                        <th>Check-in</th>
-                                                        <th>Check-out</th>
-                                                        <th>Status</th>
-                                                        <th>Minutes late</th>
-                                                        <th>Total Hours</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="attendanceTable">
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td><span class="badge"></span></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                      <div id="calendar" class="custom"></div>
                     </div>
+                  </div>
                 </div>
-            </main>
-        </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="card shadow-sm custom">
+                    <div class="card-body custom">
+                      <h5 class="mb-3 text-primary">
+                        <i class="bi bi-clock-history me-2"></i>Attendance
+                        Records
+                      </h5>
+                      <div class="custom table-responsive">
+                        <table
+                          class="custom table table-bordered align-middle text-center table-striped"
+                        >
+                          <thead>
+                            <tr>
+                              <th>Date</th>
+                              <th>Check-in</th>
+                              <th>Check-out</th>
+                              <th>Status</th>
+                              <th>Minutes late</th>
+                              <th>Total Hours</th>
+                            </tr>
+                          </thead>
+                          <tbody id="attendanceTable">
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td><span class="badge"></span></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
 
     <!-- Sidebar Offcanvas (for sm & md) -->
-    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas" style="width: 45%;">
-        <div class="offcanvas-header pt-0">
-            <a href="#"
-                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <span class="align-self-center text-sm-center text-md-center text-lg-start mt-5"><img
-                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
-                        srcset="">
-                    <span class="fs-2 mb-4  side-title">HR</span>
-                </span>
+    <div
+      class="offcanvas offcanvas-start main-side"
+      tabindex="-1"
+      id="sidebarOffcanvas"
+      style="width: 45%"
+    >
+      <div class="offcanvas-header pt-0">
+        <a
+          href="#"
+          class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <span
+            class="align-self-center text-sm-center text-md-center text-lg-start mt-5"
+            ><img
+              class="mb-3 text-sm-center"
+              style="width: 4rem; height: 4rem"
+              src="/imgs/logo.png"
+              alt=""
+              srcset=""
+            />
+            <span class="fs-2 mb-4 side-title">HR</span>
+          </span>
+        </a>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column mb-auto gap-3">
+          <li class="">
+            <a href="attendance.html" class="nav-link link-dark text-lg-start">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-user-check"></i
+              ></span>
+              <span class="">My Attendance</span>
             </a>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills flex-column mb-auto gap-3">
-                <li class="">
-                    <a href="attendance.html" class="nav-link link-dark text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
-                        <span class="">My Attendance</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="request_center.html" class="nav-link active  text-lg-start ">
-                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
-                        <span class="">Request center</span>
-                    </a>
-                </li>
-                <li id="tasks">
-                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
-                                    Tasks
-                                </button>
-                            </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
-                                        <li class=""><a href="tasks_list.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
-                                                Table</a>
-                                        </li>
-                                        <li class="mt-1">
-                                            <a href="my_tasks.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi me-2"><i
-                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+          </li>
+          <li class="">
+            <a href="request_center.html" class="nav-link active text-lg-start">
+              <span class="bi me-2"><i class="fa-solid fa-bullhorn"></i></span>
+              <span class="">Request center</span>
+            </a>
+          </li>
+          <li id="tasks">
+            <div
+              class="accordion accordion-flush pt-0"
+              id="accordionFlushExample"
+            >
+              <div class="accordion-item">
+                <div class="accordion-header" id="flush-headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    <span class="bi me-3"
+                      ><i class="fa-regular fa-file-lines"></i
+                    ></span>
+                    Tasks
+                  </button>
+                </div>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body">
+                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                      <li class="">
+                        <a
+                          href="tasks_list.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-eye"></i></span
+                          >Tasks Table</a
+                        >
+                      </li>
+                      <li class="mt-1">
+                        <a
+                          href="my_tasks.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-file-lines"></i></span
+                          >Tasks Board</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/js/employeesAttendance.js"></script>
     <script src="/fontawesome/js/all.min.js"></script>
     <script src="/js/sidebar.js"></script>
-</body>
-
+  </body>
 </html>

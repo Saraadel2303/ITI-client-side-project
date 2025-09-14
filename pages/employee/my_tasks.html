@@ -1,481 +1,645 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard</title>
-    <link rel="icon" type="image/png" href="/imgs/logo.png">
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="/imgs/logo.png" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
 
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <!-- Toastr CSS -->
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <link rel="stylesheet" href="/css/my_tasks.css">
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/my_tasks.css" />
+  </head>
 
-</head>
-
-<body>
-
-    <div class="d-flex ">
-        <!-- Sidebar -->
-        <div id="sidebar" class="main-side sidebar d-none d-lg-block bg-white  p-3">
-            <a href="#"
-                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
-                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
-                        srcset="">
-                    <span class="fs-2 mb-4  side-title d-none d-md-inline">HR</span>
-                </span>
+  <body>
+    <div class="d-flex">
+      <div
+        id="sidebar"
+        class="main-side sidebar d-none d-lg-block bg-white p-3"
+      >
+        <a
+          href="#"
+          class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <span
+            class="align-self-center text-sm-center text-md-center text-lg-start"
+            ><img
+              class="mb-3 text-sm-center"
+              style="width: 4rem; height: 4rem"
+              src="/imgs/logo.png"
+              alt=""
+              srcset=""
+            />
+            <span class="fs-2 mb-4 side-title d-none d-md-inline">HR</span>
+          </span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-auto gap-3">
+          <li id="attendance">
+            <a href="#" class="nav-link link-dark">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="bi me-2"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-card-checklist"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"
+                />
+                <path
+                  d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"
+                />
+              </svg>
+              Attendance board
             </a>
-            <ul class="nav nav-pills flex-column mb-auto gap-3">
-                <li id="attendance">
-                    <a href="#" class="nav-link link-dark">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="bi me-2" width="16" height="16"
-                            fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
-                            <path
-                                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
-                            <path
-                                d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
-                        </svg>
-                        Attendance board
-                    </a>
-                </li>
-                <li id="my_attendance" class="text-center">
-                    <a href="attendance.html" class="nav-link link-dark text-sm-center text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
-                        <span class="d-none d-lg-inline">My Attendance</span>
-                    </a>
-                </li>
-                <li id="req" class="text-center">
-                    <a href="request_center.html" class="nav-link active text-sm-center text-lg-start ">
-                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
-                        <span class="d-none  d-lg-inline">Request center</span>
-                    </a>
-                </li>
+          </li>
+          <li id="my_attendance" class="text-center">
+            <a
+              href="attendance.html"
+              class="nav-link link-dark text-sm-center text-lg-start"
+            >
+              <span class="bi me-2"
+                ><i class="fa-solid fa-user-check"></i
+              ></span>
+              <span class="d-none d-lg-inline">My Attendance</span>
+            </a>
+          </li>
+          <li id="req" class="text-center">
+            <a
+              href="request_center.html"
+              class="nav-link active text-sm-center text-lg-start"
+            >
+              <span class="bi me-2"><i class="fa-solid fa-bullhorn"></i></span>
+              <span class="d-none d-lg-inline">Request center</span>
+            </a>
+          </li>
 
-                <li id="team_tasks" class="text-center">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-list-check"></i></span>
-                        Team Tasks
-                    </a>
-                </li>
-                <li id="team_attendance">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-people-group"></i></span>
-                        Team Attendance
-                    </a>
-                </li>
-                <li id="approval">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
-                        Approval queue
-                    </a>
-                </li>
-                <li id="settings">
-                    <a href="#" class="nav-link link-dark">
-                        <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
-                        Settings
-                    </a>
-                </li>
-                <li id="tasks">
-                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
-                                    Tasks
-                                </button>
-                            </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
-                                        <li class=""><a href="tasks_list.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
-                                                Table</a>
-                                        </li>
-                                        <li class="mt-1">
-                                            <a href="my_tasks.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi me-2"><i
-                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Main Area -->
-        <div class="flex-grow-1">
-            <!-- Navbar (inside main area, next to sidebar) -->
-            <nav class=" position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3">
-                <!-- Sidebar toggle for small screens -->
-                <button class="btn btn-outline-primary d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#sidebarOffcanvas">
-                    <i class="bi bi-list"></i>
-                </button>
-
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text" id="user-name"></span></span>
-
-                <div class="ms-auto dropdown">
-                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
-                        data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle fs-4 me-2"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="#" id="toggleTheme">
-                                <i class="bi bi-moon-stars me-2"></i>Dark Mode
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item logout" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
+          <li id="team_tasks" class="text-center">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-list-check"></i
+              ></span>
+              Team Tasks
+            </a>
+          </li>
+          <li id="team_attendance">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-people-group"></i
+              ></span>
+              Team Attendance
+            </a>
+          </li>
+          <li id="approval">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"><i class="fa-solid fa-thumbs-up"></i></span>
+              Approval queue
+            </a>
+          </li>
+          <li id="settings">
+            <a href="#" class="nav-link link-dark">
+              <span class="bi me-2"><i class="fa-solid fa-gear"></i></span>
+              Settings
+            </a>
+          </li>
+          <li id="tasks">
+            <div
+              class="accordion accordion-flush pt-0"
+              id="accordionFlushExample"
+            >
+              <div class="accordion-item">
+                <div class="accordion-header" id="flush-headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    <span class="bi me-3"
+                      ><i class="fa-regular fa-file-lines"></i
+                    ></span>
+                    Tasks
+                  </button>
+                </div>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body">
+                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                      <li class="">
+                        <a
+                          href="tasks_list.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-eye"></i></span
+                          >Tasks Table</a
+                        >
+                      </li>
+                      <li class="mt-1">
+                        <a
+                          href="my_tasks.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-file-lines"></i></span
+                          >Tasks Board</a
+                        >
+                      </li>
                     </ul>
+                  </div>
                 </div>
-            </nav>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
 
-            <!-- Main content -->
-            <main class="p-4">
-                <div class="row g-3  mt-5">
-                    <!-- To Do -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-primary">
-                                <span>To Do</span>
-                                <span class="badge bg-primary rounded-pill count">2</span>
-                            </div>
-                            <div class="task-list" id="to_do">
-                                <div class="card task-card">
-                                    <div class="card-body">
-                                        <span class="badge bg-danger badge-custom">High</span>
-                                        <h6 class="mt-2">UI/UX Design</h6>
-                                        <p class="text-muted small mb-2">Redesign dashboard screens.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-5-2025</small>
+      <!-- Main Area -->
+      <div class="flex-grow-1">
+        <!-- Navbar (inside main area, next to sidebar) -->
+        <nav
+          class="position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3"
+        >
+          <!-- Sidebar toggle for small screens -->
+          <button
+            class="btn btn-outline-primary d-lg-none me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebarOffcanvas"
+          >
+            <i class="bi bi-list"></i>
+          </button>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <span class="navbar-text fw-semibold welcome-text"
+            >👋 Welcome, <span class="welcome-text" id="user-name"></span
+          ></span>
 
-                    <!-- In progress -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header  text-warning">
-                                <span class="align-self-center">In Progress</span>
-                                <span class="badge bg-warning rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="in_progress">
-                                <div class="card task-card">
-                                    <div class="card-body ">
-                                        <div class="d-flex justify-content-between">
-                                            <span class="badge bg-info badge-custom">Medium</span>
-                                        </div>
-                                        <h6 class="mt-2">Healthcare App Flow</h6>
-                                        <p class="text-muted small mb-2">Workflow review completed.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-11-2025</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="ms-auto dropdown">
+            <a
+              href="#"
+              class="d-flex align-items-center text-dark text-decoration-none"
+              data-bs-toggle="dropdown"
+            >
+              <i class="bi bi-person-circle fs-4 me-2"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="#" id="toggleTheme">
+                  <i class="bi bi-moon-stars me-2"></i>Dark Mode
+                </a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item logout" href="#"
+                  ><i class="bi bi-translate me-2"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
 
-                    <!-- Done -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-success">
-                                <span>Done</span>
-                                <span class="badge bg-success rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="done">
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blocked -->
-                    <div class="col-lg-3 col-md-6">
-                        <div class="kanban-column">
-                            <div class="kanban-header text-danger">
-                                <span>Blocked</span>
-                                <span class="badge bg-danger rounded-pill count">1</span>
-                            </div>
-                            <div class="task-list" id="blocked">
-                                <div class="card task-card">
-                                    <div class="card-body">
-                                        <span class="badge bg-warning badge-custom">Low</span>
-                                        <h6 class="mt-2">Blog Copywriting</h6>
-                                        <p class="text-muted small mb-2">Write SEO friendly article.</p>
-                                        <small class="badge bg-secondary rounded-pil badge-custom">20-5-2025</small>
-                                        <div class="avatars d-flex mt-2">
-                                            <img src="https://i.pravatar.cc/40?img=1" />
-                                            <img src="https://i.pravatar.cc/40?img=2" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Main content -->
+        <main class="p-4">
+          <div class="row g-3 mt-5">
+            <!-- To Do -->
+            <div class="col-lg-3 col-md-6">
+              <div class="kanban-column">
+                <div class="kanban-header text-primary">
+                  <span>To Do</span>
+                  <span class="badge bg-primary rounded-pill count">2</span>
                 </div>
-            </main>
+                <div class="task-list" id="to_do">
+                  <div class="card task-card">
+                    <div class="card-body">
+                      <span class="badge bg-danger badge-custom">High</span>
+                      <h6 class="mt-2">UI/UX Design</h6>
+                      <p class="text-muted small mb-2">
+                        Redesign dashboard screens.
+                      </p>
+                      <small class="badge bg-secondary rounded-pil badge-custom"
+                        >20-5-2025</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-            <!-- Task Modal -->
-            <div class="modal fade" id="taskModal" tabindex="-1">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content shadow-lg rounded-3">
-                        <!-- Header -->
-                        <div class="modal-header text-white">
-                            <h5 class="modal-title">
-                                <i class="bi bi-list-task me-2"></i> Task Details
-                            </h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            <!-- In progress -->
+            <div class="col-lg-3 col-md-6">
+              <div class="kanban-column">
+                <div class="kanban-header text-warning">
+                  <span class="align-self-center">In Progress</span>
+                  <span class="badge bg-warning rounded-pill count">1</span>
+                </div>
+                <div class="task-list" id="in_progress">
+                  <div class="card task-card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <span class="badge bg-info badge-custom">Medium</span>
+                      </div>
+                      <h6 class="mt-2">Healthcare App Flow</h6>
+                      <p class="text-muted small mb-2">
+                        Workflow review completed.
+                      </p>
+                      <small class="badge bg-secondary rounded-pil badge-custom"
+                        >20-11-2025</small
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Done -->
+            <div class="col-lg-3 col-md-6">
+              <div class="kanban-column">
+                <div class="kanban-header text-success">
+                  <span>Done</span>
+                  <span class="badge bg-success rounded-pill count">1</span>
+                </div>
+                <div class="task-list" id="done"></div>
+              </div>
+            </div>
+
+            <!-- Blocked -->
+            <div class="col-lg-3 col-md-6">
+              <div class="kanban-column">
+                <div class="kanban-header text-danger">
+                  <span>Blocked</span>
+                  <span class="badge bg-danger rounded-pill count">1</span>
+                </div>
+                <div class="task-list" id="blocked">
+                  <div class="card task-card">
+                    <div class="card-body">
+                      <span class="badge bg-warning badge-custom">Low</span>
+                      <h6 class="mt-2">Blog Copywriting</h6>
+                      <p class="text-muted small mb-2">
+                        Write SEO friendly article.
+                      </p>
+                      <small class="badge bg-secondary rounded-pil badge-custom"
+                        >20-5-2025</small
+                      >
+                      <div class="avatars d-flex mt-2">
+                        <img src="https://i.pravatar.cc/40?img=1" />
+                        <img src="https://i.pravatar.cc/40?img=2" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Task Modal -->
+        <div class="modal fade" id="taskModal" tabindex="-1">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-3">
+              <!-- Header -->
+              <div class="modal-header text-white">
+                <h5 class="modal-title">
+                  <i class="bi bi-list-task me-2"></i> Task Details
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close btn-close-white"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <!-- Body -->
+              <div class="modal-body">
+                <div class="container-fluid">
+                  <!-- Task Info -->
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <span id="taskStatus" class="badge px-3 my-1 py-2"></span>
+                    </div>
+                    <div class="col-md-6 justify-content-end d-flex">
+                      <span
+                        id="taskPriority"
+                        class="badge px-3 my-1 py-2"
+                      ></span>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-12">
+                      <p class="mb-1">Title</p>
+                      <h5 id="taskTitle" class="fw-semibold"></h5>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <p class="mb-1">Deadline</p>
+                      <h6 id="taskDeadline"></h6>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="mb-1">Created At</p>
+                      <h6 id="taskCreated"></h6>
+                    </div>
+                  </div>
+
+                  <div class="row mb-4">
+                    <div class="col-md-12">
+                      <p class="mb-1">Description</p>
+                      <div id="dec" class="p-3 border rounded bg-light">
+                        <p id="taskDesc" class="mb-0 fw-semibold muted"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Attachments Section -->
+                  <div class="row mb-4">
+                    <div class="col-md-12">
+                      <h6 class="fw-bold mb-3">
+                        <i class="bi bi-paperclip me-2"></i> Attachments
+                      </h6>
+
+                      <!-- Attachments List -->
+                      <ul id="attachmentsList" class="list-unstyled">
+                        <!-- Example Attachment -->
+                        <li class="mb-2">
+                          <a
+                            href="https://s24.q4cdn.com/216390268/files/doc_downloads/test.pdf"
+                            target="_blank"
+                            class="d-flex align-items-center text-decoration-none"
+                          >
+                            <i
+                              class="bi bi-file-earmark-text me-2 text-primary"
+                            ></i>
+                            <span>report.pdf</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Comments Section -->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h6 class="fw-bold mb-3">
+                        <i class="bi bi-chat-dots me-2"></i> Comments
+                      </h6>
+
+                      <!-- Comments List -->
+                      <div id="commentsList" class="mb-3">
+                        <!-- Example Comment -->
+                        <div class="d-flex mb-3">
+                          <div class="flex-shrink-0">
+                            <i
+                              class="bi bi-person-circle fs-3 text-secondary"
+                            ></i>
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="bg-light p-3 rounded shadow-sm">
+                              <div class="d-flex justify-content-between">
+                                <h6 class="mb-1 fw-semibold">John Doe</h6>
+                                <small class="text-muted">2h ago</small>
+                              </div>
+                              <p class="mb-0">
+                                This task looks urgent, please prioritize it.
+                              </p>
+                            </div>
+                          </div>
                         </div>
+                      </div>
 
-                        <!-- Body -->
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <!-- Task Info -->
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <span id="taskStatus" class="badge px-3  my-1 py-2"></span>
-                                    </div>
-                                    <div class="col-md-6 justify-content-end d-flex">
-                                        <span id="taskPriority" class="badge px-3  my-1 py-2"></span>
-                                    </div>
+                      <!-- History Section -->
+                      <div class="row mt-4">
+                        <div class="col-md-12">
+                          <h6 class="fw-bold mb-3">
+                            <i class="bi bi-clock-history me-2"></i> History
+                          </h6>
+
+                          <div id="historyList">
+                            <!-- Example History Item -->
+                            <div class="d-flex mb-3">
+                              <div class="flex-shrink-0">
+                                <i
+                                  class="bi bi-arrow-repeat fs-4 text-secondary"
+                                ></i>
+                              </div>
+                              <div class="flex-grow-1 ms-3">
+                                <div class="bg-light p-3 rounded shadow-sm">
+                                  <div class="d-flex justify-content-between">
+                                    <h6 class="mb-1 fw-semibold">
+                                      Status changed to
+                                      <span class="badge bg-success"
+                                        >Completed</span
+                                      >
+                                    </h6>
+                                    <small class="text-muted"
+                                      >2025-09-01 14:32</small
+                                    >
+                                  </div>
+                                  <p class="mb-0 text-muted">
+                                    Updated by
+                                    <strong>Admin</strong>
+                                  </p>
                                 </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <p class="mb-1">Title</p>
-                                        <h5 id="taskTitle" class="fw-semibold"></h5>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <p class="mb-1 ">Deadline</p>
-                                        <h6 id="taskDeadline"></h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="mb-1 ">Created At</p>
-                                        <h6 id="taskCreated"></h6>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <p class="mb-1 ">Description</p>
-                                        <div id="dec" class="p-3 border rounded bg-light">
-                                            <p id="taskDesc" class="mb-0 fw-semibold muted"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Attachments Section -->
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <h6 class="fw-bold mb-3"><i class="bi bi-paperclip me-2"></i> Attachments</h6>
-
-                                        <!-- Attachments List -->
-                                        <ul id="attachmentsList" class="list-unstyled">
-                                            <!-- Example Attachment -->
-                                            <li class="mb-2">
-                                                <a href="https://s24.q4cdn.com/216390268/files/doc_downloads/test.pdf"
-                                                    target="_blank"
-                                                    class="d-flex align-items-center text-decoration-none">
-                                                    <i class="bi bi-file-earmark-text me-2 text-primary"></i>
-                                                    <span>report.pdf</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Comments Section -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h6 class="fw-bold mb-3"><i class="bi bi-chat-dots me-2"></i> Comments</h6>
-
-                                        <!-- Comments List -->
-                                        <div id="commentsList" class="mb-3">
-                                            <!-- Example Comment -->
-                                            <div class="d-flex mb-3">
-                                                <div class="flex-shrink-0">
-                                                    <i class="bi bi-person-circle fs-3 text-secondary"></i>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <div class="bg-light p-3 rounded shadow-sm">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h6 class="mb-1 fw-semibold">John Doe</h6>
-                                                            <small class="text-muted">2h ago</small>
-                                                        </div>
-                                                        <p class="mb-0">This task looks urgent, please prioritize it.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- History Section -->
-                                        <div class="row mt-4">
-                                            <div class="col-md-12">
-                                                <h6 class="fw-bold mb-3"><i class="bi bi-clock-history me-2"></i>
-                                                    History</h6>
-
-                                                <div id="historyList">
-                                                    <!-- Example History Item -->
-                                                    <div class="d-flex mb-3">
-                                                        <div class="flex-shrink-0">
-                                                            <i class="bi bi-arrow-repeat fs-4 text-secondary"></i>
-                                                        </div>
-                                                        <div class="flex-grow-1 ms-3">
-                                                            <div class="bg-light p-3 rounded shadow-sm">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <h6 class="mb-1 fw-semibold">Status changed to <span
-                                                                            class="badge bg-success">Completed</span>
-                                                                    </h6>
-                                                                    <small class="text-muted">2025-09-01 14:32</small>
-                                                                </div>
-                                                                <p class="mb-0 text-muted">Updated by
-                                                                    <strong>Admin</strong>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- Add Comment -->
-                                        <!-- <div class="input-group">
+                      <!-- Add Comment -->
+                      <!-- <div class="input-group">
                                             <input type="text" id="newComment" class="form-control"
                                                 placeholder="Write a comment...">
                                             <button class="btn btn-primary" id="addCommentBtn">
                                                 <i class="bi bi-send-fill"></i>
                                             </button>
                                         </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" id="markCompletedBtn">
-                                <i class="bi bi-check2-circle me-1"></i> Request Deadline Extension
-                            </button>
-                        </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  id="markCompletedBtn"
+                >
+                  <i class="bi bi-check2-circle me-1"></i> Request Deadline
+                  Extension
+                </button>
+              </div>
             </div>
-
-            <div class="modal fade" id="completionDateModal" tabindex="-1">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Select Completion Date</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="date" id="deadlineDate" class="form-control">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="saveCompletionDate">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+          </div>
         </div>
+
+        <div class="modal fade" id="completionDateModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Select Completion Date</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <input type="date" id="deadlineDate" class="form-control" />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="saveCompletionDate"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Sidebar Offcanvas (for sm & md) -->
-    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas" style="width: 45%;">
-        <div class="offcanvas-header pt-0">
-            <a href="#"
-                class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <span class="align-self-center text-sm-center text-md-center text-lg-start mt-5"><img
-                        class="mb-3 text-sm-center" style="width: 4rem; height: 4rem;" src="/imgs/logo.png" alt=""
-                        srcset="">
-                    <span class="fs-2 mb-4  side-title">HR</span>
-                </span>
+    <div
+      class="offcanvas offcanvas-start main-side"
+      tabindex="-1"
+      id="sidebarOffcanvas"
+      style="width: 45%"
+    >
+      <div class="offcanvas-header pt-0">
+        <a
+          href="#"
+          class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <span
+            class="align-self-center text-sm-center text-md-center text-lg-start mt-5"
+            ><img
+              class="mb-3 text-sm-center"
+              style="width: 4rem; height: 4rem"
+              src="/imgs/logo.png"
+              alt=""
+              srcset=""
+            />
+            <span class="fs-2 mb-4 side-title">HR</span>
+          </span>
+        </a>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav nav-pills flex-column mb-auto gap-3">
+          <li class="">
+            <a href="attendance.html" class="nav-link link-dark text-lg-start">
+              <span class="bi me-2"
+                ><i class="fa-solid fa-user-check"></i
+              ></span>
+              <span class="">My Attendance</span>
             </a>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="nav nav-pills flex-column mb-auto gap-3">
-                <li class="">
-                    <a href="attendance.html" class="nav-link link-dark text-lg-start">
-                        <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
-                        <span class="">My Attendance</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="request_center.html" class="nav-link active  text-lg-start ">
-                        <span class="bi me-2 "><i class="fa-solid fa-bullhorn"></i></span>
-                        <span class="">Request center</span>
-                    </a>
-                </li>
-                <li id="tasks">
-                    <div class="accordion accordion-flush pt-0" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <span class="bi me-3"><i class="fa-regular fa-file-lines"></i></span>
-                                    Tasks
-                                </button>
-                            </div>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
-                                        <li class=""><a href="tasks_list.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi  me-2"><i class="fa-regular fa-eye"></i></span>Tasks
-                                                Table</a>
-                                        </li>
-                                        <li class="mt-1">
-                                            <a href="my_tasks.html"
-                                                class="nav-link link-dark rounded text-decoration-none">
-                                                <span class="bi me-2"><i
-                                                        class="fa-regular fa-file-lines"></i></span>Tasks Board</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+          </li>
+          <li class="">
+            <a href="request_center.html" class="nav-link active text-lg-start">
+              <span class="bi me-2"><i class="fa-solid fa-bullhorn"></i></span>
+              <span class="">Request center</span>
+            </a>
+          </li>
+          <li id="tasks">
+            <div
+              class="accordion accordion-flush pt-0"
+              id="accordionFlushExample"
+            >
+              <div class="accordion-item">
+                <div class="accordion-header" id="flush-headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne"
+                    aria-expanded="false"
+                    aria-controls="flush-collapseOne"
+                  >
+                    <span class="bi me-3"
+                      ><i class="fa-regular fa-file-lines"></i
+                    ></span>
+                    Tasks
+                  </button>
+                </div>
+                <div
+                  id="flush-collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="flush-headingOne"
+                  data-bs-parent="#accordionFlushExample"
+                >
+                  <div class="accordion-body">
+                    <ul class="btn-toggle-nav pb-1 small list-unstyled">
+                      <li class="">
+                        <a
+                          href="tasks_list.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-eye"></i></span
+                          >Tasks Table</a
+                        >
+                      </li>
+                      <li class="mt-1">
+                        <a
+                          href="my_tasks.html"
+                          class="nav-link link-dark rounded text-decoration-none"
+                        >
+                          <span class="bi me-2"
+                            ><i class="fa-regular fa-file-lines"></i></span
+                          >Tasks Board</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/fontawesome/js/all.min.js"></script>
     <script src="/js/sidebar.js"></script>
     <script src="/js/my_tasks.js" type="module"></script>
-</body>
-
+  </body>
 </html>

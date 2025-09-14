@@ -1,4 +1,3 @@
-// auth.js
 (function () {
   if (!localStorage.getItem("loggedInUser")) {
     window.history.pushState(null, "", window.location.href);

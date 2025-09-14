@@ -183,8 +183,8 @@ $(async function () {
   }
   function updateStatus(tid, status) {
     console.log(tid);
-    let task = tasks.find((el) => (+el.id === +tid));
-    console.log(task)
+    let task = tasks.find((el) => +el.id === +tid);
+    console.log(task);
     task.status = status;
     Task.updateTask(task, id);
   }
@@ -330,11 +330,9 @@ $(async function () {
     } else {
       $("#attachmentsList").append(`<li class="muted">No attachments</li>`);
     }
-    // Clear previous comments
     let commentsList = $("#commentsList");
     commentsList.empty();
 
-    // Append comments dynamically
     if (task.comments && task.comments.length > 0) {
       task.comments.forEach((c) => {
         let commentHTML = `
@@ -359,7 +357,6 @@ $(async function () {
       commentsList.append(`<p class="muted">No comments yet.</p>`);
     }
 
-    // Show modal
     let modal = new bootstrap.Modal(document.getElementById("taskModal"));
     modal.show();
   });

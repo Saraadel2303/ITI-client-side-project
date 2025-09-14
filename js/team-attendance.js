@@ -1,6 +1,5 @@
 console.log("📊 Team Attendance Dashboard");
 
-// 🟢 Step 1: Load data from localStorage
 const data = JSON.parse(localStorage.getItem("requestsState")) || {
   requests: [],
   employees: [],
@@ -10,17 +9,15 @@ const logs = JSON.parse(localStorage.getItem("actionLogs")) || [];
 console.log("📦 Loaded requests:", data.requests);
 console.log("📦 Loaded logs:", logs);
 
-// 🟢 Step 2: Keep only the latest log per requestId
 let latestLogs = Object.values(
   logs.reduce((acc, log) => {
-    acc[log.requestId] = log; // overwrite → keeps last one only
+    acc[log.requestId] = log;
     return acc;
   }, {})
 );
 
 console.log("📌 Latest logs only:", latestLogs);
 
-// 🟢 Step 3: Prepare employees list
 const employees = {};
 data.employees.forEach((emp) => {
   if (!employees[emp.id]) {
@@ -32,7 +29,6 @@ data.employees.forEach((emp) => {
   }
 });
 
-// 🟢 Step 4: Apply latest logs to attendance
 latestLogs.forEach((log) => {
   const emp = employees[log.employee];
   if (!emp) return;
@@ -51,7 +47,6 @@ latestLogs.forEach((log) => {
   }
 });
 
-// 🟢 Step 5: Count stats
 Object.values(employees).forEach((emp) => {
   Object.values(emp.attendance).forEach((status) => {
     switch (status) {
@@ -71,7 +66,6 @@ Object.values(employees).forEach((emp) => {
   });
 });
 
-// 🟢 Step 6: Render Heatmap Table
 const heatmapBody = document.querySelector(".heatmap-table tbody");
 heatmapBody.innerHTML = "";
 
@@ -92,7 +86,6 @@ Object.values(employees).forEach((emp) => {
   heatmapBody.appendChild(row);
 });
 
-// 🟢 Step 7: Render Weekly Attendance Table
 const weeklyBody = document.querySelector("section.card-container table tbody");
 weeklyBody.innerHTML = "";
 
@@ -107,7 +100,6 @@ Object.values(employees).forEach((emp) => {
   weeklyBody.appendChild(row);
 });
 
-// 🟢 Step 8: Charts Data
 const labels = Object.values(employees).map((e) => e.name);
 const presentData = labels.map(
   (_, i) => Object.values(employees)[i].stats.present
@@ -118,7 +110,6 @@ const absentData = labels.map(
 const lateData = labels.map((_, i) => Object.values(employees)[i].stats.late);
 const leaveData = labels.map((_, i) => Object.values(employees)[i].stats.leave);
 
-// Bar Chart
 const ctxBar = document.getElementById("attendanceBarChart").getContext("2d");
 new Chart(ctxBar, {
   type: "bar",
@@ -194,13 +185,11 @@ new Chart(ctxPie, {
     ],
   },
 });
-// ✅ Theme Toggle Script
 
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
 
-  // Load saved theme
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-theme");
     themeIcon.classList.replace("fa-moon", "fa-sun");

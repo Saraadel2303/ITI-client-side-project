@@ -1,39 +1,8 @@
-// export default async function fetchAndRenderTasks() {
-//   try {
-//     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-//     let employees = JSON.parse(localStorage.getItem("employees")) || [];
-
-//     const response = await fetch("../data/data1.json");
-//     const data = await response.json();
-
-//       tasks = data.tasks || [];
-//       employees = data.employees || [];
-
-//     // save in local storage
-//     localStorage.setItem("tasks", JSON.stringify(tasks));
-//     localStorage.setItem("employees", JSON.stringify(employees));
-
-//     console.log("Tasks loaded:", tasks.length);
-//     console.log("Employees loaded:", employees.length);
-
-//     // Update dashboard stats
-//     updateDashboardStats(tasks);
-
-//     // Render table
-//     renderTasksTable(tasks, employees);
-//   } catch (err) {
-//     console.error("Error loading tasks:", err);
-//     showError("Error loading tasks: " + err.message);
-//   }
-// }
-
 export default async function fetchAndRenderTasks() {
   try {
-    // Load from localStorage first
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let employees = JSON.parse(localStorage.getItem("employees")) || [];
 
-    // Only fetch from JSON if localStorage is empty
     if (tasks.length === 0 || employees.length === 0) {
       const response = await fetch("../data/data1.json");
       const data = await response.json();
@@ -41,7 +10,6 @@ export default async function fetchAndRenderTasks() {
       tasks = data.tasks || [];
       employees = data.employees || [];
 
-      // Save in localStorage once
       localStorage.setItem("tasks", JSON.stringify(tasks));
       localStorage.setItem("employees", JSON.stringify(employees));
     }
@@ -49,10 +17,8 @@ export default async function fetchAndRenderTasks() {
     console.log("Tasks loaded:", tasks.length);
     console.log("Employees loaded:", employees.length);
 
-    // Update dashboard stats
     updateDashboardStats(tasks);
 
-    // Render table
     renderTasksTable(tasks, employees);
   } catch (err) {
     console.error("Error loading tasks:", err);
@@ -61,34 +27,6 @@ export default async function fetchAndRenderTasks() {
 }
 
 function updateDashboardStats(tasks) {
-  // document.querySelectorAll(".card-box h3")[3].textContent = "0";
-  // const assignedCount = tasks.length;
-  // const extensionsCount = tasks.filter(
-  //   (t) => t.status === "Extension Req."
-  // ).length;
-  // const overdueCount = tasks.filter((t) => t.status === "Overdue").length;
-  // const inProgressCount = tasks.filter(
-  //   (t) => t.status === "In Progress"
-  // ).length;
-  // const completedCount = tasks.filter((t) => t.status === "Completed").length;
-
-  // const cards = document.querySelectorAll(".card-box h3");
-
-  // if (cards.length >= 3) {
-  //   cards[0].textContent = assignedCount;
-  //   cards[1].textContent = extensionsCount;
-  //   cards[2].textContent = overdueCount;
-  //   cards[3].textContent = completedCount;
-  // }
-
-  // console.log("Stats updated:", {
-  //   total: assignedCount,
-  //   extensions: extensionsCount,
-  //   overdue: overdueCount,
-  //   inProgress: inProgressCount,
-  //   completed: completedCount,
-  // });
-
   function updateDashboardStats(tasks) {
     const assignedCount = tasks.length;
     const extensionsCount = tasks.filter(
@@ -104,9 +42,9 @@ function updateDashboardStats(tasks) {
 
     if (cards.length >= 4) {
       cards[0].textContent = assignedCount;
-      cards[1].textContent = extensionsCount; // Extension Pending
-      cards[2].textContent = overdueCount; // Overdue Tasks
-      cards[3].textContent = completedCount; // Completed
+      cards[1].textContent = extensionsCount;
+      cards[2].textContent = overdueCount;
+      cards[3].textContent = completedCount;
     }
   }
 }
@@ -179,7 +117,6 @@ function renderTasksTable(tasks, employees) {
     const tbody = document.querySelector(".task-table table tbody");
     if (!tbody) return;
 
-    // calculate before delete
     let toDoCount = 0,
       overdueCount = 0,
       extensionCount = 0,
@@ -195,16 +132,12 @@ function renderTasksTable(tasks, employees) {
       if (status === "In Progress") inProgressCount++;
     });
 
-    // زود العدادات في الكروت حسب نفس منطق الأزرار الفردية
     const cards = document.querySelectorAll(".card-box h3");
     if (cards.length >= 4) {
-      // Extension Pending: تزيد بعدد Extension Req. و To Do
       cards[1].textContent =
         parseInt(cards[1].textContent, 10) + extensionCount + toDoCount;
-      // Overdue Tasks: تزيد بعدد Overdue و In Progress
       cards[2].textContent =
         parseInt(cards[2].textContent, 10) + overdueCount + inProgressCount;
-      // Completed Tasks: تزيد بعدد Completed
       cards[3].textContent =
         parseInt(cards[3].textContent, 10) + completedCount;
     }
@@ -221,7 +154,7 @@ function initDashboardCounters() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initDashboardCounters();
-  fetchAndRenderTasks(); // render tasks but counters stay at 0
+  fetchAndRenderTasks();
 });
 
 function handleAction(taskId, action) {
@@ -231,10 +164,6 @@ function handleAction(taskId, action) {
 
   const task = tasks[taskIndex];
   const cards = document.querySelectorAll(".card-box h3");
-  // cards[0] = Assigned
-  // cards[1] = Extension Pending
-  // cards[2] = Overdue
-  // cards[3] = Completed
 
   if (action === "follow-up") {
     if (task.status === "To Do") {
@@ -252,15 +181,12 @@ function handleAction(taskId, action) {
     cards[2].textContent = parseInt(cards[2].textContent, 10) + 1;
   }
 
-  // Save updated tasks
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
-  // Remove row after action
   const row = document.querySelector(`tr[data-task-id="${taskId}"]`);
   if (row) row.remove();
 }
 
-// Show error message
 function showError(message) {
   const tbody = document.querySelector(".task-table table tbody");
   if (tbody) {
@@ -275,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");
   const themeIcon = document.getElementById("themeIcon");
 
-  // Load saved theme
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-theme");
     themeIcon.classList.replace("fa-moon", "fa-sun");

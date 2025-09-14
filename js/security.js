@@ -1,4 +1,3 @@
-/***** Sidebar *****/
 const links = document.querySelectorAll(".mynav a");
 const sections = document.querySelectorAll(".page-section");
 
@@ -16,19 +15,16 @@ links.forEach((link) => {
   });
 });
 
-/***** loggedInUser *****/
 const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 if (loggedInUser && loggedInUser.name) {
   document.getElementById("username").textContent = loggedInUser.name;
 }
 
-/***** 1) Basic variables *****/
 let employees = [];
 let requests = [];
 let attendance = [];
 let selectedAction = null;
 
-/***** 2) Utility functions *****/
 function getTodayStr() {
   return new Date().toISOString().split("T")[0];
 }
@@ -66,7 +62,6 @@ function hasApprovedRequest(employeeId, type) {
   );
 }
 
-/***** 3) Build row *****/
 function buildRowHtml(record) {
   const employee = getEmployee(record.employeeId);
   const status = getStatus(record);
@@ -104,7 +99,6 @@ function buildRowHtml(record) {
   `;
 }
 
-/***** 4) Render table *****/
 function renderRows(list) {
   const tbody = document.querySelector("table tbody");
   tbody.innerHTML = list.map(buildRowHtml).join("");
@@ -115,7 +109,6 @@ function renderTable() {
   renderRows(attendance);
 }
 
-/***** 5) Load data *****/
 function initData() {
   const today = getTodayStr();
 
@@ -138,7 +131,6 @@ function initData() {
     });
 }
 
-/***** 6) Status *****/
 function updateStats() {
   attendance.forEach((r) => (r.status = getStatus(r)));
   const total = attendance.length;
@@ -161,7 +153,6 @@ function updateStats() {
   }
 }
 
-/***** 7) Check in/out changes *****/
 document.addEventListener("change", function (e) {
   if (
     !e.target.matches('input[data-type="checkin"], input[data-type="checkout"]')
@@ -182,13 +173,12 @@ document.addEventListener("change", function (e) {
     toastr.error(
       `⚠ Check-in cannot be after Check-out for ${
         getEmployee(rec.employeeId).name
-      }`,
+      }`
     );
   }
 
   renderTable();
 });
-// minutesLate
 function calculateMinutesLate(checkIn) {
   if (!checkIn) return 0;
 
@@ -198,7 +188,6 @@ function calculateMinutesLate(checkIn) {
   const workStart = 9 * 60;
   return checkInMinutes > workStart ? checkInMinutes - workStart : 0;
 }
-/***** 8) Bulk actions *****/
 function setupBulkHandlers() {
   const selectAllEl =
     document.getElementById("selectAll") ||
@@ -288,13 +277,12 @@ function setupBulkHandlers() {
   }
 }
 
-/***** 9) Filters *****/
 function setupFilters() {
   const searchInput = document.querySelector(".search-group input");
   const statusItems = document.querySelectorAll(
     ".search-group .dropdown-menu .dropdown-item"
   );
-  const filterBtn = document.querySelector(".search-group .dropdown-toggle"); // 🔹 الزرار نفسه
+  const filterBtn = document.querySelector(".search-group .dropdown-toggle");
 
   if (searchInput) searchInput.addEventListener("input", filterTable);
 
@@ -340,7 +328,6 @@ function filterTable() {
   renderRows(filtered);
 }
 
-/***** 10) Save data to localStorage *****/
 document.getElementById("saveBtn")?.addEventListener("click", () => {
   attendance.forEach((r) => {
     r.status = getStatus(r);
@@ -357,7 +344,6 @@ document.getElementById("saveBtn")?.addEventListener("click", () => {
   toastr.success("✅ Today's attendance saved!");
 });
 
-/***** 11) Initialize *****/
 initData()
   .then(() => {
     renderTable();
