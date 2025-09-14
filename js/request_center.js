@@ -5,7 +5,31 @@ $(document).ready(async function () {
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
   let id = loggedInUser?.id;
   let requests = await Request.employeeRequests(id);
+  let allRequests = await Request.getRequests();
   let weekIndex = getWeekIndexInYear();
+  let quotas = {
+    late: {
+      used: requests.filter(
+        (el) =>
+          new Date(el.payload.requestedDate).getMonth() + 1 ==
+            new Date().getMonth() + 1 &&
+          el.type.toLowerCase() == "late" &&
+          el.status == "Approved"
+      ).length,
+      limit: 2,
+      period: "Month",
+    },
+    wfh: {
+      used: requests.filter(
+        (el) =>
+          el.payload.weekIndex == weekIndex &&
+          el.type.toLowerCase() == "wfh" &&
+          el.status == "Approved"
+      ).length,
+      limit: 2,
+      period: "Week",
+    },
+  };
 
   let table = $("#requestsTable").DataTable({
     data: requests,
@@ -22,6 +46,7 @@ $(document).ready(async function () {
           return `<span class="${color}">${data}</span>`;
         },
       },
+      { data: "payload.reason", defaultContent: "-" },
       { data: "createdAt" },
       { data: "decidedAt" },
       { data: "managerComment" },
@@ -39,14 +64,7 @@ $(document).ready(async function () {
     responsive: true,
     scrollX: false,
     autoWidth: true,
-  });
-
-  let lastId = 0;
-
-  $.getJSON("/data/data1.json", function (data) {
-    if (data.requests.length > 0) {
-      lastId = data.requests[data.requests.length - 1].id;
-    }
+    order: [[0, "desc"]],
   });
 
   $("#requestForm").validate({
@@ -89,13 +107,26 @@ $(document).ready(async function () {
     },
     submitHandler: async function (form, e) {
       e.preventDefault();
+      if (quotas.late.used == quotas.late.limit && $("#type").val() == "late") {
+        toastr.error("Quota exceeded (2/month)");
+        return;
+      }
+      if (quotas.wfh.used == quotas.wfh.limit && $("#type").val() == "wfh") {
+        toastr.error("Quota exceeded (2/week)");
+        return;
+      }
+      let now = new Date();
+      let date = new Date().toISOString().split("T")[0];
+      let time = now.toLocaleTimeString();
+      let newId = allRequests[allRequests.length - 1].id + 1 ;
+
       let newRow = {
-        id: lastId,
+        id: newId,
         employeeId: id,
         type: $("#type").val(),
-        createdAt: new Date().toISOString().split("T")[0],
+        createdAt: `${date}  ${time}`,
         status: "Pending",
-        reason: "",
+        payload: { reason: $("#notes").val() },
         decidedAt: "",
         managerComment: "",
       };
@@ -106,11 +137,12 @@ $(document).ready(async function () {
       $("#home-tab").removeClass("active");
       $("#send").removeClass("active show");
       await Request.saveEmployeeRequest(
+        newId,
         id,
         $("#type").val(),
         {
           requestedDate: $("#requestedDate").val(),
-          reason: $("#reason").val(),
+          reason: $("#notes").val(),
           minutesExpectedLate: $("#minutesValue").val(),
           weekIndex,
           overtimeHours: $("#overtimeHours").val(),
@@ -122,6 +154,11 @@ $(document).ready(async function () {
 
       form.reset();
     },
+  });
+
+  $(document).ready(function () {
+    let today = new Date().toISOString().split("T")[0];
+    $("#requestedDate").attr("min", today);
   });
 
   let tasks = await Task.employeeTasks(id);
@@ -147,24 +184,6 @@ $(document).ready(async function () {
     );
   });
 
-  let quotas = {
-    late: {
-      used: requests.filter(
-        (el) =>
-          new Date(el.payload.requestedDate).getMonth() + 1 ==
-            new Date().getMonth() + 1 && el.type == "Late"
-      ).length,
-      limit: 2,
-      period: "Month",
-    },
-    wfh: {
-      used: requests.filter(
-        (el) => el.payload.weekIndex == weekIndex && el.type == "WFH"
-      ).length,
-      limit: 2,
-      period: "Week",
-    },
-  };
   console.log("Week index in year:", quotas);
 
   $("#lateBadge").text(`${quotas.late.used} / ${quotas.late.limit}`);
@@ -184,7 +203,8 @@ $(document).ready(async function () {
     $("#late-progress-bar").addClass("w-100").addClass("bg-danger");
   }
 
-  if (quotas.wfh.used < quotas.wfh.limit / 2) {
+  if (quotas.wfh.used < quotas.wfh.limit) {
+    $("#wfhBadge").removeClass("bg-warning bg-danger");
     $("#wfhBadge").addClass("bg-success");
   }
 

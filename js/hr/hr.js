@@ -14,10 +14,17 @@ import {
 import { renderHomeCharts, renderTasksChart } from "./charts.js";
 import { fillTodayAttendanceTable } from "./tables.js";
 
-// dark mode toggle
-document.getElementById("toggleThemeBtn").addEventListener("click", () => {
+// dark\light mode toggle
+let toggle = document.querySelector("#toggleThemeBtn");
+toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark-theme");
+  if (document.body.classList.contains("dark-theme")) {
+    toggle.innerHTML = `<i class="bi bi-brightness-high me-2"></i>Light Mode`;
+  } else {
+    toggle.innerHTML = `<i class="bi bi-moon me-2"></i>Dark Mode`;
+  }
 });
+
 // #################################
 
 //  hr dashboard routing
@@ -128,42 +135,51 @@ renderAttendanceBars();
 // end statistics content
 // #########################################
 
-// ideal employees page
-async function renderIdealEmployee() {
-  const emp = await getIdealEmployee();
-  const bouns = JSON.parse(localStorage.getItem("settings"))?.ideal?.bonus || 0;
-
-  if (emp) {
-    document.getElementById("idealName").textContent = emp.name;
-    document.getElementById(
-      "idealStats"
-    ).textContent = `Overall Score: ${emp.score}%`;
-    document.getElementById("bonusValue").textContent = bouns;
-  }
-}
-
-renderIdealEmployee();
-
-//
-
 // Settings page
 document.getElementById("settingsForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
+  const penalty_30 = +document.getElementById("penalty_30").value;
+  const penalty_60 = +document.getElementById("penalty_60").value;
+  const penalty_120 = +document.getElementById("penalty_120").value;
+  const cap = +document.getElementById("cap").value;
+  const weekday_mult = +document.getElementById("weekday_mult").value;
+  const weekend_mult = +document.getElementById("weekend_mult").value;
+  const ideal_bonus = +document.getElementById("ideal_bonus").value;
+
+  if (
+    penalty_30 < 0 ||
+    penalty_60 < 0 ||
+    penalty_120 < 0 ||
+    cap < 0 ||
+    weekday_mult < 0 ||
+    weekend_mult < 0 ||
+    ideal_bonus < 0
+  ) {
+    Swal.fire({
+      title: "Error",
+      text: "You can't Enter a Negative Number In Inbut Field",
+      icon: "error",
+      confirmButtonText: "Ok",
+      confirmButtonColor: "#534fea",
+    });
+    return;
+  }
+
   const settings = {
     penalties: {
-      "16_30": +document.getElementById("penalty_30").value,
-      "31_60": +document.getElementById("penalty_60").value,
-      "61_120": +document.getElementById("penalty_120").value,
-      cap: +document.getElementById("cap").value,
+      "16_30": penalty_30,
+      "31_60": penalty_60,
+      "61_120": penalty_120,
+      cap: cap,
     },
     overtime: {
       policy: document.getElementById("overtime_policy").value,
-      weekday: +document.getElementById("weekday_mult").value,
-      weekend: +document.getElementById("weekend_mult").value,
+      weekday: weekday_mult,
+      weekend: weekend_mult,
     },
     ideal: {
-      bonus: +document.getElementById("ideal_bonus").value,
+      bonus: ideal_bonus,
       badge: document.getElementById("ideal_badge").value,
     },
   };
@@ -178,7 +194,6 @@ document.getElementById("settingsForm").addEventListener("submit", (e) => {
     confirmButtonColor: "#534fea",
   });
 });
-
 // settings load
 function loadSettings() {
   const saved = JSON.parse(localStorage.getItem("settings"));
@@ -201,6 +216,8 @@ document.addEventListener("DOMContentLoaded", loadSettings);
 // export payroll to excel
 document.querySelector(".export").addEventListener("click", () => {
   const table = document.querySelector(".payroll-table");
+  if (!table) return;
+
   const today = new Date().toISOString().split("T")[0];
   const sheetName = `Payroll Impact (${today})`;
 
@@ -221,3 +238,22 @@ document.querySelector(".export").addEventListener("click", () => {
 
   XLSX.writeFile(wb, `payroll_impact_${today}.xlsx`);
 });
+
+// ideal employees page
+async function renderIdealEmployee() {
+  const emp = await getIdealEmployee();
+  const bouns = JSON.parse(localStorage.getItem("settings"))?.ideal?.bonus || 0;
+
+  if (emp) {
+    document.getElementById("idealName").textContent = emp.name;
+    document.getElementById("idealDep").textContent = emp.department
+    document.getElementById(
+      "idealStats"
+    ).textContent = `Overall Score: ${emp.score}%`;
+    document.getElementById("bonusValue").textContent = bouns;
+  }
+}
+
+renderIdealEmployee();
+
+//

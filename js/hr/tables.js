@@ -1,4 +1,5 @@
 import { loadData } from "./dataService.js";
+import { buildPayrollRows } from "./hrUtils.js";
 export let cachedLates = [];
 let currentPage = 1;
 const pageSize = 5;
@@ -59,6 +60,7 @@ function renderTable(list, tbody) {
       }[emp.status] || `<span class="badge bg-secondary">${emp.status}</span>`;
 
     const row = document.createElement("tr");
+    
     row.innerHTML = `
       <td>${emp.id}</td>
       <td>${emp.name}</td>
@@ -79,13 +81,13 @@ function renderPagination(totalItems) {
 
   const totalPages = Math.ceil(totalItems / pageSize);
   paginationDiv.innerHTML = `
-    <button class="btn btn-sm btn-outline-primary" ${
+    <button class="pagi" ${
       currentPage === 1 ? "disabled" : ""
-    } id="prevPage">Previs</button>
+    } id="prevPage"><<</button>
     <span class="mx-2">Page ${currentPage} of ${totalPages}</span>
-    <button class="btn btn-sm btn-outline-primary" ${
+    <button class="pagi" ${
       currentPage === totalPages ? "disabled" : ""
-    } id="nextPage">Next</button>
+    } id="nextPage">>></button>
   `;
 
   document.getElementById("prevPage")?.addEventListener("click", () => {
@@ -122,45 +124,45 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
     );
   }
   currentPage = 1;
-  renderTable(filtered, document.getElementById("attendance-table-body"));
+  const tbody = document.getElementById("attendance-table-body");
+  if (filtered.length === 0 && query) {
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center">NonExistent Employee("${query}")</td></tr>`;
+  } else {
+    renderTable(filtered, tbody);
+  }
 });
-// payroll table
-async function renderPayroll() {
-  const data = await loadData();
-  const payrolls = data.payrolls || [];
-  const employees = data.employees || [];
 
-  let totalDeductions = 0;
-  let totalBonus = 0;
+
+// payroll table
+async function renderPayrollTable() {
+  const rows = await buildPayrollRows();
 
   const tbody = document.getElementById("payrollTable");
   tbody.innerHTML = "";
 
-  payrolls.forEach((p) => {
-    const emp = employees.find((e) => e.id === p.employeeId);
-    const empName = emp ? emp.name : "Unknown";
-
-    totalDeductions += p.deductions;
-    totalBonus += p.bonus;
-
-    tbody.innerHTML += `
-      <tr>
-        <td> ${p.employeeId}-${empName}</td>
-        <td>${p.month}</td>
-        <td>${p.baseSalary.toLocaleString()} EGP</td>
-        <td class="text-danger">-${p.deductions.toLocaleString()} EGP</td>
-        <td class="text-success">+${p.bonus.toLocaleString()} EGP</td>
-        <td><b>${p.netSalary.toLocaleString()} EGP</b></td>
-      </tr>
+  console.log(rows)
+  if (!rows || rows.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6">No payroll data found</td></tr>`;
+    return;
+  }
+  let totalDeductions = 0;
+  let totalBonus = 0;
+  rows.forEach((row) => {
+    totalDeductions += parseFloat(row.deductions) || 0;
+    totalBonus += parseFloat(row.bonus) || 0;
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${row.id}</td>
+      <td>${row.name}</td>
+      <td>${row.baseSalary}</td>
+      <td>${row.deductions}</td>
+      <td>${row.bonus}</td>
+      <td>${row.netSalary}</td>
     `;
+    tbody.appendChild(tr);
   });
-
-  document.getElementById(
-    "totalDeductions"
-  ).textContent = `-${totalDeductions.toLocaleString()} EGP`;
-  document.getElementById(
-    "totalBonus"
-  ).textContent = `+${totalBonus.toLocaleString()} EGP`;
+  document.querySelector("#totalDeductions").textContent =
+    totalDeductions.toFixed(1);
+  document.querySelector("#totalBonus").textContent = totalBonus.toFixed(1);
 }
-
-document.addEventListener("DOMContentLoaded", renderPayroll);
+renderPayrollTable();

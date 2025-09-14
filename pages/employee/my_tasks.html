@@ -26,9 +26,9 @@
 
 <body>
 
-    <div class="d-flex">
+    <div class="d-flex ">
         <!-- Sidebar -->
-        <div id="sidebar" class="sidebar d-none d-lg-block bg-white  p-3">
+        <div id="sidebar" class="main-side sidebar d-none d-lg-block bg-white  p-3">
             <a href="#"
                 class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li id="my_attendance" class="text-center">
-                    <a href="employeesAttendance.html" class="nav-link link-dark text-sm-center text-lg-start">
+                    <a href="attendance.html" class="nav-link link-dark text-sm-center text-lg-start">
                         <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
                         <span class="d-none d-lg-inline">My Attendance</span>
                     </a>
@@ -125,7 +125,7 @@
         <!-- Main Area -->
         <div class="flex-grow-1">
             <!-- Navbar (inside main area, next to sidebar) -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+            <nav class=" position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3">
                 <!-- Sidebar toggle for small screens -->
                 <button class="btn btn-outline-primary d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#sidebarOffcanvas">
@@ -148,7 +148,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item logout" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </nav>
@@ -411,7 +411,7 @@
     </div>
 
     <!-- Sidebar Offcanvas (for sm & md) -->
-    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas">
+    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas" style="width: 45%;">
         <div class="offcanvas-header pt-0">
             <a href="#"
                 class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -421,12 +421,11 @@
                     <span class="fs-2 mb-4  side-title">HR</span>
                 </span>
             </a>
-            <button type="button" class="btn-close mt-0 pt-0" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="nav nav-pills flex-column mb-auto gap-3">
                 <li class="">
-                    <a href="employeesAttendance.html" class="nav-link link-dark text-lg-start">
+                    <a href="attendance.html" class="nav-link link-dark text-lg-start">
                         <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
                         <span class="">My Attendance</span>
                     </a>

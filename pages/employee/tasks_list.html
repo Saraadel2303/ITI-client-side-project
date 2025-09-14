@@ -22,7 +22,8 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 
@@ -38,7 +39,7 @@
 <body>
     <div class="d-flex">
         <!-- Sidebar -->
-        <div id="sidebar" class="sidebar d-none d-lg-block bg-white  p-3">
+        <div id="sidebar" class="main-side sidebar d-none d-lg-block bg-white  p-3">
             <a href="#"
                 class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                 <span class="align-self-center text-sm-center text-md-center text-lg-start"><img
@@ -61,7 +62,7 @@
                     </a>
                 </li>
                 <li id="my_attendance" class="text-center">
-                    <a href="employeesAttendance.html" class="nav-link link-dark text-sm-center text-lg-start">
+                    <a href="attendance.html" class="nav-link link-dark text-sm-center text-lg-start">
                         <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
                         <span class="d-none d-lg-inline">My Attendance</span>
                     </a>
@@ -134,14 +135,15 @@
         <!-- Main Area -->
         <div class="flex-grow-1">
             <!-- Navbar (inside main area, next to sidebar) -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-3">
+            <nav class="position-sticky top-0 z-3 navbar navbar-expand-lg navbar-light border-bottom px-3">
                 <!-- Sidebar toggle for small screens -->
                 <button class="btn btn-outline-primary d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#sidebarOffcanvas">
                     <i class="bi bi-list"></i>
                 </button>
 
-                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text" id="user-name"></span></span>
+                <span class="navbar-text fw-semibold welcome-text">👋 Welcome, <span class="welcome-text"
+                        id="user-name"></span></span>
 
                 <div class="ms-auto dropdown">
                     <a href="#" class="d-flex align-items-center text-dark text-decoration-none"
@@ -157,26 +159,32 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
+                        <li><a class="dropdown-item logout" href="#"><i class="bi bi-translate me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </nav>
 
             <!-- Main content -->
             <main class="p-4">
-                <div id="bulkActions" class="alert alert-light d-none">
+                <!-- <div id="bulkActions" class="alert alert-light">
                     <span id="selectedCount">0</span> selected
                     <button id="bulkDelete" class="btn btn-danger btn-sm ms-2">
                         <i class="bi bi-trash"></i> Delete
                     </button>
+
+                </div> -->
+                <div class="mb-2">
                     <button id="bulkDone" class="btn btn-success btn-sm ms-2">
                         <i class="bi bi-check2-circle"></i> Mark as Done
                     </button>
                 </div>
-                <table id="tasksTable" class="table table-borderless text-center  table-hover align-middle"
+                <table id="tasksTable"
+                    class="table table-borderless table-responsive pt-0 text-center  table-hover align-middle"
                     style="width:100%">
                     <thead class="">
                         <tr>
+                            <th class="text-center ps-4"><input type="checkbox" class="text-center" name="" id="selectAll">
+                            </th>
                             <th class="text-center">ID</th>
                             <th class="text-center">Title</th>
                             <th class="text-center">Priority</th>
@@ -292,7 +300,7 @@
     </div>
 
     <!-- Sidebar Offcanvas (for sm & md) -->
-    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas">
+    <div class="offcanvas offcanvas-start main-side" tabindex="-1" id="sidebarOffcanvas" style="width: 45%;">
         <div class="offcanvas-header pt-0">
             <a href="#"
                 class="text-sm-center align-items-center d-flex flex-row mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -302,12 +310,11 @@
                     <span class="fs-2 mb-4  side-title">HR</span>
                 </span>
             </a>
-            <button type="button" class="btn-close mt-0 pt-0" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
             <ul class="nav nav-pills flex-column mb-auto gap-3">
                 <li class="">
-                    <a href="employeesAttendance.html" class="nav-link link-dark text-lg-start">
+                    <a href="attendance.html" class="nav-link link-dark text-lg-start">
                         <span class="bi me-2"><i class="fa-solid fa-user-check"></i></span>
                         <span class="">My Attendance</span>
                     </a>

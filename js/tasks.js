@@ -8,6 +8,14 @@ $(async function () {
   let table = $("#tasksTable").DataTable({
     data: tasks,
     columns: [
+      {
+        data: null,
+        orderable: false,
+        ordering: false,
+        render: function (data, type, row) {
+          return `<input type="checkbox" class="row-select" data-id="${row.id}">`;
+        },
+      },
       { data: "id" },
       { data: "title" },
       { data: "priority" },
@@ -37,8 +45,18 @@ $(async function () {
     responsive: true,
     scrollX: false,
     autoWidth: true,
+    select: {
+      style: "multi",
+      selector: "td:first-child",
+    },
     columnDefs: [
-      { targets: 1, type: "priority" }, // apply to Priority column
+      {
+        targets: 0,
+        orderable: false,
+        className: "select-checkbox",
+        defaultContent: "",
+      },
+      { targets: 1, type: "priority" },
     ],
     order: [[1, "asc"]],
   });
@@ -59,7 +77,7 @@ $(async function () {
   $("#tasksTable").DataTable({
     destroy: true,
     lengthChange: false,
-    columnDefs: [{ type: "priority", targets: [2] }],
+    columnDefs: [{ type: "priority", targets: [3] }],
   });
 
   $(document).on("click", ".open-task", function () {
@@ -152,4 +170,48 @@ $(async function () {
     let modal = new bootstrap.Modal(document.getElementById("taskModal"));
     modal.show();
   });
+
+  check(tasks);
 });
+
+function check(tasks) {
+  $("#selectAll").on("click", function () {
+    $(".row-select").prop("checked", this.checked);
+  });
+  $("#bulkDone").on("click", function () {
+    console.log("approve");
+    const table = $("#tasksTable").DataTable();
+
+    let ids = $(".row-select:checked")
+      .map(function () {
+        return $(this).data("id");
+      })
+      .get();
+
+    if (ids.length === 0) {
+      toastr.warning("No tasks selected!");
+      return;
+    }
+
+    table.rows().every(function () {
+      let rowData = this.data();
+      let rowId = rowData[1];
+      console.log(ids.includes(Number(rowId)), rowData[1]);
+
+      if (ids.includes(Number(rowId))) {
+        let task = tasks.find((el) => el.id == rowId);
+        rowData[4] = "Completed";
+        task.status = "Completed";
+        Task.updateTask(task);
+        console.log(task);
+        this.data(rowData).invalidate();
+      }
+    });
+
+    table.draw(false);
+    $("input.row-select", table.rows().nodes()).prop("checked", false);
+    $("#selectAll").prop("checked", false);
+
+    toastr.success("Completed tasks: " + ids.join(", "));
+  });
+}

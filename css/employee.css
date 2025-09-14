@@ -1,3 +1,8 @@
+body,
+body * {
+  transition: background-color 0.5s ease, color 0.5s ease, width 0.5s ease,
+    height 0.5s ease, font-size 0.5s ease;
+}
 .pending {
   background-color: #fbf5e8;
   color: #d39c1d;
@@ -29,8 +34,9 @@
 .dataTables_wrapper {
   color: var(--color-text);
 }
+
 .dataTables_wrapper .dataTables_filter input {
-  border: 2px solid var(--color-border);
+  border: 2px solid rgba(223, 222, 243, 0.4);
   border-radius: 8px;
   padding: 6px 12px;
   margin-left: 0.5rem;
@@ -72,10 +78,16 @@
   color: #fff !important;
 }
 
+.table thead tr,
+th {
+  background: var(--color-table-header-bg) !important;
+  color: var(--color-table-header-text) !important;
+}
+
 .table {
   background-color: var(--color-bg);
   border-radius: 0.7rem;
-  overflow: hidden;
+  /* overflow: hidden; */
   border: 2px solid var(--color-border);
 }
 
@@ -96,7 +108,7 @@
 
 /* Hover effect */
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  color:  var(--btn-bg) !important;
+  color: var(--btn-bg) !important;
   transform: scale(1.2);
 }
 
@@ -185,11 +197,19 @@ small {
   white-space: normal;
 }
 
-@media (max-width: 570px) {
+@media (max-width: 600px) {
   #requestsTable th,
   #requestsTable td {
     padding: 0.1rem 0.1rem !important;
     font-size: 0.6rem !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 715px) {
+  #requestsTable th,
+  #requestsTable td {
+    padding: 0.1rem 0.1rem !important;
+    font-size: 0.8rem !important;
   }
 }
 
@@ -231,12 +251,13 @@ button[type="submit"] {
   white-space: normal;
 }
 
-.active>.page-link, .page-link.active {
-    background-color: var(--btn-bg);
-    border-color: var(--btn-bg);
+.active > .page-link,
+.page-link.active {
+  background-color: var(--btn-bg);
+  border-color: var(--btn-bg);
 }
 
-select option{
+select option {
   background-color: var(--color-bg);
   color: var(--color-text) !important;
 }
