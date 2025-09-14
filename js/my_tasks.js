@@ -144,9 +144,13 @@ $(async function () {
     tasks.filter((el) => el.status == "Blocked"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(item)}'>
+      let card = `<div class="card task-card open-task" id="task-${
+        item.id
+      }" data-task='${JSON.stringify(item)}'>
                     <div class="card-body" id="${item.id}">
-                        <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+                        <span class="badge ${badgeClass} badge-custom">${
+        item.priority
+      }</span>
 
                         <h6 class="mt-2">${item.title}</h6>
                         <p class="text-muted small mb-2">${item.description}</p>
@@ -178,7 +182,9 @@ $(async function () {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
   function updateStatus(tid, status) {
-    let task = tasks.find((el) => (el.id = tid));
+    console.log(tid);
+    let task = tasks.find((el) => (+el.id === +tid));
+    console.log(task)
     task.status = status;
     Task.updateTask(task, id);
   }
@@ -218,25 +224,20 @@ $(async function () {
               '<span class="badge bg-success badge-custom badge-completed mb-1">Completed ✅</span>'
             );
           updateStatus(card.find(".card-body").attr("id"), "Completed");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
         } else {
           card.find(".badge-completed").remove();
         }
 
         if ($(this).attr("id") === "in_progress") {
           updateStatus(card.find(".card-body").attr("id"), "In Progress");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
         }
 
         if ($(this).attr("id") === "to_do") {
           updateStatus(card.find(".card-body").attr("id"), "To Do");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
+        }
+
+        if ($(this).attr("id") === "blocked") {
+          updateStatus(card.find(".card-body").attr("id"), "Blocked");
         }
       },
       update: updateCounts,
