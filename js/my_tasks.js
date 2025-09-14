@@ -52,7 +52,6 @@ $(async function () {
     tasks.filter((el) => el.status == "In Progress"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-
       let card = `<div class="card task-card open-task"  id="task-${
         item.id
       }" data-task='${JSON.stringify(item)}'>
@@ -71,8 +70,9 @@ $(async function () {
                     </div>
                 </div>`;
 
-      let daysLeft = daysUntil(item.deadline);
+      $("#in_progress").append(card);
 
+      let daysLeft = daysUntil(item.deadline);
       if (daysLeft === 0) {
         $(`#task-${item.id}`).prepend(
           '<div class="alert alert-warning text-center fw-bold m-3 mb-1 p-1" role="alert">⚠️ Due Today!</div>'
@@ -86,7 +86,6 @@ $(async function () {
           `<div class="alert alert-secondary text-center fw-bold p-1 m-3 mb-1" role="alert">📅 Due in ${daysLeft} days</div>`
         );
       }
-      $("#in_progress").append(card);
       if (isOverdue(item.deadline)) {
         $(`#task-${item.id}`).prepend(
           '<div class="alert alert-danger text-center fw-bold p-2 m-3 mb-1" role="alert">🚨 Overdue Task!</div>'
