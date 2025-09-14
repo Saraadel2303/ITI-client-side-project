@@ -40,7 +40,7 @@ export default class Task {
     try {
       let tasks = await Task.getTasks();
       let newTasks = tasks.map((obj) =>
-        obj.id == task.id ? { ...task } : obj
+        +obj.id === +task.id ? { ...task } : obj
       );
       localStorage.setItem("tasks", JSON.stringify(newTasks));
     } catch (error) {
@@ -54,7 +54,7 @@ export default class Task {
       let empTasks = await Task.employeeTasks(empId);
       let tasks = await Task.updateAllTask(task);
       let newTasks = empTasks.map((obj) =>
-        obj.id == task.id ? { ...task } : obj
+        +obj.id === +task.id ? { ...task } : obj
       );
       localStorage.setItem("emp_tasks", JSON.stringify(newTasks));
     } catch (error) {

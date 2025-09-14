@@ -52,7 +52,6 @@ $(async function () {
     tasks.filter((el) => el.status == "In Progress"),
     function (index, item) {
       let badgeClass = getBadgeColor(item);
-
       let card = `<div class="card task-card open-task"  id="task-${
         item.id
       }" data-task='${JSON.stringify(item)}'>
@@ -71,8 +70,9 @@ $(async function () {
                     </div>
                 </div>`;
 
-      let daysLeft = daysUntil(item.deadline);
+      $("#in_progress").append(card);
 
+      let daysLeft = daysUntil(item.deadline);
       if (daysLeft === 0) {
         $(`#task-${item.id}`).prepend(
           '<div class="alert alert-warning text-center fw-bold m-3 mb-1 p-1" role="alert">⚠️ Due Today!</div>'
@@ -86,7 +86,6 @@ $(async function () {
           `<div class="alert alert-secondary text-center fw-bold p-1 m-3 mb-1" role="alert">📅 Due in ${daysLeft} days</div>`
         );
       }
-      $("#in_progress").append(card);
       if (isOverdue(item.deadline)) {
         $(`#task-${item.id}`).prepend(
           '<div class="alert alert-danger text-center fw-bold p-2 m-3 mb-1" role="alert">🚨 Overdue Task!</div>'
@@ -141,6 +140,29 @@ $(async function () {
     }
   );
 
+  $.each(
+    tasks.filter((el) => el.status == "Blocked"),
+    function (index, item) {
+      let badgeClass = getBadgeColor(item);
+      let card = `<div class="card task-card open-task" id="task-${
+        item.id
+      }" data-task='${JSON.stringify(item)}'>
+                    <div class="card-body" id="${item.id}">
+                        <span class="badge ${badgeClass} badge-custom">${
+        item.priority
+      }</span>
+
+                        <h6 class="mt-2">${item.title}</h6>
+                        <p class="text-muted small mb-2">${item.description}</p>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${
+                          item.deadline
+                        }</small>
+
+                    </div>
+                </div>`;
+      $("#blocked").append(card);
+    }
+  );
   updateCounts();
   function isOverdue(deadline) {
     const today = new Date();
@@ -160,7 +182,9 @@ $(async function () {
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
   function updateStatus(tid, status) {
-    let task = tasks.find((el) => (el.id = tid));
+    console.log(tid);
+    let task = tasks.find((el) => (+el.id === +tid));
+    console.log(task)
     task.status = status;
     Task.updateTask(task, id);
   }
@@ -200,25 +224,20 @@ $(async function () {
               '<span class="badge bg-success badge-custom badge-completed mb-1">Completed ✅</span>'
             );
           updateStatus(card.find(".card-body").attr("id"), "Completed");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
         } else {
           card.find(".badge-completed").remove();
         }
 
         if ($(this).attr("id") === "in_progress") {
           updateStatus(card.find(".card-body").attr("id"), "In Progress");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
         }
 
         if ($(this).attr("id") === "to_do") {
           updateStatus(card.find(".card-body").attr("id"), "To Do");
-          console.log(
-            tasks.find((el) => (el.id = card.find(".card-body").attr("id")))
-          );
+        }
+
+        if ($(this).attr("id") === "blocked") {
+          updateStatus(card.find(".card-body").attr("id"), "Blocked");
         }
       },
       update: updateCounts,
