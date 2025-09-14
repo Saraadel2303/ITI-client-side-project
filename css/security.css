@@ -6,30 +6,12 @@ body {
   color: #374151;
 }
 
-/* sidebar start */
-/* #bdSidebar {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #f8f9fb !important;
-  padding: 15px;
-} */
-
-/* #bdSidebar .active{
-  background-color: #534fea;
-}
-
-#bdSidebar .active:hover{
-  background-color: #6b65ff;
-} */
-
 #bdSidebar {
   background-color: var(--color-sidebar-bg) !important;
   color: var(--color-text) !important;
   height: 100vh;
   padding: 0px;
   margin: 0px;
-  position: sticky;
   top: 0;
 }
 .main-side {
@@ -38,12 +20,6 @@ body {
   height: 100vh;
   padding: 0px;
   margin: 0px;
-}
-@media (min-width: 992px) {
-  #sidebar {
-    height: 100vh;
-    padding: 0px;
-  }
 }
 
 .side-title {
@@ -126,7 +102,7 @@ a.active {
   border-bottom: 1px solid #e5e7eb;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 13px 24px;
-  /* 0.8rem 1.5rem */
+  
 }
 
 .navbar {
@@ -305,4 +281,6 @@ a.active {
 
 .flex-fill {
   background-color: var(--color-sidebar-bg) !important;
+  height: 100vh;
+  overflow-y: scroll;
 }

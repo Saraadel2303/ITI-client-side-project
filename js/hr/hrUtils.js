@@ -9,26 +9,42 @@ export async function getEmpCount() {
 }
 
 //number of presents today
+// export async function getPresntsToday() {
+//   // const data = await loadData();
+//   // return (data.attendanceRecords || []).filter(
+//   //   (r) => r.date === today && r.status === "Present"
+//   // ).length;
+//   // #### local storage#####
+//   const data = JSON.parse(localStorage.getItem("attendance")) || [];
+//   return data.filter((r) => r.date === today && r.status === "Present" ,"Late").length;
+// }
 export async function getPresntsToday() {
-  const data = await loadData();
-  return (data.attendanceRecords || []).filter(
-    (r) => r.date === today && r.status === "Present"
+  const data = JSON.parse(localStorage.getItem("attendance")) || [];
+  return data.filter(
+    (r) => r.date === today && (r.status === "Present" || r.status === "Late")
   ).length;
 }
 
+
 //number of absents today
-export async function getAbsentCount() {
-  const data = await loadData();
-  return (data.attendanceRecords || []).filter(
-    (r) => r.date === today && r.status === "Absent"
-  ).length;
+// export async function getAbsentCount() {
+//   const data = await loadData();
+//   return (data.attendanceRecords || []).filter(
+//     (r) => r.date === today && r.status === "Absent"
+//   ).length;
+// }
+// from local storage
+export function getAbsentCount() {
+  const data = JSON.parse(localStorage.getItem("attendance")) || [];
+  return data.filter((r) => r.date === today && r.status === "Absent").length;
 }
+// getAbsentCount()
 
 // number of WFH today
 export async function getWFHCount() {
-  const data = await loadData();
-  return (data.requests || []).filter(
-    (r) => r.date === today && r.type === "WFH"
+  const data = JSON.parse(localStorage.getItem("attendance")) || [];
+  return (data || []).filter(
+    (r) => r.date === today && r.status === "WFH"
   ).length;
 }
 
@@ -42,8 +58,10 @@ export async function getLateTasksCount() {
 
 // attendance trend for last 7 days
 export async function getAttendanceTrend(days = 7) {
-  const data = await loadData();
-  const records = data.attendanceRecords || [];
+  // const data = await loadData();
+  // const records = data.attendanceRecords || [];
+  // from local storage
+  const records = JSON.parse(localStorage.getItem("attendance")) || [];
 
   const today = new Date();
   const trend = [];
@@ -318,7 +336,7 @@ export async function buildPayrollRows(settings) {
     if (idealEmp && emp.id === idealEmp.id) {
       bonus += (settings.ideal.bonus / 100) * baseSalary;
     }
-    console.log(idealEmp);
+    // console.log(idealEmp);
 
     const netSalary = baseSalary - deductions + bonus;
     return {
