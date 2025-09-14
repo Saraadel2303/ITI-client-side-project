@@ -179,10 +179,10 @@ document.addEventListener("change", function (e) {
   if (type === "checkout") rec.checkOut = val;
 
   if (rec.checkIn && rec.checkOut && rec.checkIn > rec.checkOut) {
-    alert(
+    toastr.error(
       `⚠ Check-in cannot be after Check-out for ${
         getEmployee(rec.employeeId).name
-      }`
+      }`,
     );
   }
 
@@ -195,7 +195,7 @@ function calculateMinutesLate(checkIn) {
   const [h, m] = checkIn.split(":").map(Number);
   const checkInMinutes = h * 60 + m;
 
-  const workStart = 9 * 60; 
+  const workStart = 9 * 60;
   return checkInMinutes > workStart ? checkInMinutes - workStart : 0;
 }
 /***** 8) Bulk actions *****/
@@ -229,12 +229,15 @@ function setupBulkHandlers() {
 
   if (applyBtn) {
     applyBtn.addEventListener("click", function () {
-      if (!selectedAction) return alert("⚠ Please select a bulk action first!");
+      if (!selectedAction)
+        return toastr.error("⚠ Please select a bulk action first!");
       const checked = Array.from(
         document.querySelectorAll(".row-checkbox:checked")
       );
       if (!checked.length)
-        return alert("⚠ Please select at least one employee!");
+        return toastr.error("⚠ Please select at least one employee!");
+
+      const requests = JSON.parse(localStorage.getItem("requests") || "[]");
 
       checked.forEach((cb) => {
         const empId = cb.dataset.id;
@@ -244,11 +247,27 @@ function setupBulkHandlers() {
         if (!rec) return;
 
         if (selectedAction === "leave") {
-          if (!hasApprovedRequest(empId, "leave")) return alert("Not Found");
+          const found = requests.some(
+            (r) =>
+              String(r.employeeId) === String(empId) &&
+              r.type.toLowerCase() === "leave" &&
+              r.status.toLowerCase() === "approved" &&
+              r.payload.requestedDate == getTodayStr()
+          );
+          if (!found)
+            return toastr.error("Leave request not found or not approved!");
           rec.isLeave = true;
           rec.isWFH = false;
         } else if (selectedAction === "wfh") {
-          if (!hasApprovedRequest(empId, "wfh")) return alert("Not Found");
+          const found = requests.some(
+            (r) =>
+              String(r.employeeId) === String(empId) &&
+              r.type.toLowerCase() === "wfh" &&
+              r.status.toLowerCase() === "approved" &&
+              r.payload.requestedDate == getTodayStr()
+          );
+          if (!found)
+            return toastr.error("WFH request not found or not approved!");
           rec.isWFH = true;
           rec.isLeave = false;
         } else if (selectedAction === "checkin") {
@@ -275,6 +294,7 @@ function setupFilters() {
   const statusItems = document.querySelectorAll(
     ".search-group .dropdown-menu .dropdown-item"
   );
+  const filterBtn = document.querySelector(".search-group .dropdown-toggle"); // 🔹 الزرار نفسه
 
   if (searchInput) searchInput.addEventListener("input", filterTable);
 
@@ -284,6 +304,13 @@ function setupFilters() {
         e.preventDefault();
         statusItems.forEach((x) => x.classList.remove("active"));
         this.classList.add("active");
+
+        if (this.textContent === "All") {
+          filterBtn.textContent = "Status";
+        } else {
+          filterBtn.textContent = this.textContent;
+        }
+
         filterTable();
       });
     });
@@ -291,8 +318,12 @@ function setupFilters() {
 }
 
 function filterTable() {
-  const searchVal = (document.querySelector(".search-group input")?.value || "").toLowerCase();
-  const selectedStatus = document.querySelector(".search-group .dropdown-menu .active")?.textContent || "All";
+  const searchVal = (
+    document.querySelector(".search-group input")?.value || ""
+  ).toLowerCase();
+  const selectedStatus =
+    document.querySelector(".search-group .dropdown-menu .active")
+      ?.textContent || "All";
 
   const filtered = attendance.filter((rec) => {
     const emp = getEmployee(rec.employeeId);
@@ -309,14 +340,13 @@ function filterTable() {
   renderRows(filtered);
 }
 
-
 /***** 10) Save data to localStorage *****/
 document.getElementById("saveBtn")?.addEventListener("click", () => {
   attendance.forEach((r) => {
     r.status = getStatus(r);
     r.minutesLate = calculateMinutesLate(r.checkIn);
   });
-
+  console.log(attendance);
   let allRecords = JSON.parse(localStorage.getItem("attendance")) || [];
   const today = new Date().toISOString().split("T")[0];
   allRecords = allRecords.filter((rec) => rec.date !== today);
@@ -324,7 +354,7 @@ document.getElementById("saveBtn")?.addEventListener("click", () => {
   allRecords.push(...attendance);
   localStorage.setItem("attendance", JSON.stringify(allRecords));
 
-  alert("✅ Today's attendance saved!");
+  toastr.success("✅ Today's attendance saved!");
 });
 
 /***** 11) Initialize *****/
