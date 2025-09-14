@@ -1,35 +1,32 @@
+import { loadData } from "./hr/dataService.js"
+
 // ==========================
 // 📌 Manager Dashboard Logic
 // ==========================
 
 // مفاتيح التخزين
-const STORAGE_KEY = "requestsState";
-const LOGS_KEY = "actionLogs";
+const STORAGE_KEY = "requests";    // requests من localStorage
+const LOGS_KEY = "actionLogs";     // اللوجز
+
+let globalData = {}; // هنخزن فيه الموظفين + الطلبات
 
 // ==========================
 // 🟣 تحميل البيانات
 // ==========================
-async function loadRequests() {
-  console.log("🔄 جاري تحميل البيانات ...");
+document.addEventListener("DOMContentLoaded", async () => {
+  const baseData = await loadData(); 
+  const storedRequests = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-  let data;
-  const saved = localStorage.getItem(STORAGE_KEY);
+  // لو فيه requests في localStorage → نستخدمها
+  baseData.requests = storedRequests.length > 0 ? storedRequests : baseData.requests;
 
-  if (saved) {
-    console.log("📦 جبت الداتا من localStorage");
-    data = JSON.parse(saved);
-  } else {
-    const res = await fetch("../data/data1.json");
-    data = await res.json();
-    console.log("✅ البيانات اتجابت:", data);
+  globalData = baseData; // نخزنه عشان نستعمله في اللوجز
 
-    // خزنها أول مرة
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
+  console.log("📦 الداتا النهائية:", globalData);
 
-  renderAllTables(data);
+  renderAllTables(globalData);
   renderLogs();
-}
+});
 
 // ==========================
 // 🟣 رسم كل الجداول
@@ -48,9 +45,7 @@ function renderAllTables(data) {
       <tr data-id="${r.id}">
         <td>${emp.name}</td>
         ${renderRequestRow(r)}
-        <td><span class="badge bg-${getStatusColor(r.status)}">${
-      r.status
-    }</span></td>
+        <td><span class="badge bg-${getStatusColor(r.status)}">${r.status}</span></td>
         <td>
           <button class="btn btn-success btn-sm btn-approve"><i class="fas fa-check"></i></button>
           <button class="btn btn-danger btn-sm btn-reject"><i class="fas fa-times"></i></button>
@@ -63,13 +58,15 @@ function renderAllTables(data) {
   });
 }
 
-// يرسم أعمدة الطلب حسب نوعه
-
-// يرسم أعمدة الطلب حسب نوعه
+// ==========================
+// 🟣 يرسم أعمدة الطلب حسب نوعه
+// ==========================
 function renderRequestRow(r) {
-  switch (r.type) {
-    // 🟣 Late Requests
-    case "Late":
+  // خلي الـtype lowercase علشان نوحده
+  const type = r.type?.toLowerCase();
+
+  switch (type) {
+    case "late":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
         <td>${r.payload.scheduledIn || "-"}</td>
@@ -77,8 +74,7 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Absence / Leave Requests
-    case "Absence":
+    case "absence":
     case "leave":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
@@ -86,16 +82,14 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Overtime Requests
-    case "Overtime":
+    case "overtime":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
         <td>${r.payload.overtimeHours || "-"}</td>
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Extension Requests
-    case "DeadlineExtension":
+    case "deadlineextension":
       return `
         <td>${r.payload.taskName || "-"}</td>
         <td>${r.payload.originalDeadline || "-"}</td>
@@ -103,8 +97,7 @@ function renderRequestRow(r) {
         <td>${r.payload.reason || "-"}</td>
       `;
 
-    // 🟣 Work From Home Requests
-    case "WFH":
+    case "wfh":
       return `
         <td>${r.payload.requestedDate || "-"}</td>
         <td>Week ${r.payload.weekIndex || "-"}</td>
@@ -116,37 +109,50 @@ function renderRequestRow(r) {
   }
 }
 
+
 // ==========================
 // 🟣 التعامل مع الأكشنز Approve/Reject
 // ==========================
 function handleAction(requestId, newStatus) {
-  const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
-  // عدل حالة الطلب
-  const request = data.requests.find((r) => r.id === requestId);
+  // حول الـobject لقيم Array
+  const requestsArray = Object.values(data);
+
+  // دور على الريكوست
+  const request = requestsArray.find((r) => r.id === requestId);
+
   if (request) {
     request.status = newStatus;
+    request.decidedAt = new Date().toLocaleString();
+    data[requestId] = request; // عدل النسخة الأصلية في object
   }
 
-  // احفظ النسخة المعدلة
+  // احفظ تاني
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
   console.log(`⚡ Action: ${request?.employeeId} → ${newStatus}`);
 
-  // سجل في اللوج
+  // سجل اللوج
   saveLog(request, newStatus);
 
   // إعادة رسم
-  renderAllTables(data);
+  globalData.requests = requestsArray;
+  renderAllTables(globalData);
   renderLogs();
 }
+
+
 
 // ==========================
 // 🟣 اللوجز
 // ==========================
 function saveLog(request, newStatus) {
   const logs = JSON.parse(localStorage.getItem(LOGS_KEY)) || [];
+  const emp = globalData.employees.find((e) => e.id === request.employeeId);
+
   const log = {
-    employee: request.employeeId,
+    employee: emp ? emp.name : `ID-${request.employeeId}`,
     requestId: request.id,
     type: request.type,
     newStatus,
@@ -170,9 +176,7 @@ function renderLogs() {
         <td>${log.employee}</td>
         <td>${log.requestId}</td>
         <td>${log.type}</td>
-        <td><span class="badge bg-${getStatusColor(log.newStatus)}">${
-      log.newStatus
-    }</span></td>
+        <td><span class="badge bg-${getStatusColor(log.newStatus)}">${log.newStatus}</span></td>
         <td>${log.date}</td>
       </tr>
     `;
@@ -211,22 +215,19 @@ document.addEventListener("click", (e) => {
 });
 
 // ==========================
-// 🟣 عند تشغيل الصفحة
+// 🟣 Theme Toggle (Dark/Light)
 // ==========================
-document.addEventListener("DOMContentLoaded", loadRequests);
-
 const toggleBtn = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 const body = document.body;
 
-// Check localStorage (لو عايز تخلي التغيير يفضل بعد ريفريش الصفحة)
 if (localStorage.getItem("theme") === "dark") {
   body.classList.add("dark-theme");
   themeIcon.classList.remove("fa-moon");
   themeIcon.classList.add("fa-sun");
 }
 
-toggleBtn.addEventListener("click", () => {
+toggleBtn?.addEventListener("click", () => {
   body.classList.toggle("dark-theme");
 
   if (body.classList.contains("dark-theme")) {
