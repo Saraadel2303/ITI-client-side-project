@@ -140,6 +140,25 @@ $(async function () {
     }
   );
 
+  $.each(
+    tasks.filter((el) => el.status == "Blocked"),
+    function (index, item) {
+      let badgeClass = getBadgeColor(item);
+      let card = `<div class="card task-card open-task" id="task-${item.id}" data-task='${JSON.stringify(item)}'>
+                    <div class="card-body" id="${item.id}">
+                        <span class="badge ${badgeClass} badge-custom">${item.priority}</span>
+
+                        <h6 class="mt-2">${item.title}</h6>
+                        <p class="text-muted small mb-2">${item.description}</p>
+                        <small class="badge bg-secondary rounded-pil badge-custom">${
+                          item.deadline
+                        }</small>
+
+                    </div>
+                </div>`;
+      $("#blocked").append(card);
+    }
+  );
   updateCounts();
   function isOverdue(deadline) {
     const today = new Date();
