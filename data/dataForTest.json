@@ -1,0 +1,1435 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Omar Khaled",
+            "role": "HR Manager",
+            "department": "HR",
+            "monthlySalary": 15000
+        },
+        {
+            "id": 2,
+            "name": "Ahmed Mansour",
+            "role": "Manager",
+            "department": "IT",
+            "monthlySalary": 12000
+        },
+        {
+            "id": 3,
+            "name": "Karim Adel",
+            "role": "Manager",
+            "department": "Software Development",
+            "monthlySalary": 12500
+        },
+        {
+            "id": 4,
+            "name": "Sara Nabil",
+            "role": "Manager",
+            "department": "Marketing",
+            "monthlySalary": 12300
+        },
+        {
+            "id": 5,
+            "name": "Mostafa Ali",
+            "role": "Employee",
+            "department": "IT",
+            "monthlySalary": 8000
+        },
+        {
+            "id": 6,
+            "name": "Aya Magdy",
+            "role": "Employee",
+            "department": "IT",
+            "monthlySalary": 8200
+        },
+        {
+            "id": 7,
+            "name": "Hossam Kamal",
+            "role": "Employee",
+            "department": "IT",
+            "monthlySalary": 7800
+        },
+        {
+            "id": 8,
+            "name": "Menna Salah",
+            "role": "Employee",
+            "department": "Software Development",
+            "monthlySalary": 8500
+        },
+        {
+            "id": 9,
+            "name": "Youssef Ibrahim",
+            "role": "Employee",
+            "department": "Software Development",
+            "monthlySalary": 8700
+        },
+        {
+            "id": 10,
+            "name": "Laila Hany",
+            "role": "Employee",
+            "department": "Software Development",
+            "monthlySalary": 8600
+        },
+        {
+            "id": 11,
+            "name": "Mohamed Tarek",
+            "role": "Employee",
+            "department": "Marketing",
+            "monthlySalary": 7900
+        },
+        {
+            "id": 12,
+            "name": "Rania Adel",
+            "role": "Employee",
+            "department": "Marketing",
+            "monthlySalary": 8000
+        },
+        {
+            "id": 13,
+            "name": "Eslam Reda",
+            "role": "Employee",
+            "department": "Marketing",
+            "monthlySalary": 8200
+        },
+        {
+            "id": 14,
+            "name": "Fady Nader",
+            "role": "Security",
+            "department": "HR",
+            "monthlySalary": 6000
+        },
+        {
+            "id": 15,
+            "name": "Nourhan Samir",
+            "role": "Security",
+            "department": "HR",
+            "monthlySalary": 6100
+        },
+        {
+            "id": 16,
+            "name": "Ola Hassan",
+            "role": "Security",
+            "department": "HR",
+            "monthlySalary": 6200
+        }
+    ],
+    "attendanceRecords": [
+        {
+            "id": 1,
+            "employeeId": 1,
+            "date": "2025-09-01",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 2,
+            "employeeId": 2,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 3,
+            "employeeId": 3,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 4,
+            "employeeId": 4,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 5,
+            "employeeId": 5,
+            "date": "2025-09-01",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 6,
+            "employeeId": 6,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 7,
+            "employeeId": 7,
+            "date": "2025-09-01",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 8,
+            "employeeId": 8,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 9,
+            "employeeId": 9,
+            "date": "2025-09-01",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 10,
+            "employeeId": 10,
+            "date": "2025-09-01",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 11,
+            "employeeId": 11,
+            "date": "2025-09-01",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 12,
+            "employeeId": 12,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 13,
+            "employeeId": 13,
+            "date": "2025-09-01",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 14,
+            "employeeId": 14,
+            "date": "2025-09-01",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 15,
+            "employeeId": 15,
+            "date": "2025-09-01",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 16,
+            "employeeId": 16,
+            "date": "2025-09-01",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 17,
+            "employeeId": 1,
+            "date": "2025-09-02",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 18,
+            "employeeId": 2,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 19,
+            "employeeId": 3,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 20,
+            "employeeId": 4,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 21,
+            "employeeId": 5,
+            "date": "2025-09-02",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 22,
+            "employeeId": 6,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 23,
+            "employeeId": 7,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 24,
+            "employeeId": 8,
+            "date": "2025-09-02",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 25,
+            "employeeId": 9,
+            "date": "2025-09-02",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 26,
+            "employeeId": 10,
+            "date": "2025-09-02",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 27,
+            "employeeId": 11,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 28,
+            "employeeId": 12,
+            "date": "2025-09-02",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 29,
+            "employeeId": 13,
+            "date": "2025-09-02",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 30,
+            "employeeId": 14,
+            "date": "2025-09-02",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 31,
+            "employeeId": 15,
+            "date": "2025-09-02",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 32,
+            "employeeId": 16,
+            "date": "2025-09-02",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 33,
+            "employeeId": 1,
+            "date": "2025-09-03",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 34,
+            "employeeId": 2,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 35,
+            "employeeId": 3,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 36,
+            "employeeId": 4,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 37,
+            "employeeId": 5,
+            "date": "2025-09-03",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 38,
+            "employeeId": 6,
+            "date": "2025-09-03",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 39,
+            "employeeId": 7,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 40,
+            "employeeId": 8,
+            "date": "2025-09-03",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 41,
+            "employeeId": 9,
+            "date": "2025-09-03",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 42,
+            "employeeId": 10,
+            "date": "2025-09-03",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 43,
+            "employeeId": 11,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 44,
+            "employeeId": 12,
+            "date": "2025-09-03",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 45,
+            "employeeId": 13,
+            "date": "2025-09-03",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 46,
+            "employeeId": 14,
+            "date": "2025-09-03",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 47,
+            "employeeId": 15,
+            "date": "2025-09-03",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 48,
+            "employeeId": 16,
+            "date": "2025-09-03",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 49,
+            "employeeId": 1,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 50,
+            "employeeId": 2,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 51,
+            "employeeId": 3,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 52,
+            "employeeId": 4,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 53,
+            "employeeId": 5,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 54,
+            "employeeId": 6,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 55,
+            "employeeId": 7,
+            "date": "2025-09-04",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 56,
+            "employeeId": 8,
+            "date": "2025-09-04",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 57,
+            "employeeId": 9,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 58,
+            "employeeId": 10,
+            "date": "2025-09-04",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 59,
+            "employeeId": 11,
+            "date": "2025-09-04",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 60,
+            "employeeId": 12,
+            "date": "2025-09-04",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 61,
+            "employeeId": 13,
+            "date": "2025-09-04",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 62,
+            "employeeId": 14,
+            "date": "2025-09-04",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 63,
+            "employeeId": 15,
+            "date": "2025-09-04",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 64,
+            "employeeId": 16,
+            "date": "2025-09-04",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 65,
+            "employeeId": 1,
+            "date": "2025-09-05",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 66,
+            "employeeId": 2,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 67,
+            "employeeId": 3,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 68,
+            "employeeId": 4,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 69,
+            "employeeId": 5,
+            "date": "2025-09-05",
+            "status": "Late",
+            "minutesLate": 35,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 70,
+            "employeeId": 6,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 71,
+            "employeeId": 7,
+            "date": "2025-09-05",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 72,
+            "employeeId": 8,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 73,
+            "employeeId": 9,
+            "date": "2025-09-05",
+            "status": "Late",
+            "minutesLate": 15,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 74,
+            "employeeId": 10,
+            "date": "2025-09-05",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 75,
+            "employeeId": 11,
+            "date": "2025-09-05",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 76,
+            "employeeId": 12,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        },
+        {
+            "id": 77,
+            "employeeId": 13,
+            "date": "2025-09-05",
+            "status": "Late",
+            "minutesLate": 25,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Late"
+        },
+        {
+            "id": 78,
+            "employeeId": 14,
+            "date": "2025-09-05",
+            "status": "Absent",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": "Absent"
+        },
+        {
+            "id": 79,
+            "employeeId": 15,
+            "date": "2025-09-05",
+            "status": "WFH",
+            "minutesLate": 0,
+            "isWFH": true,
+            "isLeave": false,
+            "notes": "WFH"
+        },
+        {
+            "id": 80,
+            "employeeId": 16,
+            "date": "2025-09-05",
+            "status": "Present",
+            "minutesLate": 0,
+            "isWFH": false,
+            "isLeave": false,
+            "notes": ""
+        }
+    ],
+    "tasks": [
+        {
+            "id": 1,
+            "employeeId": 1,
+            "title": "Task 1 for Omar Khaled",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 2,
+            "employeeId": 1,
+            "title": "Task 2 for Omar Khaled",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 3,
+            "employeeId": 1,
+            "title": "Task 3 for Omar Khaled",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 4,
+            "employeeId": 2,
+            "title": "Task 1 for Ahmed Mansour",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 5,
+            "employeeId": 2,
+            "title": "Task 2 for Ahmed Mansour",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 6,
+            "employeeId": 2,
+            "title": "Task 3 for Ahmed Mansour",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 7,
+            "employeeId": 3,
+            "title": "Task 1 for Karim Adel",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 8,
+            "employeeId": 3,
+            "title": "Task 2 for Karim Adel",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 9,
+            "employeeId": 3,
+            "title": "Task 3 for Karim Adel",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 10,
+            "employeeId": 4,
+            "title": "Task 1 for Sara Nabil",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 11,
+            "employeeId": 4,
+            "title": "Task 2 for Sara Nabil",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 12,
+            "employeeId": 4,
+            "title": "Task 3 for Sara Nabil",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 13,
+            "employeeId": 5,
+            "title": "Task 1 for Mostafa Ali",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 14,
+            "employeeId": 5,
+            "title": "Task 2 for Mostafa Ali",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 15,
+            "employeeId": 5,
+            "title": "Task 3 for Mostafa Ali",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 16,
+            "employeeId": 6,
+            "title": "Task 1 for Aya Magdy",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 17,
+            "employeeId": 6,
+            "title": "Task 2 for Aya Magdy",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 18,
+            "employeeId": 6,
+            "title": "Task 3 for Aya Magdy",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 19,
+            "employeeId": 7,
+            "title": "Task 1 for Hossam Kamal",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 20,
+            "employeeId": 7,
+            "title": "Task 2 for Hossam Kamal",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 21,
+            "employeeId": 7,
+            "title": "Task 3 for Hossam Kamal",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 22,
+            "employeeId": 8,
+            "title": "Task 1 for Menna Salah",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 23,
+            "employeeId": 8,
+            "title": "Task 2 for Menna Salah",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 24,
+            "employeeId": 8,
+            "title": "Task 3 for Menna Salah",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 25,
+            "employeeId": 9,
+            "title": "Task 1 for Youssef Ibrahim",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 26,
+            "employeeId": 9,
+            "title": "Task 2 for Youssef Ibrahim",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 27,
+            "employeeId": 9,
+            "title": "Task 3 for Youssef Ibrahim",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 28,
+            "employeeId": 10,
+            "title": "Task 1 for Laila Hany",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 29,
+            "employeeId": 10,
+            "title": "Task 2 for Laila Hany",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 30,
+            "employeeId": 10,
+            "title": "Task 3 for Laila Hany",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 31,
+            "employeeId": 11,
+            "title": "Task 1 for Mohamed Tarek",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 32,
+            "employeeId": 11,
+            "title": "Task 2 for Mohamed Tarek",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 33,
+            "employeeId": 11,
+            "title": "Task 3 for Mohamed Tarek",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 34,
+            "employeeId": 12,
+            "title": "Task 1 for Rania Adel",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 35,
+            "employeeId": 12,
+            "title": "Task 2 for Rania Adel",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 36,
+            "employeeId": 12,
+            "title": "Task 3 for Rania Adel",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 37,
+            "employeeId": 13,
+            "title": "Task 1 for Eslam Reda",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 38,
+            "employeeId": 13,
+            "title": "Task 2 for Eslam Reda",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 39,
+            "employeeId": 13,
+            "title": "Task 3 for Eslam Reda",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 40,
+            "employeeId": 14,
+            "title": "Task 1 for Fady Nader",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 41,
+            "employeeId": 14,
+            "title": "Task 2 for Fady Nader",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 42,
+            "employeeId": 14,
+            "title": "Task 3 for Fady Nader",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 43,
+            "employeeId": 15,
+            "title": "Task 1 for Nourhan Samir",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 44,
+            "employeeId": 15,
+            "title": "Task 2 for Nourhan Samir",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 45,
+            "employeeId": 15,
+            "title": "Task 3 for Nourhan Samir",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 46,
+            "employeeId": 16,
+            "title": "Task 1 for Ola Hassan",
+            "status": "Completed",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 47,
+            "employeeId": 16,
+            "title": "Task 2 for Ola Hassan",
+            "status": "In Progress",
+            "deadline": "2025-09-05"
+        },
+        {
+            "id": 48,
+            "employeeId": 16,
+            "title": "Task 3 for Ola Hassan",
+            "status": "To Do",
+            "deadline": "2025-09-05"
+        }
+    ],
+    "requests": [
+        {
+            "id": 1,
+            "employeeId": 5,
+            "date": "2025-09-03",
+            "type": "WFH",
+            "status": "Approved"
+        },
+        {
+            "id": 2,
+            "employeeId": 9,
+            "date": "2025-09-04",
+            "type": "Leave",
+            "status": "Approved"
+        }
+    ],
+    "payrolls": [
+        {
+            "id": 1,
+            "employeeId": 1,
+            "month": "2025-09",
+            "baseSalary": 15000,
+            "deductions": 750.0,
+            "bonus": 0,
+            "netSalary": 14250.0
+        },
+        {
+            "id": 2,
+            "employeeId": 2,
+            "month": "2025-09",
+            "baseSalary": 12000,
+            "deductions": 600.0,
+            "bonus": 0,
+            "netSalary": 11400.0
+        },
+        {
+            "id": 3,
+            "employeeId": 3,
+            "month": "2025-09",
+            "baseSalary": 12500,
+            "deductions": 625.0,
+            "bonus": 0,
+            "netSalary": 11875.0
+        },
+        {
+            "id": 4,
+            "employeeId": 4,
+            "month": "2025-09",
+            "baseSalary": 12300,
+            "deductions": 615.0,
+            "bonus": 0,
+            "netSalary": 11685.0
+        },
+        {
+            "id": 5,
+            "employeeId": 5,
+            "month": "2025-09",
+            "baseSalary": 8000,
+            "deductions": 400.0,
+            "bonus": 0,
+            "netSalary": 7600.0
+        },
+        {
+            "id": 6,
+            "employeeId": 6,
+            "month": "2025-09",
+            "baseSalary": 8200,
+            "deductions": 410.0,
+            "bonus": 820.0,
+            "netSalary": 8610.0
+        },
+        {
+            "id": 7,
+            "employeeId": 7,
+            "month": "2025-09",
+            "baseSalary": 7800,
+            "deductions": 390.0,
+            "bonus": 0,
+            "netSalary": 7410.0
+        },
+        {
+            "id": 8,
+            "employeeId": 8,
+            "month": "2025-09",
+            "baseSalary": 8500,
+            "deductions": 425.0,
+            "bonus": 0,
+            "netSalary": 8075.0
+        },
+        {
+            "id": 9,
+            "employeeId": 9,
+            "month": "2025-09",
+            "baseSalary": 8700,
+            "deductions": 435.0,
+            "bonus": 0,
+            "netSalary": 8265.0
+        },
+        {
+            "id": 10,
+            "employeeId": 10,
+            "month": "2025-09",
+            "baseSalary": 8600,
+            "deductions": 430.0,
+            "bonus": 0,
+            "netSalary": 8170.0
+        },
+        {
+            "id": 11,
+            "employeeId": 11,
+            "month": "2025-09",
+            "baseSalary": 7900,
+            "deductions": 395.0,
+            "bonus": 0,
+            "netSalary": 7505.0
+        },
+        {
+            "id": 12,
+            "employeeId": 12,
+            "month": "2025-09",
+            "baseSalary": 8000,
+            "deductions": 400.0,
+            "bonus": 0,
+            "netSalary": 7600.0
+        },
+        {
+            "id": 13,
+            "employeeId": 13,
+            "month": "2025-09",
+            "baseSalary": 8200,
+            "deductions": 410.0,
+            "bonus": 0,
+            "netSalary": 7790.0
+        },
+        {
+            "id": 14,
+            "employeeId": 14,
+            "month": "2025-09",
+            "baseSalary": 6000,
+            "deductions": 300.0,
+            "bonus": 0,
+            "netSalary": 5700.0
+        },
+        {
+            "id": 15,
+            "employeeId": 15,
+            "month": "2025-09",
+            "baseSalary": 6100,
+            "deductions": 305.0,
+            "bonus": 0,
+            "netSalary": 5795.0
+        },
+        {
+            "id": 16,
+            "employeeId": 16,
+            "month": "2025-09",
+            "baseSalary": 6200,
+            "deductions": 310.0,
+            "bonus": 0,
+            "netSalary": 5890.0
+        }
+    ],
+    "settings": {
+        "penalties": {
+            "16_30": 5,
+            "31_60": 10,
+            "61_120": 20,
+            "cap": 25
+        },
+        "overtime": {
+            "policy": "pay",
+            "weekday": 1.25,
+            "weekend": 1.5
+        },
+        "ideal": {
+            "bonus": 10,
+            "badge": "🌟 Ideal Employee"
+        }
+    }
+}
