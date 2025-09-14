@@ -5,12 +5,14 @@ let currentPage = 1;
 const pageSize = 5;
 export async function fillTodayAttendanceTable() {
   const data = await loadData();
+  const dataLocal = JSON.parse(localStorage.getItem("attendance")) || [];
+  
   const today = new Date().toISOString().split("T")[0];
   const tbody = document.getElementById("attendance-table-body");
   tbody.innerHTML = "";
 
   cachedLates = (data.employees || []).map((emp) => {
-    const record = (data.attendanceRecords || []).find(
+    const record = (dataLocal || []).find(
       (r) => r.employeeId === emp.id && r.date === today
     );
 

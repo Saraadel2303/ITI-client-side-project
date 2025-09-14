@@ -39,7 +39,9 @@ export default class Task {
   static async updateAllTask(task) {
     try {
       let tasks = await Task.getTasks();
-      let newTasks = tasks.map((obj) => (obj.id == task.id ? { ...task } : obj));
+      let newTasks = tasks.map((obj) =>
+        obj.id == task.id ? { ...task } : obj
+      );
       localStorage.setItem("tasks", JSON.stringify(newTasks));
     } catch (error) {
       console.error("Error loading tasks:", error);
@@ -51,9 +53,10 @@ export default class Task {
     try {
       let empTasks = await Task.employeeTasks(empId);
       let tasks = await Task.updateAllTask(task);
-      let newTasks = empTasks.map((obj) => (obj.id == task.id ? { ...task } : obj));
+      let newTasks = empTasks.map((obj) =>
+        obj.id == task.id ? { ...task } : obj
+      );
       localStorage.setItem("emp_tasks", JSON.stringify(newTasks));
-
     } catch (error) {
       console.error("Error loading tasks:", error);
       return [];
