@@ -3,26 +3,37 @@ const todayStr = new Date().toISOString().slice(0, 10);
 
 let attendanceRecords = [];
 let employeeIdToShow = null;
-
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-if (!loggedInUser) {
-  console.error("No logged-in user found in localStorage!");
-} else {
-  employeeIdToShow = loggedInUser.id;
-
-  const storedAttendance = JSON.parse(localStorage.getItem("attendance")) || [];
-
-  attendanceRecords = storedAttendance
-    .filter((a) => a.employeeId === employeeIdToShow)
-    .sort((b, a) => a.date.localeCompare(b.date));
-
-  updateSummaryCards();
-  populateAttendanceTable();
-  initCalendar();
+let oldData = [];
+async function fetchAttendance() {
+  const response = await fetch("/data/data1.json");
+  const data = await response.json();
+  console.log(data.attendanceRecords);
+  return data.attendanceRecords;
 }
 
-function updateSummaryCards() {
+const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+async function initApp() {
+  if (!loggedInUser) {
+    console.error("No logged-in user found in localStorage!");
+  } else {
+    let fetched = await fetchAttendance();
+    employeeIdToShow = loggedInUser.id;
+
+    let storedAttendance = JSON.parse(localStorage.getItem("attendance")) || [];
+    storedAttendance = storedAttendance.concat(fetched);
+
+    attendanceRecords = storedAttendance
+      .filter((a) => a.employeeId === employeeIdToShow)
+      .sort((b, a) => a.date.localeCompare(b.date));
+
+    updateSummaryCards();
+    populateAttendanceTable();
+    initCalendar();
+  }
+}
+initApp();
+
+async function updateSummaryCards() {
   if (!attendanceRecords || !attendanceRecords.forEach) return;
   const summary = { Present: 0, Late: 0, Absent: 0, Leave: 0, WFH: 0 };
 
