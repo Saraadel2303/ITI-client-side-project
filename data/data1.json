@@ -2372,7 +2372,7 @@
             "dependencyids": []
         },
         {
-            "id": 18,
+            "id": 19,
             "title": "change light theme colors",
             "description": "Complete assigned work package",
             "priority": "High",
@@ -2405,7 +2405,7 @@
             "dependencyids": []
         },
         {
-            "id": 19,
+            "id": 20,
             "title": "Fix project issues",
             "description": "Complete assigned work issues",
             "priority": "High",
