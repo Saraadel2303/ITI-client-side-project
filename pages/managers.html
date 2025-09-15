@@ -101,10 +101,10 @@
               <button
                 class="nav-link"
                 data-bs-toggle="tab"
-                data-bs-target="#absence"
+                data-bs-target="#leave"
                 type="button"
               >
-                Absence
+                Leave
               </button>
             </li>
             <li class="nav-item">
@@ -125,6 +125,16 @@
                 type="button"
               >
                 Extensions
+              </button>
+            </li>
+            <li class="nav-item">
+              <button
+                class="nav-link"
+                data-bs-toggle="tab"
+                data-bs-target="#wfh"
+                type="button"
+              >
+                WFH
               </button>
             </li>
           </ul>
@@ -149,7 +159,7 @@
             </div>
 
             <!-- Absence Requests -->
-            <div class="tab-pane fade" id="absence" role="tabpanel">
+            <div class="tab-pane fade" id="leave" role="tabpanel">
               <table class="table table-hover align-middle">
                 <thead class="table-light">
                   <tr>
@@ -184,6 +194,23 @@
 
             <!-- Extension Requests -->
             <div class="tab-pane fade" id="extension" role="tabpanel">
+              <table class="table table-hover align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employee</th>
+                    <th>Task Name</th>
+                    <th>Original Deadline</th>
+                    <th>Requested Extension</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Extension Requests -->
+            <div class="tab-pane fade" id="wfh" role="tabpanel">
               <table class="table table-hover align-middle">
                 <thead class="table-light">
                   <tr>
