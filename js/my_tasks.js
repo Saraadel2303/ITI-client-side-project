@@ -96,6 +96,7 @@ $(async function () {
   $.each(
     tasks.filter((el) => el.status == "To Do"),
     function (index, item) {
+      console.log(item)
       let badgeClass = getBadgeColor(item);
 
       let card = `<div class="card task-card open-task" id="task-${

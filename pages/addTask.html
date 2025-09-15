@@ -25,7 +25,12 @@
 
         <div class="col-12">
           <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3" maxlength="100"></textarea>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="3"
+            maxlength="100"
+          ></textarea>
         </div>
 
         <div class="col-md-6">
@@ -59,7 +64,6 @@
     </form>
 
     <script>
-      // تعديل المسار حسب مكان الملف عندك
       const dataPath = "../data/data1.json";
 
       const assigneeSelect = document.getElementById("assignees");
@@ -102,18 +106,25 @@
       taskForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        // قراءة القيم من الفورم
+        // بناء التاسك بنفس الـ Schema الأصلي
         const task = {
-          id: Date.now(), // ID فريد بناءً على الوقت
+          id: Date.now(), // ID فريد
           title: document.getElementById("title").value,
+          description: document.getElementById("description").value || null,
           priority: document.getElementById("priority").value,
-          description: document.getElementById("description").value,
-          deadline: document.getElementById("deadline").value,
-          assigneeId: document.getElementById("assignees").value,
           status: document.getElementById("status").value,
+          deadline: document.getElementById("deadline").value,
+          assignees: [+document.getElementById("assignees").value], // Array زي السيستم
+          attachments: [], // لو مفيش نحط Array فاضية
+          comments: [], // Array فاضية
+          createdAt: new Date().toISOString(), // وقت الإنشاء
+          updatedAt: null, // لسه جديد
+          createdBy: "Admin", // ثابت دلوقتي
+          dependencyids: [], // Array فاضية
+          history: [], // Array فاضية
         };
 
-        console.log("📝 New task object:", task);
+        console.log("📝 New task object (normalized):", task);
 
         // استرجاع الكوليكشن من الكاش أو إنشاء Array جديد
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
