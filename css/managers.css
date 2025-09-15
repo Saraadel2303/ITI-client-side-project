@@ -52,16 +52,20 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar (Default on Desktop) */
+/* Sidebar */
 .sidebar {
   width: 250px;
   background: var(--color-sidebar-bg);
   min-height: 100vh;
   padding: 20px;
-  color: var(--color-sidebar-link);
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: left 0.3s ease;
+  z-index: 200;
 }
 
 .sidebar h4 {
@@ -100,16 +104,38 @@ body {
   color: #fff;
 }
 
-/* Main content */
-.main-content {
+/* Main Wrapper */
+.main-wrapper {
+  margin-left: 250px;
   flex: 1;
-  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.main-content h1 {
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: var(--color-text);
+/* Navbar */
+.navbar {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Main Content */
+.main-content {
+  padding: 30px;
 }
 
 /* Cards & Containers */
@@ -125,6 +151,12 @@ body {
   font-size: 20px;
   margin-bottom: 15px;
   color: var(--color-text);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .card-box {
@@ -146,6 +178,14 @@ body {
 .table thead {
   background: var(--color-table-header-bg);
   color: var(--color-table-header-text);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive table {
+  min-width: 600px;
 }
 
 /* Theme Toggle Button */
@@ -172,7 +212,7 @@ body.dark-theme #themeIcon {
 }
 
 /* ========================= */
-/* 📱 Responsive Navbar      */
+/* 📱 Responsive             */
 /* ========================= */
 @media (max-width: 768px) {
   body {
@@ -180,92 +220,19 @@ body.dark-theme #themeIcon {
   }
 
   .sidebar {
-    width: 100%;
-    min-height: auto;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-    border-right: none;
-    border-bottom: 1px solid var(--color-border);
+    left: -250px; /* مخفية افتراضي */
   }
 
-  .sidebar h4 {
-    margin: 0;
-  }
-
-  .sidebar .nav-link {
-    margin: 0 8px;
-    padding: 8px 12px;
-  }
-
-  .main-content {
-    padding: 15px;
-  }
-}
-/* Body */
-body {
-  font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  margin: 0;
-  display: flex;
-  min-height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: var(--color-sidebar-bg);
-  min-height: 100vh;
-  padding: 20px;
-  border-right: 1px solid var(--color-border);
-  display: flex;
-  flex-direction: column;
-  position: fixed; /* ثابتة على اليسار */
-}
-
-/* Main Wrapper */
-.main-wrapper {
-  margin-left: 250px; /* نفس عرض الـSidebar */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Navbar */
-.navbar {
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-card-bg);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-/* Main Content */
-.main-content {
-  padding: 30px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    position: relative;
-    flex-direction: row;
-    justify-content: space-between;
-    border-right: none;
-    border-bottom: 1px solid var(--color-border);
+  .sidebar.active {
+    left: 0; /* تظهر لما ندوس على الزر */
   }
 
   .main-wrapper {
     margin-left: 0;
+  }
+
+  .navbar .menu-toggle {
+    display: block;
   }
 
   .main-content {
