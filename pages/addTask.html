@@ -45,9 +45,9 @@
           <label for="status" class="form-label">Status</label>
           <select class="form-select" id="status">
             <option value="To Do" selected>To Do</option>
-            <option value="In Progress">In Progress</option>
+            <!-- <option value="In Progress">In Progress</option>
             <option value="Blocked">Blocked</option>
-            <option value="Completed">Completed</option>
+            <option value="Completed">Completed</option> -->
           </select>
         </div>
       </div>
@@ -63,8 +63,9 @@
       const dataPath = "../data/data1.json";
 
       const assigneeSelect = document.getElementById("assignees");
+      const taskForm = document.getElementById("taskForm");
 
-      // نجيب الداتا من JSON ونحط الموظفين بس في الدروب ليست
+      // --- تحميل الموظفين ---
       fetch(dataPath)
         .then((res) => {
           console.log("✅ Response object:", res);
@@ -96,6 +97,41 @@
           console.log("🎉 All employee options added to dropdown.");
         })
         .catch((err) => console.error("❌ Error loading employees:", err));
+
+      // --- تخزين التاسك في localStorage ---
+      taskForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // قراءة القيم من الفورم
+        const task = {
+          id: Date.now(), // ID فريد بناءً على الوقت
+          title: document.getElementById("title").value,
+          priority: document.getElementById("priority").value,
+          description: document.getElementById("description").value,
+          deadline: document.getElementById("deadline").value,
+          assigneeId: document.getElementById("assignees").value,
+          status: document.getElementById("status").value,
+        };
+
+        console.log("📝 New task object:", task);
+
+        // استرجاع الكوليكشن من الكاش أو إنشاء Array جديد
+        let tasks =
+          JSON.parse(localStorage.getItem("TasksAssignedByAdmin")) || [];
+
+        console.log("📦 Current cached tasks:", tasks);
+
+        // إضافة التاسك الجديد
+        tasks.push(task);
+        console.log("➕ Task added to collection:", task);
+
+        // حفظ الكوليكشن في الكاش
+        localStorage.setItem("TasksAssignedByAdmin", JSON.stringify(tasks));
+        console.log("💾 Tasks collection saved in localStorage.");
+
+        alert("✅ Task saved successfully!");
+        taskForm.reset(); // مسح الفورم بعد الحفظ
+      });
     </script>
 
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
