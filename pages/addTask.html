@@ -25,7 +25,7 @@
 
         <div class="col-12">
           <label for="description" class="form-label">Description</label>
-          <textarea class="form-control" id="description" rows="3"></textarea>
+          <textarea class="form-control" id="description" rows="3" maxlength="100"></textarea>
         </div>
 
         <div class="col-md-6">
@@ -116,8 +116,7 @@
         console.log("📝 New task object:", task);
 
         // استرجاع الكوليكشن من الكاش أو إنشاء Array جديد
-        let tasks =
-          JSON.parse(localStorage.getItem("TasksAssignedByAdmin")) || [];
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
         console.log("📦 Current cached tasks:", tasks);
 
@@ -126,7 +125,7 @@
         console.log("➕ Task added to collection:", task);
 
         // حفظ الكوليكشن في الكاش
-        localStorage.setItem("TasksAssignedByAdmin", JSON.stringify(tasks));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         console.log("💾 Tasks collection saved in localStorage.");
 
         alert("✅ Task saved successfully!");
