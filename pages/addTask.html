@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <title>Add Task</title>
+  </head>
+  <body class="container py-5">
+    <h3 class="mb-4">Add New Task</h3>
+    <form id="taskForm">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="title" class="form-label">Task Title</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="col-md-6">
+          <label for="priority" class="form-label">Priority</label>
+          <select class="form-select" id="priority" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" id="description" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-6">
+          <label for="deadline" class="form-label">Deadline</label>
+          <input type="date" class="form-control" id="deadline" required />
+        </div>
+
+        <!-- هنا هنغير من input text لدروب ليست -->
+        <div class="col-md-6">
+          <label for="assignees" class="form-label">Assign To</label>
+          <select class="form-select" id="assignees" required>
+            <option value="">-- Select Employee --</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-select" id="status">
+            <option value="To Do" selected>To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Blocked">Blocked</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex gap-2">
+        <button type="submit" class="btn btn-success">Save Task</button>
+        <a href="teamTasks.html" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+
+    <script>
+      // تعديل المسار حسب مكان الملف عندك
+      const dataPath = "../data/data1.json";
+
+      const assigneeSelect = document.getElementById("assignees");
+
+      // نجيب الداتا من JSON ونحط الموظفين بس في الدروب ليست
+      fetch(dataPath)
+        .then((res) => {
+          console.log("✅ Response object:", res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log("📂 Full data from JSON:", data);
+
+          const employees = data.employees;
+          console.log("👥 All employees:", employees);
+
+          const filteredEmployees = employees.filter(
+            (emp) => emp.role === "Employee"
+          );
+          console.log(
+            "✅ Filtered employees (role=Employee):",
+            filteredEmployees
+          );
+
+          filteredEmployees.forEach((emp) => {
+            console.log(`➕ Adding option: [id=${emp.id}] ${emp.name}`);
+
+            const option = document.createElement("option");
+            option.value = emp.id; // نخزن ID
+            option.textContent = emp.name; // نعرض الاسم
+            assigneeSelect.appendChild(option);
+          });
+
+          console.log("🎉 All employee options added to dropdown.");
+        })
+        .catch((err) => console.error("❌ Error loading employees:", err));
+    </script>
+
+    <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
