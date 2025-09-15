@@ -1,4 +1,5 @@
 import { loadData } from "./hr/dataService.js"
+import Request from "./modules/request.js";
 
 // ==========================
 // 📌 Manager Dashboard Logic
@@ -113,19 +114,19 @@ function renderRequestRow(r) {
 // ==========================
 // 🟣 التعامل مع الأكشنز Approve/Reject
 // ==========================
-function handleAction(requestId, newStatus) {
-  let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+async function handleAction(requestId, newStatus) {
+  let data = await Request.getRequests();
 
   // حول الـobject لقيم Array
   const requestsArray = Object.values(data);
-
   // دور على الريكوست
   const request = requestsArray.find((r) => r.id === requestId);
+ console.log(data.indexOf(request));
 
   if (request) {
     request.status = newStatus;
     request.decidedAt = new Date().toLocaleString();
-    data[requestId] = request; // عدل النسخة الأصلية في object
+    data[data.indexOf(request)] = request; // عدل النسخة الأصلية في object
   }
 
   // احفظ تاني
